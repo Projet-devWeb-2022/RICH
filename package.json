@@ -17,6 +17,7 @@
     },
     "dependencies": {
         "bulma": "^0.9.3",
+        "css-loader": "^6.6.0",
         "install": "^0.13.0",
         "node-sass": "^7.0.1",
         "sass-loader": "^12.4.0",
