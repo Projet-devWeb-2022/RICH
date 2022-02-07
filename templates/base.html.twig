@@ -18,6 +18,16 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+            {% block nav %}
+                <nav class="navbar is-black" role="navigation" aria-label="main navigation">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" href="localhost/RICH/public">
+                            <img src="{{ asset('../assets/img/logo_RICH.png') }}" width="112" height="28">
+                        </a>
+                    </div>
+                </nav>
+            {% endblock %}
+        {% endblock %}
     </body>
 </html>
