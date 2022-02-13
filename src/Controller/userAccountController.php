@@ -5,6 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class userAccountController extends AbstractController
 {
 
@@ -27,6 +28,6 @@ class userAccountController extends AbstractController
 
         dump($object);
 
-        return $this->render('base.html.twig');
+        return $this->render('baseUser.html.twig');
     }
 }
