@@ -1,0 +1,75 @@
+{% extends 'baseAdmin.html.twig' %}
+
+        {% block content %}
+            {% block title %} Modifier un pack {% endblock %}
+
+
+            <div class="container">
+                <div class="columns is-justify-content-center">
+                    <div class="column is-6-tablet is-5-desktop is-4-widescreen is-3-fullh">
+                        <form method="POST" action="" class="box p-5" enctype="multipart/form-data">
+                            <div class="columns is-centered">
+                                <div class="column is-6-tablet is-8-desktop is-6-widescreen is-3-fullh">
+                                    <label class="is-block mb-4">
+                                        <span class="is-block mb-2">Nom</span>
+                                        <input name="name" type="text" class="input is-info" placeholder="Joe Bloggs"/>
+                                    </label>
+                                </div>
+                                <div class="column is-6-tablet is-5-desktop is-6-widescreen is-3-fullh">
+                                    <label class="is-block mb-4">
+                                        <span class="is-block mb-2">Prénom</span>
+                                        <input name="name" type="text" class="input is-hovered" placeholder="Joe Bloggs"/>
+                                    </label>
+                                </div>
+                            </div>
+                            <label class="is-block mb-4">
+                                <span class="is-block mb-2">Email</span>
+                                <input name="Email" type="email" class="input is-info" placeholder="" />
+                            </label>
+                            <label class="is-block mb-4">
+                                <span class="is-block mb-2">Mot de passe</span>
+                                <input name="zip" type="password" class="input is-info" placeholder="" />
+                            </label>
+                            <label class="is-block mb-4">
+                                <span class="is-block mb-2">Confirmation du mot de passe</span>
+                                <input name="zip" type="password" class="input is-info" placeholder="" />
+                            </label>
+                            <label class="is-block mb-4">
+                                <span class="is-block mb-2">Téléphone</span>
+                                <input name="phone" type="text" class="input is-info" placeholder="0123456789" />
+                            </label>
+
+                            <label class="is-block mb-4">
+                                <span class="is-block mb-2">Pays</span>
+                                <input name="zip" type="text" class="input is-info" placeholder="" />
+                            </label>
+
+                            <label class="is-block mb-4">
+                                <span class="is-block mb-2">Adresse</span>
+                                <input name="city" type="text" class="input is-info" placeholder="" />
+                            </label>
+
+                            <div class="columns is-centered">
+                                <div class="column is-6-tablet is-8-desktop is-6-widescreen is-3-fullh">
+                                    <label class="is-block mb-4">
+                                        <span class="is-block mb-2">Ville</span>
+                                        <input name="name" type="text" class="input is-info" placeholder="Joe Bloggs"/>
+                                    </label>
+                                </div>
+                                <div class="column is-6-tablet is-5-desktop is-6-widescreen is-3-fullh">
+                                    <label class="is-block mb-4">
+                                        <span class="is-block mb-2">Code Postal</span>
+                                        <input name="name" type="text" class="input is-info" placeholder="Joe Bloggs"/>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <button type="submit" class="button is-info px-4">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        {% endblock %}

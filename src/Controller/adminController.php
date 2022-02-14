@@ -10,9 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class adminController extends AbstractController
 {
-
+    //Admin Managemennt
     /**
-     * @Route("/admin")
+     * @Route("/admin/home")
      */
     public function test(): Response
     {
@@ -27,11 +27,57 @@ class adminController extends AbstractController
         return $this->render('admin/adminProfilPage.html.twig');
     }
 
+    //Users
+    /**
+     * @Route("/admin/users/allusers")
+     */
+    public function adminShowAllUsers(): Response
+    {
+        return $this->render('admin/Users/adminAllUsersPages.html.twig');
+    }
+
+
+
+
+    //Packs
+    /**
+     * @Route("/admin/offers/allpacks")
+     */
+
+    public function test3(): Response
+    {
+        return $this->render('adminAllPacksPage.html.twig');
+    }
+
     /**
      * @Route("/admin/offers/addpack")
      */
-    public function test3(): Response
+    public function test4(): Response
     {
-        return $this->render('admin/adminAddPack.html.twig');
+        return $this->render('adminAddPackPage.html.twig');
     }
+
+
+    /**
+     * @Route("/admin/offers/pack")
+     */
+    public function test5(): Response
+    {
+        return $this->render('admin/Packs/adminOnePackPage.html.twig');
+    }
+
+    //Activité
+
+
+
+
+
+    //Hotel
+
+
+
+
+
+    //Voiture
+
 }
