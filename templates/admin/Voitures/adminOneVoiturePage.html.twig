@@ -1,0 +1,33 @@
+{% extends 'baseAdmin.html.twig' %}
+
+        {% block content %}
+            {% block title %} Voiture {% endblock %}
+
+
+            <section class="container">
+                <div class="columns is-centered features">
+                    <div class="column is-4">
+                        <div class="card is-shady">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="https://source.unsplash.com/RWnpyGtY1aU" alt="Placeholder image"
+                                         class="modal-button" data-target="modal-image2">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    <h4>Click on image above</h4>
+                                    <p>Purus semper eget duis at tellus at urna condimentum mattis.</p>
+                                    <div class="card">
+                                        <footer class="card-footer is-6">
+                                            <a href="#" class="card-footer-item">Edit</a>
+                                            <a href="#" class="card-footer-item">Delete</a>
+                                        </footer>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        {% endblock content %}
