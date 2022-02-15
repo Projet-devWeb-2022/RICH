@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomePageController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/homepage")
      */
     public function home(): Response
     {
@@ -19,9 +19,9 @@ class HomePageController extends AbstractController
     /**
      * @Route("/")
      */
-    public function goTo1(): Response
+    public function goToDestination(): Response
     {
-        return $this->render('homePage/homepage.html.twig');
+        return $this->render('destinationPage/destinationPage.html.twig');
     }
 
     /**

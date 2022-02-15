@@ -28,7 +28,7 @@ class Destination
     #[ORM\Column(type: 'integer')]
     private $prix;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
     public function getId(): ?int
