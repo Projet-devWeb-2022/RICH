@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DestinationPageController!{% endblock %}
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <section class="title"> Nos destinations </section>
+    <!-- Pour afficher l'ensemble des produits -->
+< class="row">
+
+    {% for destination in listeDestination %}
+        <div>
+            <div>
+               <!-- <img class="" src="{ destination.image }}">  -->
+                <h2> {{ destination.ville }}</h2>
+                <h2> {{ destination.pays }}</h2>
+                <p> {{ destination.details }}</p>
+                <p> {{ destination.prix }}</p>
+            </div>
+        </div>
+
+        <p> Aucune déstination pour le moment </p>
+    {% endfor %}
+</section>
+
+{% endblock %}

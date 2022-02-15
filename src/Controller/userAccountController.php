@@ -9,7 +9,7 @@ class userAccountController extends AbstractController
 {
 
     /**
-     * @Route("/")
+     * @Route("/user")
      */
     public function home(): Response
     {
