@@ -28,6 +28,9 @@ class Destination
     #[ORM\Column(type: 'integer')]
     private $prix;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Destination
     public function setDetails(String $details): self
     {
         $this->details = $details;
+
+        return $this;
+    }
+
+    public function getImage(): ?String
+    {
+        return $this->image;
+    }
+
+    public function setImage(String $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
