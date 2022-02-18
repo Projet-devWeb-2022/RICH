@@ -1,0 +1,41 @@
+{% extends './baseUser.html.twig' %}
+
+
+{% block title %}Hello SaisieDateController !{% endblock %}
+
+
+{% block content %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    <h2 class="title is-2"> A quelle date souhaitez vous partir ? </h2>
+<div class="example-wrapper">
+    <div class="field">
+        <p class="control has-icons-left has-icons-right">
+            <input class="input" type="date" placeholder="saisir votre date aller">
+            <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+            <span class="icon is-small is-right">
+      <i class="fas fa-check"></i>
+    </span>
+        </p>
+    </div>
+    <div class="field">
+        <p class="control has-icons-left">
+            <input class="input" type="date" placeholder="saisir votre date retour">
+            <span class="icon is-small is-left">
+      <i class="fas fa-lock"></i>
+    </span>
+        </p>
+    </div>
+    <div class="field">
+        <p class="control">
+            <button class="button is-success">
+                Valider
+            </button>
+        </p>
+    </div>
+</div>
+{% endblock %}
