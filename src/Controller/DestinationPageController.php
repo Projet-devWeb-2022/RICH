@@ -21,7 +21,7 @@ class DestinationPageController extends AbstractController
         $listeDestination = $destination->findAll();
 
         return $this->render('destinationPage/destinationPage.html.twig', [
-            'controller_name' => 'DestinationPageController', 'listeDestination'=>$listeDestination
+            'controller_name' => 'DestinationPageController', 'listDestination'=>$listeDestination
         ]);
     }
 
