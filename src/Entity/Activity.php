@@ -1,0 +1,80 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\ActivityRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: ActivityRepository::class)]
+class Activity extends Prestation
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
+    private $id;
+
+    #[ORM\Column(type: 'date')]
+    private $typeActivity;
+
+    #[ORM\Column(type: 'date')]
+    private $date;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $adressActivity;
+
+    #[ORM\Column(type: 'integer')]
+    private $nbPeopleMax;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getTypeActivity(): ?\DateTimeInterface
+    {
+        return $this->typeActivity;
+    }
+
+    public function setTypeActivity(\DateTimeInterface $typeActivity): self
+    {
+        $this->typeActivity = $typeActivity;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getAdressActivity(): ?string
+    {
+        return $this->adressActivity;
+    }
+
+    public function setAdressActivity(string $adressActivity): self
+    {
+        $this->adressActivity = $adressActivity;
+
+        return $this;
+    }
+
+    public function getNbPeopleMax(): ?int
+    {
+        return $this->nbPeopleMax;
+    }
+
+    public function setNbPeopleMax(int $nbPeopleMax): self
+    {
+        $this->nbPeopleMax = $nbPeopleMax;
+
+        return $this;
+    }
+}

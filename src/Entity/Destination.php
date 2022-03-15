@@ -16,12 +16,6 @@ class Destination
     #[ORM\Column(type: 'string', length: 65)]
     private $ville;
 
-    #[ORM\Column(type: 'string', length: 65)]
-    private $pays;
-
-    #[ORM\Column(type: 'string', length: 55, nullable: true)]
-    private $continentPays;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $details;
 
