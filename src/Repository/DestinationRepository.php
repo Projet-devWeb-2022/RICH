@@ -52,5 +52,7 @@ class DestinationRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    INSERT INTO destination(ville,pays,continent_pays,details,prix) VALUES('Punta cana','Republique dominicaine', 'Amerique du Nord', 'Passez votre séjour sous le soleil des caraibes... ', 1195)
     */
 }

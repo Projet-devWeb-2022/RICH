@@ -12,7 +12,7 @@
     <section class="title"> Nos destinations </section>
     <!-- Pour afficher l'ensemble des produits -->
 
-    {% for destination in listeDestination %}
+    {% for destination in listDestination %}
 
         <p> Choissisez votre destination : </p>
 
@@ -26,7 +26,7 @@
                             <h2 class="subtitle has-text-link">{{ destination.ville }} </h2>
                             <h2 class="subtitle has-text-link is-4">{{ destination.pays }} </h2>
                             <p> {{ destination.details }} </p>   </br>
-                            <button  onclick=""> {{ destination.prix }} </button>
+                            <button> {{ destination.prix }} </button>
                         </div>
                     </div>
                 </div>

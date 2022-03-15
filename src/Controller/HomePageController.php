@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomePageController extends AbstractController
 {
     /**
-     * @Route("/homepage")
+     * @Route("/")
      */
     public function home(): Response
     {
@@ -17,7 +17,7 @@ class HomePageController extends AbstractController
     }
 
     /**
-     * @Route("/")
+     * @Route("/destination")
      */
     public function goToDestination(): Response
     {
@@ -25,7 +25,7 @@ class HomePageController extends AbstractController
     }
 
     /**
-     * @Route("/")
+     * @Route("/ok")
      */
     public function goTo2(): Response
     {
