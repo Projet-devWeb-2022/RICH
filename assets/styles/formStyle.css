@@ -1,0 +1,54 @@
+body{
+    font-family: Bahnschrift;
+    font-size: 20px;
+    min-height: 100vh;
+}
+
+img{
+    width: 150px;
+
+}
+#formBgd{
+    padding-top: 15vh;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+section{
+    margin-top:50px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+h1{
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.input{
+    width: 25%;
+}
+
+button{
+    color: #1c3461;
+}
+.form{
+    border: 0px;
+
+}
+.form div, .form button{
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 0;
+}
+
+
+
+a{
+    font-size: 12px;
+}

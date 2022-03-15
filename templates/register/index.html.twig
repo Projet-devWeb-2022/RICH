@@ -1,0 +1,38 @@
+{% extends 'baseForm.html.twig' %}
+{% block content %}
+    <title>Connexion</title>
+
+    <div class="form">
+        <h1>Rejoignez-nous !</h1>
+        {{ form_start(form) }}
+        <div class="email">
+            <label>Adresse mail</label>
+            {{ form_widget(form.email, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="nom">
+            <label>Nom</label>
+            {{ form_widget(form.nom, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="prenom">
+            <label>Prénom</label>
+            {{ form_widget(form.prenom, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="mdp">
+            <label>Mot de passe</label>
+            {{ form_widget(form.password, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="confirm">
+            <label>Confirmer le mot de passe</label>
+            {{ form_widget(form.confirmPwd, {'attr': {'class': 'input'}}) }}
+        </div>
+
+        <button class="button is-outlined" type="submit">Inscription</button>
+
+    </div>
+
+
+    {{ form_end(form) }}
+
+    <a class="otherChoice" href="login">ou bien connectez-vous</a>
+
+{% endblock %}
