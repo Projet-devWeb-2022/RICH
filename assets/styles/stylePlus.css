@@ -1,0 +1,22 @@
+* {
+    font-family: 'Bahnschrift Light';
+    font-size: large;
+    margin: 0;
+    padding: 0;
+}
+
+.item-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    color: white;
+}
+
+.item-navbar:hover{
+    background-color: #1c2b4f;
+    font-size: medium;
+    font-style: italic;
+    color: white;
+}

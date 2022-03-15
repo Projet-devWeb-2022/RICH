@@ -24,73 +24,77 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body class="has-background-grey-lighter">
-{% block nav %}
-    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item">
-                <img src="{{ asset('../assets/img/logo_RICH.png') }}">
-            </a>
-        </div>
-        <div class = "navbar-menu">
-            <div class="navbar-end">
+
+<header>
+    {% block nav %}
+        <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
                 <a class="navbar-item">
-                   Admin
+                    <img src="{{ asset('../assets/img/logo_RICH.png') }}">
                 </a>
             </div>
-        </div>
-    </nav>
-
-    <nav style="background-color: #FDEE00; height: 0.8vh"></nav>
-{% endblock %}
-
-{% block navtwo %}
-    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
-        <div class="navbar-start">
-            <a class="navbar-item">
-                Accueil
-            </a>
-        </div>
-        <div class="navbar-brand">
-            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
-
-        <div id="navbarBasicExample" class="navbar-menu">
-
-            <div class="navbar-end">
-                <a class="navbar-item">
-                    Packs
-                </a>
-
-                <a class="navbar-item">
-                    Activités
-                </a>
-
-                <a class="navbar-item">
-                    Voitures
-                </a>
-                <a class="navbar-item">
-                    Hotels
-                </a>
+            <div class = "navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item">
+                       Admin
+                    </a>
                 </div>
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a class="button is-info">
-                            <strong>Logout</strong>
-                        </a>
+            </div>
+        </nav>
+
+        <nav style="background-color: #FDEE00; height: 0.8vh"></nav>
+    {% endblock %}
+
+    {% block navtwo %}
+        <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    Accueil
+                </a>
+            </div>
+            <div class="navbar-brand">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+
+                <div class="navbar-end">
+                    <a class="navbar-item">
+                        Packs
+                    </a>
+
+                    <a class="navbar-item">
+                        Activités
+                    </a>
+
+                    <a class="navbar-item">
+                        Voitures
+                    </a>
+                    <a class="navbar-item">
+                        Hotels
+                    </a>
+                    </div>
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-info">
+                                <strong>Logout</strong>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-{% endblock %}
+        </nav>
+    {% endblock %}
+</header>
 
-{% block content %}
-{% endblock %}
+<body class="has-background-grey-lighter">
+    {% block content %}
+    {% endblock %}
+</body>
 
 {% block footer %}
     <footer class="footer">
@@ -103,5 +107,5 @@
         </div>
     </footer>
 {% endblock %}
-</body>
+
 </html>

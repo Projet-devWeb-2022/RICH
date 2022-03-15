@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="icon" href="{{ asset('../assets/img/favicon_RICH.png') }}">
+    <link rel="stylesheet" href="{{ asset('../assets/styles/stylePlus.css') }}">
+</head>
+
+<header>
+    {% block nav %}
+        <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
+            <div class="navbar-brand">
+                <a class="navbar-item" style="pointer-events: none;">
+                    <img src="{{ asset('../assets/img/logo_RICH.png') }}">
+                </a>
+            </div>
+            <div class = "navbar-menu">
+                <div class="navbar-end">
+                </div>
+
+                <a class="navbar-item">
+                    <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
+                </a>
+                </div>
+            </div>
+        </nav>
+
+        <nav style="background-color: #FDEE00; height: 0.8vh"></nav>
+    {% endblock %}
+
+    {% block navtwo %}
+        <nav class="navbar is-info" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
+            <div class="navbar-start">
+                <a class="item-navbar">
+                    Accueil
+                </a>
+            </div>
+            <div class="navbar-brand">
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                </div>
+                    <a class="item-navbar">
+                        Packs
+                    </a>
+
+                    <a class="item-navbar">
+                        Activitées
+                    </a>
+
+                    <a class="item-navbar">
+                        Voitures
+                    </a>
+                    <a class="item-navbar">
+                        Hôtels
+                    </a>
+
+                    <a class="item-navbar">
+                        Vols
+                    </a>
+                </div>
+            </div>
+            </div>
+        </nav>
+    {% endblock %}
+</header>
+
+<body class="has-background-grey-lighter">
+{% block content %}
+{% endblock %}
+</body>
+
+{% block footer %}
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>RICH</strong> by <a href="#">NainLand</a>. The source code is licensed
+                <a href="#">MIT</a>. The website content
+                is licensed <a href="#">CC BY NC SA 4.0</a>.
+            </p>
+        </div>
+    </footer>
+{% endblock %}
+
+</html>
