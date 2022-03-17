@@ -4,12 +4,13 @@ namespace App\Entity;
 
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\DBAL\Types\Type;
 
 
 #[ORM\Entity(repositoryClass: PrestationRepository::class)]
 #[ORM\InheritanceType("SINGLE_TABLE")]
 #[ORM\DiscriminatorColumn(name:"prestationType", type:"string")]
-#[ORM\DiscriminatorMap(["prestation" => "Prestation", "stays" => "Stays", "travel" => "Travel", "vehicleRental" => "VehicleRental","activity" => "Activity"])]
+#[ORM\DiscriminatorMap(["prestation" => Prestation::class, "stays" => Stays::class, "travel" => Travel::class, "vehicleRental" => VehicleRental::class,"activity" => Activity::class])]
 
 class Prestation
 {

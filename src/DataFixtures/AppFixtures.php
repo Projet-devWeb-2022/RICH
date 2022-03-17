@@ -21,6 +21,17 @@ class AppFixtures extends Fixture
             $destination->setPrix(mt_rand(10, 100));
             $manager->persist($destination);
         }
+        for ($i = 0; $i < 5; $i++) {
+            $activity = new Activity();
+            $activity->setlabel('Acitivite'.$i);
+            $activity->setPays('pays '.$i);
+            $activity->setIsAvailable(true);
+            $activity->setDescription('detail concernant ... ');
+            $activity->setNbPeopleMax(mt_rand(1,10));
+            $activity->setPrice(mt_rand(10, 100));
+            $manager->persist($destination);
+        }
+
 
         $manager->flush();
     }

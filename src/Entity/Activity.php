@@ -13,10 +13,10 @@ class Activity extends Prestation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'string')]
     private $typeActivity;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'date', nullable: true)]
     private $date;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -35,7 +35,7 @@ class Activity extends Prestation
         return $this->typeActivity;
     }
 
-    public function setTypeActivity(\DateTimeInterface $typeActivity): self
+    public function setTypeActivity(String $typeActivity): self
     {
         $this->typeActivity = $typeActivity;
 
