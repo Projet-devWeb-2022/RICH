@@ -8,81 +8,89 @@
     <link rel="stylesheet" href="{{ asset('../assets/styles/stylePlus.css') }}">
 </head>
 
-<header>
-    {% block nav %}
-        <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
-            <div class="navbar-brand">
-                <a class="navbar-item" style="pointer-events: none;">
-                    <img src="{{ asset('../assets/img/logo_RICH.png') }}">
-                </a>
-            </div>
-            <div class = "navbar-menu">
-                <div class="navbar-end">
-                </div>
+<section class="hero is-fullheight">
+    <div class="hero-head">
+        <header>
+            {% block nav %}
+                <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
+                    <div class="navbar-brand">
+                        <a class="navbar-item" style="pointer-events: none;">
+                            <img src="{{ asset('../assets/img/logo_RICH.png') }}">
+                        </a>
+                    </div>
+                    <div class="navbar-menu">
+                        <div class="navbar-end">
+                        </div>
 
-                <a class="navbar-item">
-                    <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
-                </a>
-                </div>
-            </div>
-        </nav>
+                        <a class="navbar-item">
+                            <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
+                        </a>
+                    </div>
+                </nav>
 
-        <nav style="background-color: #FDEE00; height: 0.8vh"></nav>
+                <nav style="background-color: #FDEE00; height: 0.8vh"></nav>
+            {% endblock %}
+
+            {% block navtwo %}
+                <nav class="navbar is-info" role="navigation" aria-label="main navigation"
+                     style="background-color: #1C3461;">
+                    <div class="navbar-start">
+                        <a class="item-navbar">
+                            Accueil
+                        </a>
+                    </div>
+
+                    <div class="navbar-brand">
+                    </div>
+
+                    <div class="navbar-menu">
+                        <div class="navbar-end">
+                        </div>
+                        <a class="item-navbar">
+                            Packs
+                        </a>
+
+                        <a class="item-navbar">
+                            Activitées
+                        </a>
+
+                        <a class="item-navbar">
+                            Voitures
+                        </a>
+                        <a class="item-navbar">
+                            Hôtels
+                        </a>
+
+                        <a class="item-navbar">
+                            Vols
+                        </a>
+                    </div>
+                </nav>
+            {% endblock %}
+        </header>
+    </div>
+
+    {% block body %}
+        <body class="hero-body" style="background-color: #F4FEFE;">
+        {% block content %}
+        {% endblock %}
+        </body>
     {% endblock %}
 
-    {% block navtwo %}
-        <nav class="navbar is-info" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
-            <div class="navbar-start">
-                <a class="item-navbar">
-                    Accueil
-                </a>
-            </div>
-            <div class="navbar-brand">
-            </div>
-
-            <div class="navbar-menu">
-                <div class="navbar-end">
-                </div>
-                    <a class="item-navbar">
-                        Packs
-                    </a>
-
-                    <a class="item-navbar">
-                        Activitées
-                    </a>
-
-                    <a class="item-navbar">
-                        Voitures
-                    </a>
-                    <a class="item-navbar">
-                        Hôtels
-                    </a>
-
-                    <a class="item-navbar">
-                        Vols
+    {% block footer %}
+        <div class="hero-foot">
+            <footer class="footer" style="background-color: #1C3461">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>RICH</strong> by Groupe 10. The source code is available
+                        <a href="https://github.com/Projet-devWeb-2022/RICH"> here </a>.
+                    </p>
+                    <a href="homepage.html.twig">
+                        <img src="{{ asset('../assets/img/logo_RICH.png') }}">
                     </a>
                 </div>
-            </div>
-            </div>
-        </nav>
-    {% endblock %}
-</header>
-
-<body class="has-background-grey-lighter">
-{% block content %}
-{% endblock %}
-</body>
-
-{% block footer %}
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>RICH</strong> by <a href="#">NainLand</a>. The source code is licensed
-                <a href="#">MIT</a>. The website content
-                is licensed <a href="#">CC BY NC SA 4.0</a>.
-            </p>
+            </footer>
         </div>
-    </footer>
-{% endblock %}
-
+    {% endblock %}
+</section>
 </html>
