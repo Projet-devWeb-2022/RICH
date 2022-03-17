@@ -1,0 +1,32 @@
+{% extends 'baseForm.html.twig' %}
+{% block content %}
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <title>Connexion</title>
+
+    <section class="form">
+        <h1>Connectez-vous !</h1>
+        <form action="{{ path('login') }}" method="post">
+
+
+            <div class="email">
+                <label for="username">Adresse mail</label>
+                <input type="text" class="input" id="username" name="_username" value="{{ last_username }}"/>
+            </div>
+            <div class="mdp">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="input" id="password" name="_password"/>
+
+            </div>
+
+            <button class="button is-outlined is-blue" type="submit">Connexion</button>
+        </form>
+    </section>
+
+
+
+    <a class="otherChoice" href="register">ou bien inscrivez-vous</a>
+{% endblock %}
