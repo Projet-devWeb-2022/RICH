@@ -22,9 +22,6 @@ class Activity extends Prestation
     #[ORM\Column(type: 'string', length: 255)]
     private $adressActivity;
 
-    #[ORM\Column(type: 'integer')]
-    private $nbPeopleMax;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -62,18 +59,6 @@ class Activity extends Prestation
     public function setAdressActivity(string $adressActivity): self
     {
         $this->adressActivity = $adressActivity;
-
-        return $this;
-    }
-
-    public function getNbPeopleMax(): ?int
-    {
-        return $this->nbPeopleMax;
-    }
-
-    public function setNbPeopleMax(int $nbPeopleMax): self
-    {
-        $this->nbPeopleMax = $nbPeopleMax;
 
         return $this;
     }

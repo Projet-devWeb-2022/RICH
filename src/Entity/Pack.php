@@ -26,9 +26,6 @@ class Pack
     #[ORM\JoinColumn(nullable: false)]
     private $destination;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $descritpion;
-
     #[ORM\Column(type: 'integer')]
     private $nbPersonneMax;
 
@@ -85,18 +82,6 @@ class Pack
     public function setDestination(Destination $destination): self
     {
         $this->destination = $destination;
-
-        return $this;
-    }
-
-    public function getDescritpion(): ?string
-    {
-        return $this->descritpion;
-    }
-
-    public function setDescritpion(?string $descritpion): self
-    {
-        $this->descritpion = $descritpion;
 
         return $this;
     }

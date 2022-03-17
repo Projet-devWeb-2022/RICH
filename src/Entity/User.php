@@ -30,6 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $adresse;
+
 
     public function getId(): ?int
     {
@@ -131,5 +134,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom($prenom): void
     {
         $this->prenom = $prenom;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
     }
 }
