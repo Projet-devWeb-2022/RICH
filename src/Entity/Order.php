@@ -97,4 +97,17 @@ class Order
 
         return $this;
     }
+
+    public function getPrixTotal(){
+        $amount = 0;
+        foreach($this->getPrestation() as $prestation)
+        {
+            $amount += $prestation->getPrix();
+        }
+        if($this->pack != null){
+            $amount += $this->pack->getPrix();
+        }
+
+        return $amount;
+    }
 }
