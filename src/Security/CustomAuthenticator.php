@@ -58,7 +58,26 @@ class CustomAuthenticator implements InteractiveAuthenticatorInterface
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        return new JsonResponse(['error' => 'UNAUTHORIZED'], Response::HTTP_UNAUTHORIZED);
+        $code = 403;
+        $message = 'FORBIDDEN';
+        if ($exception instanceof TooManyLoginAttemptsAuthenticationException) {
+            $code = Response::HTTP_UNAUTHORIZED;
+            $message = 'Too many failed login attempts, please try again in a few minutes.';
+            $MessageData = $exception->getMessageData();
+            if (is_array($MessageData)) {
+                if (key_exists('%minutes%', $MessageData)) {
+                    $message = $exception->getMessageKey();
+                    $message = str_replace("%minutes%", $MessageData['%minutes%'], $message);
+                }
+            }
+        } else if ($exception instanceof BadCredentialsException) {
+            $code = 401;
+            $message = $exception->getMessage();
+        } else if ($exception instanceof UserAgentNotAuthorizedException) {
+            $code = $exception->getCode();
+            $message = $exception->getMessage();
+        }
+        return new JsonResponse(['error' => $message], $code);
     }
 
     public function isInteractive(): bool

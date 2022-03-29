@@ -30,6 +30,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $secretaccess;
+
 
     public function getId(): ?int
     {
@@ -131,5 +134,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom($prenom): void
     {
         $this->prenom = $prenom;
+    }
+
+    public function getSecretaccess(): ?bool
+    {
+        return $this->secretaccess;
+    }
+
+    public function setSecretaccess(?bool $secretaccess): self
+    {
+        $this->secretaccess = $secretaccess;
+
+        return $this;
     }
 }
