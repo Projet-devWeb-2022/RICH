@@ -11,11 +11,11 @@
         </div>
         <div class="nom">
             <label>Nom</label>
-            {{ form_widget(form.nom, {'attr': {'class': 'input'}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'input'}}) }}
         </div>
         <div class="prenom">
             <label>Prénom</label>
-            {{ form_widget(form.prenom, {'attr': {'class': 'input'}}) }}
+            {{ form_widget(form.surname, {'attr': {'class': 'input'}}) }}
         </div>
         <div class="mdp">
             <label>Mot de passe</label>
@@ -24,6 +24,10 @@
         <div class="confirm">
             <label>Confirmer le mot de passe</label>
             {{ form_widget(form.confirmPwd, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="address">
+            <label>Adresse</label>
+            {{ form_widget(form.address, {'attr': {'class': 'input'}}) }}
         </div>
 
         <button class="button is-outlined" type="submit">Inscription</button>

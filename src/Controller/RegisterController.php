@@ -23,6 +23,7 @@ class RegisterController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
+            $user->setRoles(array("PUBLIC_ACCESS", "ROLE_USER"));
             $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute("");
