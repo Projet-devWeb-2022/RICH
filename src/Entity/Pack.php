@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PackRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PackRepository::class)]
@@ -14,101 +16,57 @@ class Pack
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $nomPack;
+    private $name;
+
+    #[ORM\Column(type: 'blob', nullable: true)]
+    private $image;
+
+    #[ORM\Column(type: 'string', length: 1000)]
+    private $description;
+
+    #[ORM\Column(type: 'float', nullable: true)]
+    private $price;
 
     #[ORM\Column(type: 'integer')]
-    private $nbJour;
+    private $nbPersonMax;
 
-    #[ORM\Column(type: 'float')]
-    private $Prix;
-
-    #[ORM\OneToOne(targetEntity: Destination::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Destination::class, inversedBy: 'packs')]
     #[ORM\JoinColumn(nullable: false)]
     private $destination;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $descritpion;
+    #[ORM\ManyToMany(targetEntity: Prestation::class)]
+    private $prestations;
 
-    #[ORM\Column(type: 'integer')]
-    private $nbPersonneMax;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $description;
-
+    public function __construct()
+    {
+        $this->prestations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNomPack(): ?string
+    public function getName(): ?string
     {
-        return $this->nomPack;
+        return $this->name;
     }
 
-    public function setNomPack(string $nomPack): self
+    public function setName(string $name): self
     {
-        $this->nomPack = $nomPack;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getNbJour(): ?int
+    public function getImage()
     {
-        return $this->nbJour;
+        return $this->image;
     }
 
-    public function setNbJour(int $nbJour): self
+    public function setImage($image): self
     {
-        $this->nbJour = $nbJour;
-
-        return $this;
-    }
-
-    public function getPrix(): ?float
-    {
-        return $this->Prix;
-    }
-
-    public function setPrix(float $Prix): self
-    {
-        $this->Prix = $Prix;
-
-        return $this;
-    }
-
-    public function getDestination(): ?Destination
-    {
-        return $this->destination;
-    }
-
-    public function setDestination(Destination $destination): self
-    {
-        $this->destination = $destination;
-
-        return $this;
-    }
-
-    public function getDescritpion(): ?string
-    {
-        return $this->descritpion;
-    }
-
-    public function setDescritpion(?string $descritpion): self
-    {
-        $this->descritpion = $descritpion;
-
-        return $this;
-    }
-
-    public function getNbPersonneMax(): ?int
-    {
-        return $this->nbPersonneMax;
-    }
-
-    public function setNbPersonneMax(int $nbPersonneMax): self
-    {
-        $this->nbPersonneMax = $nbPersonneMax;
+        $this->image = $image;
 
         return $this;
     }
@@ -121,6 +79,66 @@ class Pack
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?float $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getNbPersonMax(): ?int
+    {
+        return $this->nbPersonMax;
+    }
+
+    public function setNbPersonMax(int $nbPersonMax): self
+    {
+        $this->nbPersonMax = $nbPersonMax;
+
+        return $this;
+    }
+
+    public function getDestination(): ?Destination
+    {
+        return $this->destination;
+    }
+
+    public function setDestination(?Destination $destination): self
+    {
+        $this->destination = $destination;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Prestation[]
+     */
+    public function getPrestations(): Collection
+    {
+        return $this->prestations;
+    }
+
+    public function addPrestation(Prestation $prestation): self
+    {
+        if (!$this->prestations->contains($prestation)) {
+            $this->prestations[] = $prestation;
+        }
+
+        return $this;
+    }
+
+    public function removePrestation(Prestation $prestation): self
+    {
+        $this->prestations->removeElement($prestation);
 
         return $this;
     }
