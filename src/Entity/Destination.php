@@ -31,9 +31,13 @@ class Destination
     #[ORM\OneToMany(mappedBy: 'destination', targetEntity: Pack::class)]
     private $packs;
 
+    #[ORM\ManyToMany(targetEntity: Prestation::class, mappedBy: 'destination')]
+    private $prestations;
+
     public function __construct()
     {
         $this->packs = new ArrayCollection();
+        $this->prestations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -114,6 +118,33 @@ class Destination
             if ($pack->getDestination() === $this) {
                 $pack->setDestination(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Prestation[]
+     */
+    public function getPrestations(): Collection
+    {
+        return $this->prestations;
+    }
+
+    public function addPrestation(Prestation $prestation): self
+    {
+        if (!$this->prestations->contains($prestation)) {
+            $this->prestations[] = $prestation;
+            $prestation->addDestination($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestation(Prestation $prestation): self
+    {
+        if ($this->prestations->removeElement($prestation)) {
+            $prestation->removeDestination($this);
         }
 
         return $this;

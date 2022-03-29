@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PrestationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PrestationRepository::class)]
@@ -34,6 +36,14 @@ class Prestation
 
     #[ORM\Column(type: 'blob', nullable: true)]
     private $image;
+
+    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'prestations')]
+    private $destination;
+
+    public function __construct()
+    {
+        $this->destination = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -108,6 +118,30 @@ class Prestation
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Destination[]
+     */
+    public function getDestination(): Collection
+    {
+        return $this->destination;
+    }
+
+    public function addDestination(Destination $destination): self
+    {
+        if (!$this->destination->contains($destination)) {
+            $this->destination[] = $destination;
+        }
+
+        return $this;
+    }
+
+    public function removeDestination(Destination $destination): self
+    {
+        $this->destination->removeElement($destination);
 
         return $this;
     }

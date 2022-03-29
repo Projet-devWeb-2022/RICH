@@ -15,11 +15,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string')]
-    private $nom;
-
-    #[ORM\Column(type: 'string')]
-    private $prenom;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
@@ -32,6 +27,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $secretaccess;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $surname;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $address;
 
 
     public function getId(): ?int
@@ -104,38 +108,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param mixed $nom
-     */
-    public function setNom($nom): void
-    {
-        $this->nom = $nom;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
-     * @param mixed $prenom
-     */
-    public function setPrenom($prenom): void
-    {
-        $this->prenom = $prenom;
-    }
-
     public function getSecretaccess(): ?bool
     {
         return $this->secretaccess;
@@ -144,7 +116,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSecretaccess(?bool $secretaccess): self
     {
         $this->secretaccess = $secretaccess;
+    }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
 
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
         return $this;
     }
 }

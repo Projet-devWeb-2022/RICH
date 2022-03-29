@@ -3,11 +3,11 @@
 namespace App\DataFixtures;
 
 use App\Entity\Activity;
+use App\Entity\Country;
 use App\Entity\Destination;
 use App\Entity\Hotel;
-use App\Entity\Order;
+use App\Entity\Orders;
 use App\Entity\Pack;
-use App\Entity\Stays;
 use App\Entity\Travel;
 use App\Entity\User;
 use App\Entity\Vehicle;
@@ -15,136 +15,34 @@ use App\Entity\Vehicle;
 use App\Entity\VehicleRental;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Role\Role;
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        //Destination
-        for ($i = 0; $i < 20; $i++) {
-            $destination = new Destination();
-            $destination->setVille('ville '.$i);
-            $destination->setDetails('detail... ');
 
-            $manager->persist($destination);
-            $manager->flush();
-        }
-        //Activity
-        for ($i = 0; $i < 5; $i++) {
-            $activity = new Activity();
-            $activity->setlabel('Acitivite'.$i);
-            $activity->setPrice(mt_rand(10, 100));
-            $activity->setIsAvailable(true);
-            $activity->setDescription('detail concernant ... ');
-            $activity->setNbPeopleMax(mt_rand(1,10));
-            $activity->setTypeActivity('type'.$i);
-            $activity->setDate(\DateTime);
-            $activity->setAdressActivity('adresse'.$i);
-            $activity->setDestination($destination);
+        $date = new \DateTime('02/01/2022');
 
-            $manager->persist($activity);
-            $manager->flush();
-        }
-        //Stays
-        for ($i = 0; $i < 5; $i++) {
-            $stay = new Hotel();
-            $stay->setlabel('Logement'.$i);
-            $stay->setPrice(mt_rand(10, 100));
-            $stay->setIsAvailable(true);
-            $stay->setDescription('detail concernant ... ');
-            $stay->setNbPeopleMax(mt_rand(1,10));
-            $stay->setTypeLogement('type'.$i);
-            $stay->setDate(\DateTime);
-            $stay->setAdress('adresse'.$i);
 
-            $manager->persist($stay);
-            $manager->flush();
-        }
         //Pays
         for ($i = 0; $i < 5; $i++) {
-            $pays = new Pays();
+            $pays = new Country();
             $pays->setName('Pays'.$i);
             $pays->setContinent('Continent'.$i);
 
             $manager->persist($pays);
             $manager->flush();
         }
-        //orderRecap
-        for ($i = 0; $i < 5; $i++) {
-            $orderRecap = new Facture();
-            $orderRecap ->setDate(\DateTime);
-            $orderRecap ->setAmount(mt_rand(1,10));
-            $orderRecap ->setPaimentMethod('Methode'.$i);
-            $orderRecap ->setFacturationAdress('Adresse'.$i);
 
-            $manager->persist($orderRecap);
-            $manager->flush();
-        }
+        //Destination
+        for ($i = 0; $i < 20; $i++) {
+            $destination = new Destination();
+            $destination->setCity('ville '.$i);
+            $destination->setDetails('detail... ');
+            $destination->setContry($pays);
 
-        //Vehicule
-        for ($i = 0; $i < 5; $i++) {
-            $vehicule = new Vehicule();
-            $vehicule->setName('nom'.$i);
-            $vehicule->setType('type'.$i);
-            $vehicule->setPrice(mt_rand(1,10));
-
-            $manager->persist($vehicule);
-            $manager->flush();
-        }
-        //Travel
-        for ($i = 0; $i < 5; $i++) {
-            $travel = new Travel();
-            $travel->setlabel('Voyage'.$i);
-            $travel->setPrice(mt_rand(10, 100));
-            $travel->setIsAvailable(true);
-            $travel->setDescription('detail concernant ... ');
-            $travel->setNbPeopleMax(mt_rand(1,10));
-            $travel->setAirportDeparture('airport'.$i);
-            $travel->setAirportArrival('airport'.$i);
-            $travel->setDateDeparture(\DateTime);
-            $travel->setDateArrival(\DateTime);
-            $travel->setVehicule($vehicule);
-
-            $manager->persist($travel);
-            $manager->flush();
-        }
-        //VehicleRental
-        for ($i = 0; $i < 5; $i++) {
-            $vehicleRental = new VehicleRental();
-            $vehicleRental->setlabel('Voyage'.$i);
-            $vehicleRental->setPrice(mt_rand(10, 100));
-            $vehicleRental->setIsAvailable(true);
-            $vehicleRental->setDescription('detail concernant ... ');
-            $vehicleRental->setNbPeopleMax(mt_rand(1,10));
-            $vehicleRental->setTypeVehicul('Vehicule'.$i);
-            $vehicleRental->setDropOffDate(\DateTime);
-            $vehicleRental->setPickUpLocation(\DateTime);
-            $vehicleRental->setVehicule($vehicule);
-
-            $manager->persist($vehicleRental);
-            $manager->flush();
-        }
-
-        //Pack
-        for ($i = 0; $i < 5; $i++) {
-            $pack = new Pack();
-            $pack->setlabel('Voyage'.$i);
-            $pack->setPrice(mt_rand(10, 100));
-            $pack->setIsAvailable(true);
-            $pack->setDescription('detail concernant ... ');
-            $pack->setNbPeopleMax(mt_rand(1,10));
-
-            $manager->persist($pack);
-            $manager->flush();
-        }
-        //Commande
-        for ($i = 0; $i < 5; $i++) {
-            $commande = new Order();
-            $commande->setAmount(mt_rand(10, 100));
-            $commande->setDate(\DateTime);
-            $commande->setPack($pack);
-
-            $manager->persist($commande);
+            $manager->persist($destination);
             $manager->flush();
         }
 
@@ -152,15 +50,17 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
             $user->setEmail('email'.$i);
-            $user->setNom('nom'.$i);
-            $user->setPrenom('prenom'.$i);
             $user->setPassword('password'.$i);
-            $user->setRoles('role'.$i);
-            $user->setAdresse('adresse'.$i);
+            $user->setRoles(array('ROLE_USER'));
+            $user->setName('prenom');
+            $user->setSurname('nom');
+            $user->setAddress('adresse'.$i);
 
-            $manager->persist($commande);
+            $manager->persist($user);
             $manager->flush();
         }
+
+
 
     }
 }

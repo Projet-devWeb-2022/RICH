@@ -17,11 +17,11 @@ class DestinationPageController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         //Récuperer l'ensemble des destinations de notre base et l'envoyer en parametre a notre vue
-        // $destination = $doctrine->getRepository(Destination::class);
-       // $listeDestination = $destination->findAll();
+        $destination = $doctrine->getRepository(Destination::class);
+        $listeDestination = $destination->findAll();
 
         return $this->render('destinationPage/destinationPage.html.twig', [
-            'controller_name' => 'DestinationPageController', /*'listDestination'=>$listeDestination*/
+            'controller_name' => 'DestinationPageController', 'listDestination'=>$listeDestination
         ]);
     }
 
