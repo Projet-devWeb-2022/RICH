@@ -4,63 +4,48 @@ namespace App\Entity;
 
 use App\Repository\PrestationRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\DBAL\Types\Type;
-
 
 #[ORM\Entity(repositoryClass: PrestationRepository::class)]
 #[ORM\InheritanceType("SINGLE_TABLE")]
 #[ORM\DiscriminatorColumn(name:"prestationType", type:"string")]
-#[ORM\DiscriminatorMap(["prestation" => Prestation::class, "stays" => Stays::class, "travel" => Travel::class, "vehicleRental" => VehicleRental::class,"activity" => Activity::class])]
+#[ORM\DiscriminatorMap(["prestation" => Prestation::class, "hotels" => Hotel::class, "travel" => Travel::class, "vehicleRental" => VehicleRental::class,"activity" => Activity::class])]
 
 class Prestation
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $label;
-
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'float')]
     private $price;
 
     #[ORM\Column(type: 'boolean')]
     private $isAvailable;
 
-    #[ORM\Column(type: 'json', nullable: true)]
-    private $img = [];
-
     #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 1000)]
     private $description;
 
     #[ORM\Column(type: 'integer')]
-    private $nbPeopleMax;
+    private $nbPersonMax;
+
+    #[ORM\Column(type: 'blob', nullable: true)]
+    private $image;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getLabel(): ?string
-    {
-        return $this->label;
-    }
-
-    public function setLabel(string $label): self
-    {
-        $this->label = $label;
-
-        return $this;
-    }
-
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -79,14 +64,14 @@ class Prestation
         return $this;
     }
 
-    public function getImg(): ?array
+    public function getName(): ?string
     {
-        return $this->img;
+        return $this->name;
     }
 
-    public function setImg(?array $img): self
+    public function setName(string $name): self
     {
-        $this->img = $img;
+        $this->name = $name;
 
         return $this;
     }
@@ -103,14 +88,26 @@ class Prestation
         return $this;
     }
 
-    public function getNbPeopleMax(): ?int
+    public function getNbPersonMax(): ?int
     {
-        return $this->nbPeopleMax;
+        return $this->nbPersonMax;
     }
 
-    public function setNbPeopleMax(int $nbPeopleMax): self
+    public function setNbPersonMax(int $nbPersonMax): self
     {
-        $this->nbPeopleMax = $nbPeopleMax;
+        $this->nbPersonMax = $nbPersonMax;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

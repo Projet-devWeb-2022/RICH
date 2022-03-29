@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Activity;
 use App\Entity\Destination;
+use App\Entity\Hotel;
 use App\Entity\Order;
 use App\Entity\Pack;
 use App\Entity\Stays;
@@ -26,6 +27,7 @@ class AppFixtures extends Fixture
             $destination->setDetails('detail... ');
 
             $manager->persist($destination);
+            $manager->flush();
         }
         //Activity
         for ($i = 0; $i < 5; $i++) {
@@ -38,12 +40,14 @@ class AppFixtures extends Fixture
             $activity->setTypeActivity('type'.$i);
             $activity->setDate(\DateTime);
             $activity->setAdressActivity('adresse'.$i);
+            $activity->setDestination($destination);
 
             $manager->persist($activity);
+            $manager->flush();
         }
         //Stays
         for ($i = 0; $i < 5; $i++) {
-            $stay = new Stays();
+            $stay = new Hotel();
             $stay->setlabel('Logement'.$i);
             $stay->setPrice(mt_rand(10, 100));
             $stay->setIsAvailable(true);
@@ -54,6 +58,7 @@ class AppFixtures extends Fixture
             $stay->setAdress('adresse'.$i);
 
             $manager->persist($stay);
+            $manager->flush();
         }
         //Pays
         for ($i = 0; $i < 5; $i++) {
@@ -62,6 +67,7 @@ class AppFixtures extends Fixture
             $pays->setContinent('Continent'.$i);
 
             $manager->persist($pays);
+            $manager->flush();
         }
         //orderRecap
         for ($i = 0; $i < 5; $i++) {
@@ -72,6 +78,7 @@ class AppFixtures extends Fixture
             $orderRecap ->setFacturationAdress('Adresse'.$i);
 
             $manager->persist($orderRecap);
+            $manager->flush();
         }
 
         //Vehicule
@@ -82,6 +89,7 @@ class AppFixtures extends Fixture
             $vehicule->setPrice(mt_rand(1,10));
 
             $manager->persist($vehicule);
+            $manager->flush();
         }
         //Travel
         for ($i = 0; $i < 5; $i++) {
@@ -98,6 +106,7 @@ class AppFixtures extends Fixture
             $travel->setVehicule($vehicule);
 
             $manager->persist($travel);
+            $manager->flush();
         }
         //VehicleRental
         for ($i = 0; $i < 5; $i++) {
@@ -113,6 +122,7 @@ class AppFixtures extends Fixture
             $vehicleRental->setVehicule($vehicule);
 
             $manager->persist($vehicleRental);
+            $manager->flush();
         }
 
         //Pack
@@ -125,6 +135,7 @@ class AppFixtures extends Fixture
             $pack->setNbPeopleMax(mt_rand(1,10));
 
             $manager->persist($pack);
+            $manager->flush();
         }
         //Commande
         for ($i = 0; $i < 5; $i++) {
@@ -134,6 +145,7 @@ class AppFixtures extends Fixture
             $commande->setPack($pack);
 
             $manager->persist($commande);
+            $manager->flush();
         }
 
         //users
@@ -147,7 +159,8 @@ class AppFixtures extends Fixture
             $user->setAdresse('adresse'.$i);
 
             $manager->persist($commande);
+            $manager->flush();
         }
-        $manager->flush();
+
     }
 }

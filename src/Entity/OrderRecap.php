@@ -13,67 +13,53 @@ class OrderRecap
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'date')]
-    private $date;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $TransactionType;
 
-    #[ORM\Column(type: 'integer')]
-    private $amount;
+    #[ORM\OneToOne(inversedBy: 'orderRecap', targetEntity: order::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $orderRattached;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $paimentMethod;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $facturationAdress;
+    private $billingAdress;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getTransactionType(): ?string
     {
-        return $this->date;
+        return $this->TransactionType;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setTransactionType(string $TransactionType): self
     {
-        $this->date = $date;
+        $this->TransactionType = $TransactionType;
 
         return $this;
     }
 
-    public function getAmount(): ?int
+    public function getOrderRattached(): ?order
     {
-        return $this->amount;
+        return $this->orderRattached;
     }
 
-    public function setAmount(int $amount): self
+    public function setOrderRattached(order $orderRattached): self
     {
-        $this->amount = $amount;
+        $this->orderRattached = $orderRattached;
 
         return $this;
     }
 
-    public function getPaimentMethod(): ?string
+    public function getBillingAdress(): ?string
     {
-        return $this->paimentMethod;
+        return $this->billingAdress;
     }
 
-    public function setPaimentMethod(string $paimentMethod): self
+    public function setBillingAdress(string $billingAdress): self
     {
-        $this->paimentMethod = $paimentMethod;
-
-        return $this;
-    }
-
-    public function getFacturationAdress(): ?string
-    {
-        return $this->facturationAdress;
-    }
-
-    public function setFacturationAdress(string $facturationAdress): self
-    {
-        $this->facturationAdress = $facturationAdress;
+        $this->billingAdress = $billingAdress;
 
         return $this;
     }

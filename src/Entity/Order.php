@@ -16,17 +16,20 @@ class Order
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'integer')]
-    private $amount;
-
-    #[ORM\Column(type: 'date')]
-    private $date;
-
-    #[ORM\OneToOne(targetEntity: Pack::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: pack::class)]
     private $pack;
+
+    #[ORM\Column(type: 'datetime')]
+    private $dateOfOrder;
 
     #[ORM\ManyToMany(targetEntity: Prestation::class)]
     private $prestation;
+
+    #[ORM\Column(type: 'float')]
+    private $ammount;
+
+    #[ORM\OneToOne(mappedBy: 'orderRattached', targetEntity: OrderRecap::class, cascade: ['persist', 'remove'])]
+    private $orderRecap;
 
     public function __construct()
     {
@@ -38,38 +41,26 @@ class Order
         return $this->id;
     }
 
-    public function getAmount(): ?int
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(int $amount): self
-    {
-        $this->amount = $amount;
-
-        return $this;
-    }
-
-    public function getDate(): ?\DateTimeInterface
-    {
-        return $this->date;
-    }
-
-    public function setDate(\DateTimeInterface $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    public function getPack(): ?Pack
+    public function getPack(): ?pack
     {
         return $this->pack;
     }
 
-    public function setPack(?Pack $pack): self
+    public function setPack(?pack $pack): self
     {
         $this->pack = $pack;
+
+        return $this;
+    }
+
+    public function getDateOfOrder(): ?\DateTimeInterface
+    {
+        return $this->dateOfOrder;
+    }
+
+    public function setDateOfOrder(\DateTimeInterface $dateOfOrder): self
+    {
+        $this->dateOfOrder = $dateOfOrder;
 
         return $this;
     }
@@ -98,16 +89,32 @@ class Order
         return $this;
     }
 
-    public function getPrixTotal(){
-        $amount = 0;
-        foreach($this->getPrestation() as $prestation)
-        {
-            $amount += $prestation->getPrix();
-        }
-        if($this->pack != null){
-            $amount += $this->pack->getPrix();
+    public function getAmmount(): ?float
+    {
+        return $this->ammount;
+    }
+
+    public function setAmmount(float $ammount): self
+    {
+        $this->ammount = $ammount;
+
+        return $this;
+    }
+
+    public function getOrderRecap(): ?OrderRecap
+    {
+        return $this->orderRecap;
+    }
+
+    public function setOrderRecap(OrderRecap $orderRecap): self
+    {
+        // set the owning side of the relation if necessary
+        if ($orderRecap->getOrderRattached() !== $this) {
+            $orderRecap->setOrderRattached($this);
         }
 
-        return $amount;
+        $this->orderRecap = $orderRecap;
+
+        return $this;
     }
 }
