@@ -16,7 +16,7 @@ class OrderRecap
     #[ORM\Column(type: 'string', length: 255)]
     private $TransactionType;
 
-    #[ORM\OneToOne(inversedBy: 'orderRecap', targetEntity: order::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'orderRecap', targetEntity: orders::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $orderRattached;
 
@@ -40,12 +40,12 @@ class OrderRecap
         return $this;
     }
 
-    public function getOrderRattached(): ?order
+    public function getOrdersRattached(): ?orders
     {
         return $this->orderRattached;
     }
 
-    public function setOrderRattached(order $orderRattached): self
+    public function setOrdersRattached(orders $orderRattached): self
     {
         $this->orderRattached = $orderRattached;
 

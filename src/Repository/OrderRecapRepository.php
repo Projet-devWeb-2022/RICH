@@ -16,11 +16,11 @@ class OrderRecapRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, OrderRecap::class);
+        parent::__construct($registry, OrdersRecap::class);
     }
 
     // /**
-    //  * @return OrderRecap[] Returns an array of OrderRecap objects
+    //  * @return OrdersRecap[] Returns an array of OrdersRecap objects
     //  */
     /*
     public function findByExampleField($value)
