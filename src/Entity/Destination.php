@@ -21,8 +21,6 @@ class Destination
     #[ORM\Column(type: 'string', length: 1000, nullable: true)]
     private $details;
 
-    #[ORM\ManyToOne(targetEntity: Pays::class)]
-    private $pays;
 
     #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'destinations')]
     #[ORM\JoinColumn(nullable: false)]
@@ -69,17 +67,6 @@ class Destination
         return $this;
     }
 
-    public function getPays(): ?Pays
-    {
-        return $this->pays;
-    }
-
-    public function setPays(?Pays $pays): self
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
 
     public function getContry(): ?Country
     {

@@ -23,7 +23,6 @@ class VehicleRental extends Prestation
     private $dropOffDate;
 
     #[ORM\ManyToOne(targetEntity: Vehicle::class, inversedBy: 'vehicleRentals')]
-    #[ORM\JoinColumn(nullable: false)]
     private $vehicle;
 
     public function getId(): ?int
