@@ -4,9 +4,13 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -14,12 +18,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
-
-    #[ORM\Column(type: 'string')]
-    private $nom;
-
-    #[ORM\Column(type: 'string')]
-    private $prenom;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     private $email;
@@ -30,6 +28,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $name;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $surname;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $address;
 
     public function getId(): ?int
     {
@@ -101,35 +107,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getNom()
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    /**
-     * @param mixed $nom
-     */
-    public function setNom($nom): void
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrenom()
+    public function getSurname(): ?string
     {
-        return $this->prenom;
+        return $this->surname;
     }
 
-    /**
-     * @param mixed $prenom
-     */
-    public function setPrenom($prenom): void
+    public function setSurname(string $surname): self
     {
-        $this->prenom = $prenom;
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
     }
 }

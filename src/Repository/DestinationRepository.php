@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Destination;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\From;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -20,21 +19,16 @@ class DestinationRepository extends ServiceEntityRepository
         parent::__construct($registry, Destination::class);
     }
 
-
-    public function getAllDestination(){
-      return Destination::findAll();
-    }
-
     // /**
     //  * @return Destination[] Returns an array of Destination objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('d.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -45,14 +39,12 @@ class DestinationRepository extends ServiceEntityRepository
     /*
     public function findOneBySomeField($value): ?Destination
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-
-    INSERT INTO destination(ville,pays,continent_pays,details,prix) VALUES('Punta cana','Republique dominicaine', 'Amerique du Nord', 'Passez votre séjour sous le soleil des caraibes... ', 1195)
     */
 }

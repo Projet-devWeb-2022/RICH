@@ -16,18 +16,24 @@ class Travel extends Prestation
     #[ORM\Column(type: 'string', length: 255)]
     private $airportDeparture;
 
+    #[ORM\Column(type: 'date')]
+    private $dateDeparture;
+
+    #[ORM\Column(type: 'time')]
+    private $departureTime;
+
     #[ORM\Column(type: 'string', length: 255)]
     private $airportArrival;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $dateDeparture;
+    #[ORM\Column(type: 'time')]
+    private $arrivalTime;
 
     #[ORM\Column(type: 'date')]
     private $dateArrival;
 
-    #[ORM\OneToOne(targetEntity: Vehicle::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $vehicule;
+    #[ORM\ManyToOne(targetEntity: Vehicle::class, inversedBy: 'travel')]
+    #[ORM\JoinColumn(nullable: true)]
+    private $vehicle;
 
     public function getId(): ?int
     {
@@ -46,6 +52,30 @@ class Travel extends Prestation
         return $this;
     }
 
+    public function getDateDeparture(): ?\DateTimeInterface
+    {
+        return $this->dateDeparture;
+    }
+
+    public function setDateDeparture(\DateTimeInterface $dateDeparture): self
+    {
+        $this->dateDeparture = $dateDeparture;
+
+        return $this;
+    }
+
+    public function getDepartureTime(): ?\DateTimeInterface
+    {
+        return $this->departureTime;
+    }
+
+    public function setDepartureTime(\DateTimeInterface $departureTime): self
+    {
+        $this->departureTime = $departureTime;
+
+        return $this;
+    }
+
     public function getAirportArrival(): ?string
     {
         return $this->airportArrival;
@@ -58,14 +88,14 @@ class Travel extends Prestation
         return $this;
     }
 
-    public function getDateDeparture(): ?string
+    public function getArrivalTime(): ?\DateTimeInterface
     {
-        return $this->dateDeparture;
+        return $this->arrivalTime;
     }
 
-    public function setDateDeparture(string $dateDeparture): self
+    public function setArrivalTime(\DateTimeInterface $arrivalTime): self
     {
-        $this->dateDeparture = $dateDeparture;
+        $this->arrivalTime = $arrivalTime;
 
         return $this;
     }
@@ -82,14 +112,14 @@ class Travel extends Prestation
         return $this;
     }
 
-    public function getVehicule(): ?Vehicle
+    public function getVehicle(): ?Vehicle
     {
-        return $this->vehicule;
+        return $this->vehicle;
     }
 
-    public function setVehicule(Vehicle $vehicule): self
+    public function setVehicle(?Vehicle $vehicle): self
     {
-        $this->vehicule = $vehicule;
+        $this->vehicle = $vehicle;
 
         return $this;
     }

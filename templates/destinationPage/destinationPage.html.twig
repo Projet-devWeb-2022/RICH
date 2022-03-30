@@ -12,6 +12,7 @@
     <section class="title"> Nos destinations </section>
     <!-- Pour afficher l'ensemble des produits -->
 
+
     {% for destination in listDestination %}
 
         <p> Choissisez votre destination : </p>
@@ -23,16 +24,17 @@
                     <div class="column">
                         <div class="box">
                             <!-- <img class="" src="{ destination.image }}">  -->
-                            <h2 class="subtitle has-text-link">{{ destination.ville }} </h2>
-                            <h2 class="subtitle has-text-link is-4">{{ destination.pays }} </h2>
+                            <h2 class="subtitle has-text-link">{{ destination.city }} </h2>
+                            <h2 class="subtitle has-text-link is-4"> {{ destination.contry.name }} </h2>
                             <p> {{ destination.details }} </p>   </br>
-                            <button> {{ destination.prix }} </button>
+                            <button> selectionner </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
+
 </section>
 
 {% endblock %}

@@ -14,19 +14,15 @@ class VehicleRental extends Prestation
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $typeVehicul;
+    private $PickingAddress;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: 'datetime')]
     private $pickUpDate;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: 'datetime')]
     private $dropOffDate;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $pickUpLocation;
-
-    #[ORM\OneToOne(targetEntity: Vehicle::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Vehicle::class, inversedBy: 'vehicleRentals')]
     private $vehicle;
 
     public function getId(): ?int
@@ -34,14 +30,14 @@ class VehicleRental extends Prestation
         return $this->id;
     }
 
-    public function getTypeVehicul(): ?string
+    public function getPickingAddress(): ?string
     {
-        return $this->typeVehicul;
+        return $this->PickingAddress;
     }
 
-    public function setTypeVehicul(string $typeVehicul): self
+    public function setPickingAddress(string $PickingAddress): self
     {
-        $this->typeVehicul = $typeVehicul;
+        $this->PickingAddress = $PickingAddress;
 
         return $this;
     }
@@ -51,7 +47,7 @@ class VehicleRental extends Prestation
         return $this->pickUpDate;
     }
 
-    public function setPickUpDate(?\DateTimeInterface $pickUpDate): self
+    public function setPickUpDate(\DateTimeInterface $pickUpDate): self
     {
         $this->pickUpDate = $pickUpDate;
 
@@ -63,21 +59,9 @@ class VehicleRental extends Prestation
         return $this->dropOffDate;
     }
 
-    public function setDropOffDate(?\DateTimeInterface $dropOffDate): self
+    public function setDropOffDate(\DateTimeInterface $dropOffDate): self
     {
         $this->dropOffDate = $dropOffDate;
-
-        return $this;
-    }
-
-    public function getPickUpLocation(): ?string
-    {
-        return $this->pickUpLocation;
-    }
-
-    public function setPickUpLocation(string $pickUpLocation): self
-    {
-        $this->pickUpLocation = $pickUpLocation;
 
         return $this;
     }
@@ -87,7 +71,7 @@ class VehicleRental extends Prestation
         return $this->vehicle;
     }
 
-    public function setVehicle(Vehicle $vehicle): self
+    public function setVehicle(?Vehicle $vehicle): self
     {
         $this->vehicle = $vehicle;
 

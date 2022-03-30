@@ -13,31 +13,28 @@ class Activity extends Prestation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string')]
-    private $typeActivity;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $typeOfActivity;
 
     #[ORM\Column(type: 'date', nullable: true)]
     private $date;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $adressActivity;
-
-    #[ORM\Column(type: 'integer')]
-    private $nbPeopleMax;
+    private $address;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTypeActivity(): ?\DateTimeInterface
+    public function getTypeOfActivity(): ?string
     {
-        return $this->typeActivity;
+        return $this->typeOfActivity;
     }
 
-    public function setTypeActivity(String $typeActivity): self
+    public function setTypeOfActivity(string $typeOfActivity): self
     {
-        $this->typeActivity = $typeActivity;
+        $this->typeOfActivity = $typeOfActivity;
 
         return $this;
     }
@@ -47,33 +44,21 @@ class Activity extends Prestation
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getAdressActivity(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adressActivity;
+        return $this->address;
     }
 
-    public function setAdressActivity(string $adressActivity): self
+    public function setAddress(string $address): self
     {
-        $this->adressActivity = $adressActivity;
-
-        return $this;
-    }
-
-    public function getNbPeopleMax(): ?int
-    {
-        return $this->nbPeopleMax;
-    }
-
-    public function setNbPeopleMax(int $nbPeopleMax): self
-    {
-        $this->nbPeopleMax = $nbPeopleMax;
+        $this->address = $address;
 
         return $this;
     }
