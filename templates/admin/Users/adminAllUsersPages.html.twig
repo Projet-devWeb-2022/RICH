@@ -1,64 +1,41 @@
-{% extends 'baseAdmin.html.twig' %}
+    {% extends 'baseAdmin.html.twig' %}
 
-        {% block content %}
-            {% block title %} Tout les utilisateurs {% endblock %}
-            <section class="section">
-                <div class="columns is-centered">
-                    <div class="column is-narrow">
-                        <table class="table has-text-centered table is-hoverable">
-                            <thead>
-                            <tr class="has-text-centered" colspan="6">
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Crée le</th>
-                                <th>Dernière connexion</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr class="has-text-centered" colspan="6">
-                                <th>Hkdjsgs</th>
-                                <td>dgsgsddgs</td>
-                                <td>23/12/2022</td>
-                                <td>24/12/2023</td>
-                                <td>
-                                    <a href="#" class="botton is-info">Modifier</a>
-                                    <a href="#" class="botton is-info">Supprimer</a>
-                                </td>
-                            </tr>
-                            <tr class="has-text-centered" colspan="6">
-                                <th>Hkdjsgs</th>
-                                <td>dgsgsddgs</td>
-                                <td>23/12/2022</td>
-                                <td>24/12/2023</td>
-                                <td>
-                                    <a href="#" class="botton is-info">Modifier</a>
-                                    <a href="#" class="botton is-info">Supprimer</a>
-                                </td>
-                            </tr>
-                            <tr class="has-text-centered" colspan="6">
-                                <th>Hkdjsgs</th>
-                                <td>dgsgsddgs</td>
-                                <td>23/12/2022</td>
-                                <td>24/12/2023</td>
-                                <td>
-                                    <a href="#" class="botton is-info">Modifier</a>
-                                    <a href="#" class="botton is-info">Supprimer</a>
-                                </td>
-                            </tr>
-                            <tr class="has-text-centered" colspan="6">
-                                <th>Hkdjsgs</th>
-                                <td>dgsgsddgs</td>
-                                <td>23/12/2022</td>
-                                <td>24/12/2023</td>
-                                <td>
-                                    <a href="#" class="botton is-info">Modifier</a>
-                                    <a href="#" class="botton is-info">Supprimer</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-        {% endblock content %}
+                {% block content %}
+                    {% block title %} Tout les utilisateurs {% endblock %}
+
+                    <section class="section">
+                        <div class="columns is-centered">
+                            <div class="column is-narrow">
+                                <table class="table has-text-centered table is-hoverable">
+                                    <thead>
+                                    <tr class="has-text-centered" colspan="6">
+                                        <th>Nom</th>
+                                        <th>Prénom</th>
+                                        <th>Crée le</th>
+                                        <th>Dernière connexion</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                     {% for user in users %}
+                                        <tr class="has-text-centered" colspan="6">
+                                            <th>{{ user.name }}</th>
+                                            <td>{{ user.surname }}</td>
+                                            <td>23/12/2022</td>
+                                            <td>24/12/2023</td>
+                                            <td>
+                                                <a href="{{ path('user.delete', {id: user.id}) }}" class="button is-danger" data-id="{{ user.id }}">Supprimer</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="navbar is-centered">
+                                    {{ knp_pagination_render(users) }}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                {% endblock content %}

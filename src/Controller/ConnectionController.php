@@ -14,10 +14,6 @@ class ConnectionController extends AbstractController
      */
     public function index(): Response
     {
-        $form = $this->createForm(UserLoginType::class);
-        return $this->render('connection/index.html.twig', [
-            'form' => $form->createView(),
-        ]);
 
         
 
