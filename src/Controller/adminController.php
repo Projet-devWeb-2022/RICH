@@ -5,6 +5,11 @@ namespace App\Controller;
 
 
 use App\Entity\User;
+use App\Entity\Vehicle;
+use App\Form\AdminType;
+use App\Form\UserRegistrationType;
+use App\Form\VehicleType;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +22,7 @@ use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 class adminController extends AbstractController
 {
 
-    //Admin Managemennt
+
     /**
      * @Route("/admin/home")
      */
@@ -29,7 +34,7 @@ class adminController extends AbstractController
     /**
      * @Route("/admin/profil")
      */
-    public function test2(): Response
+    public function showProfil(): Response
     {
         return $this->render('admin/adminProfilPage.html.twig');
     }
@@ -37,7 +42,7 @@ class adminController extends AbstractController
     //Users
 
     /**
-     * @Route("/admin/user/all")
+     * @Route("/admin/user/all", name="allUsers")
      * @param PersistenceManagerRegistry $em
      * @param $paginator
      * @return Response
@@ -58,8 +63,36 @@ class adminController extends AbstractController
 
     }
 
+    #[Route('/admin/user/edit/{id}', name:'adminToUser', methods:['GET','POST'])]
+    public function update(Request $request , EntityManagerInterface $entityManager, int $id ): Response
+    {
+        $repo = $entityManager->getRepository(User::Class);
+        $user =  $repo->find($id);
+        $form = $this->createForm(AdminType::class, $user);
 
-    #[Route('/admin/user/delete/{id}' ,'user.delete', methods:['GET','DELETE'])]
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+
+            $this->addFlash(
+                'success',
+                'Vehicule mis à jour avec succès !'
+            );
+            return $this->redirectToRoute("allUsers");
+        }
+
+        return $this->render('admin/Users/userToAdmin.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+
+
+
+    #[Route('/admin/user/delete/{id}' ,name:'deleteUser', methods:['GET','DELETE'])]
     public function adminDeleteUser($id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();

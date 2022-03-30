@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VehicleController extends AbstractController
 {
-    #[Route('/admin/vehicle/new', 'vehicle.new', methods:['GET','POST'])]
+    #[Route('/admin/vehicle/new', name:"newVehicle", methods:['GET','POST'])]
     public function new(Request $request , EntityManagerInterface $entityManager ): Response
     {
         $vehicle = new Vehicle();
@@ -33,6 +33,8 @@ class VehicleController extends AbstractController
                 'success',
                 'Vehicle créé avec succès !'
             );
+            return $this->redirectToRoute("allVehicles");
+
         }
 
         return $this->render('admin/Vehicle/newVehicle.html.twig', [
@@ -71,7 +73,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/vehicle/edit/{id}', 'vehicle.edit', methods:['GET','POST'])]
+    #[Route('/admin/vehicle/edit/{id}', name:'editVehicle', methods:['GET','POST'])]
     public function update(Request $request , EntityManagerInterface $entityManager, int $id ): Response
     {
         $repo = $entityManager->getRepository(Vehicle::Class);
@@ -96,7 +98,7 @@ class VehicleController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/vehicle/delete/{id}' ,'vehicle.delete', methods:['GET','DELETE'])]
+    #[Route('/admin/vehicle/delete/{id}' ,name:'deleteVehicle', methods:['GET','DELETE'])]
     public function delete($id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();

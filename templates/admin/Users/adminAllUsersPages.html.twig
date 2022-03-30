@@ -25,7 +25,8 @@
                                             <td>23/12/2022</td>
                                             <td>24/12/2023</td>
                                             <td>
-                                                <a href="{{ path('user.delete', {id: user.id}) }}" class="button is-danger" data-id="{{ user.id }}">Supprimer</a>
+                                                <a href="{{ path('deleteUser', {id: user.id}) }}" class="button is-danger">Supprimer</a>
+                                                <a href="{{ path('adminToUser', {id: user.id}) }}" class="button is-danger">Modifier le role</a>
                                             </td>
                                         </tr>
                                     {% endfor %}
