@@ -24,7 +24,7 @@
 
 
                         {% if app.user %}
-                            <a class="navbar-item" >
+                            <a href="{{ path('app_profile') }}" class="navbar-item" >
                                 <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
                             </a>
                             <a href="{{ path('app_logout') }}" class="navbar-item" >

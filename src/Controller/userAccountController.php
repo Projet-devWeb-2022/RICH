@@ -10,11 +10,19 @@ class userAccountController extends AbstractController
 {
 
     /**
-     * @Route("/user")
+     * @Route("/profile", name="app_profile")
      */
     public function home(): Response
     {
         return $this->render('userAccountPage/userAccount.html.twig');
+    }
+
+    /**
+     * @Route("/profile/orders", name="app_profile_orders")
+     */
+    public function orders(): Response
+    {
+        return $this->render('userAccountPage/userOrders.html.twig');
     }
 
     /**
