@@ -1,0 +1,41 @@
+{% extends 'baseForm.html.twig' %}
+
+{% block content %}
+    <title>Inscription</title>
+
+    <div class="form">
+        <h1>Rejoignez-nous !</h1>
+        {{ form_start(registrationForm) }}
+        <div class="email">
+            <label>Adresse mail</label>
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="nom">
+            <label>Nom</label>
+            {{ form_widget(registrationForm.name, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="prenom">
+            <label>Prénom</label>
+            {{ form_widget(registrationForm.surname, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="address">
+            <label>Adresse (en entier)</label>
+            {{ form_widget(registrationForm.address, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="mdp">
+            <label>Mot de passe</label>
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="cgu">
+            <label>J'accepte les CGU de RICH</label>
+            {{ form_widget(registrationForm.agreeTerms) }}
+        </div>
+        <button class="button is-outlined" type="submit">Inscription</button>
+
+    </div>
+
+
+    {{ form_end(registrationForm) }}
+
+    <a class="otherChoice" href="login">ou bien connectez-vous</a>
+{% endblock %}
