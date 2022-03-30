@@ -14,6 +14,10 @@
     color: white;
 }
 
+.navbar-item{
+    color: white;
+}
+
 .item-navbar:hover{
     background-color: #1c2b4f;
     font-size: medium;

@@ -3,12 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('../assets/styles/formStyle.css') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
         <link rel="icon" href="{{ asset('../assets/img/favicon_RICH.png') }}">
     </head>
     <body class="has-background-grey-lighter">
         <div id="formBgd">
-            <img src="{{ asset('../assets/img/logo_noir.png') }}">
+
+            <a href="{{ path('app_homepage') }}"><img src="{{ asset('../assets/img/logo_noir.png') }}" alt="Homepage"/></a>
+
             <section  class="has-background-white">
                 {% block content %}
                 {% endblock %}

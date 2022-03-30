@@ -14,7 +14,7 @@
             {% block nav %}
                 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
                     <div class="navbar-brand">
-                        <a class="navbar-item" style="pointer-events: none;">
+                        <a class="navbar-item" href="{{ path('app_homepage') }}">
                             <img src="{{ asset('../assets/img/logo_RICH.png') }}">
                         </a>
                     </div>
@@ -22,9 +22,23 @@
                         <div class="navbar-end">
                         </div>
 
-                        <a class="navbar-item" style="pointer-events: none;">
-                            <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
-                        </a>
+
+                        {% if app.user %}
+                            <a class="navbar-item" >
+                                <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
+                            </a>
+                            <a href="{{ path('app_logout') }}" class="navbar-item" >
+                                Déconnexion
+                            </a>
+                        {% else %}
+                            <a href="{{ path('app_login') }}" class="navbar-item"  >
+                                Connexion
+                            </a>
+                            <a href="{{ path('app_register') }}" class="navbar-item"  >
+                                M'inscrire
+                            </a>
+                        {% endif %}
+
                     </div>
                 </nav>
 
