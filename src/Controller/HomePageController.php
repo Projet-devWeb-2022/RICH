@@ -11,9 +11,14 @@ class HomePageController extends AbstractController
     /**
      * @Route("/")
      */
-    public function home(): Response
+    public function home(ManagerRegistry $doctrine): Response
     {
-        return $this->render('homePage/homepage.html.twig');
+        $pack = $doctrine->getRepository(Pack::class);
+        $listePack = $pack->findAll();
+
+        return $this->render('homePage/homepage.html.twig', [
+            'controller_name' => 'DestinationPageController', 'listDestination'=>$listePack
+        ]);
     }
 
     /**

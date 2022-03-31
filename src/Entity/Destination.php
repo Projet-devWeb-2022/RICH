@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DestinationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: DestinationRepository::class)]
@@ -13,97 +15,124 @@ class Destination
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 65)]
-    private $ville;
-
-    #[ORM\Column(type: 'string', length: 65)]
-    private $pays;
-
-    #[ORM\Column(type: 'string', length: 55, nullable: true)]
-    private $continentPays;
-
     #[ORM\Column(type: 'string', length: 255)]
+    private $city;
+
+    #[ORM\Column(type: 'string', length: 1000, nullable: true)]
     private $details;
 
-    #[ORM\Column(type: 'integer')]
-    private $prix;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $image;
+    #[ORM\ManyToOne(targetEntity: Country::class, inversedBy: 'destinations')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $contry;
+
+    #[ORM\OneToMany(mappedBy: 'destination', targetEntity: Pack::class)]
+    private $packs;
+
+    #[ORM\ManyToMany(targetEntity: Prestation::class, mappedBy: 'destination')]
+    private $prestations;
+
+    public function __construct()
+    {
+        $this->packs = new ArrayCollection();
+        $this->prestations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getVille(): ?string
+    public function getCity(): ?string
     {
-        return $this->ville;
+        return $this->city;
     }
 
-    public function setVille(string $ville): self
+    public function setCity(string $city): self
     {
-        $this->ville = $ville;
+        $this->city = $city;
 
         return $this;
     }
 
-    public function getPays(): ?string
-    {
-        return $this->pays;
-    }
-
-    public function setPays(string $pays): self
-    {
-        $this->pays = $pays;
-
-        return $this;
-    }
-
-    public function getContinentPays(): ?string
-    {
-        return $this->continentPays;
-    }
-
-    public function setContinentPays(?string $continentPays): self
-    {
-        $this->continentPays = $continentPays;
-
-        return $this;
-    }
-
-    public function getPrix(): ?int
-    {
-        return $this->prix;
-    }
-
-    public function setPrix(int $prix): self
-    {
-        $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getDetails(): ?String
+    public function getDetails(): ?string
     {
         return $this->details;
     }
 
-    public function setDetails(String $details): self
+    public function setDetails(?string $details): self
     {
         $this->details = $details;
 
         return $this;
     }
 
-    public function getImage(): ?String
+
+    public function getContry(): ?Country
     {
-        return $this->image;
+        return $this->contry;
     }
 
-    public function setImage(String $image): self
+    public function setContry(?Country $contry): self
     {
-        $this->image = $image;
+        $this->contry = $contry;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pack[]
+     */
+    public function getPacks(): Collection
+    {
+        return $this->packs;
+    }
+
+    public function addPack(Pack $pack): self
+    {
+        if (!$this->packs->contains($pack)) {
+            $this->packs[] = $pack;
+            $pack->setDestination($this);
+        }
+
+        return $this;
+    }
+
+    public function removePack(Pack $pack): self
+    {
+        if ($this->packs->removeElement($pack)) {
+            // set the owning side to null (unless already changed)
+            if ($pack->getDestination() === $this) {
+                $pack->setDestination(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Prestation[]
+     */
+    public function getPrestations(): Collection
+    {
+        return $this->prestations;
+    }
+
+    public function addPrestation(Prestation $prestation): self
+    {
+        if (!$this->prestations->contains($prestation)) {
+            $this->prestations[] = $prestation;
+            $prestation->addDestination($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrestation(Prestation $prestation): self
+    {
+        if ($this->prestations->removeElement($prestation)) {
+            $prestation->removeDestination($this);
+        }
 
         return $this;
     }
