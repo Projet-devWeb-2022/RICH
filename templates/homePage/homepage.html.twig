@@ -21,8 +21,25 @@
 
                 <nav class="level">
                     <div class="level-item has-text-centered">
-                        <div>
-                            <div class="card" style="width: 300px; margin: 2em;">
+
+                        <div class="block">
+                            <div class="container">
+                                <div class="columns">
+                                    <!-- one columns -->
+                                    <div class="column">
+                                        <div class="box">
+                                            <!-- <img class="" src="{ destination.image }}">  -->
+                                            <h2 class="subtitle has-text-link">{{ pack.nomPack }} </h2>
+                                            <h2 class="subtitle has-text-link is-4">{{ pack.destination }} </h2>
+                                            <p> {{ pack.nbJour }} adultes - </p> <p> {{ pack.nbJour }} jours </p></br>
+                                            <button  onclick=""> {{ pack.prix }} </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            <!--<div class="card" style="width: 300px; margin: 2em;">
                                 <div class="card-image" style="width: 300px">
                                         <img src="{{ asset('../assets/img/Pack n°1.png') }}">
                                 </div>
@@ -75,8 +92,7 @@
                                         Ceci est un aperçu de ce que contiendra un pack.
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div>-->
                     </div>
                 </nav>
             </section>
