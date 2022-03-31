@@ -1,0 +1,12 @@
+{% extends 'user.html.twig' %}
+        {% block content %}
+            <div class="block">
+                <div class="notification is-danger">
+                    <strong>Cette action est définitive, supprimer votre compte ?</strong>
+                </div>
+                <form method="post">
+                    <button class="button is-outlined">Confirmer</button>
+                </form>
+            </div>
+
+        {% endblock %}
