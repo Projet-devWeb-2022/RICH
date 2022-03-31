@@ -31,6 +31,10 @@ class Orders
     #[ORM\OneToOne(mappedBy: 'orderRattached', targetEntity: OrderRecap::class, cascade: ['persist', 'remove'])]
     private $orderRecap;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
+
     public function __construct()
     {
         $this->prestation = new ArrayCollection();
@@ -114,6 +118,18 @@ class Orders
         }
 
         $this->orderRecap = $orderRecap;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
