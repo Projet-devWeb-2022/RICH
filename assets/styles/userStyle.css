@@ -1,10 +1,14 @@
 * {
     font-family: 'Bahnschrift Light';
 
-    margin: 0;
-    padding: 0;
+
 }
 
+.contentBlock{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
 nav{
     font-size: large;
 }

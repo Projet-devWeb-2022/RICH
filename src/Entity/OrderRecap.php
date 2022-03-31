@@ -16,7 +16,7 @@ class OrderRecap
     #[ORM\Column(type: 'string', length: 255)]
     private $TransactionType;
 
-    #[ORM\OneToOne(inversedBy: 'orderRecap', targetEntity: orders::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'orderRecap', targetEntity: Orders::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $orderRattached;
 

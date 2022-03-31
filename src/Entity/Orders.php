@@ -16,7 +16,7 @@ class Orders
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: pack::class)]
+    #[ORM\ManyToOne(targetEntity: Pack::class)]
     private $pack;
 
     #[ORM\Column(type: 'datetime')]

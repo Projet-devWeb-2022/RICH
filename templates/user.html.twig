@@ -7,7 +7,7 @@
     <link rel="icon" href="{{ asset('../assets/img/favicon_RICH.png') }}">
     <link rel="stylesheet" href="{{ asset('../assets/styles/userStyle.css') }}">
 </head>
-<body class="hero-body" style="background-color: #F4FEFE;">
+<body style="background-color: #F4FEFE;">
     <section class="hero is-fullheight">
         <div class="hero-head">
             <header>
@@ -72,10 +72,10 @@
                 {% endblock %}
             </header>
         </div>
-
+        <section class="contentBlock">
             {% block content %}
             {% endblock %}
-
+        </section>
 
 
         {% block footer %}
