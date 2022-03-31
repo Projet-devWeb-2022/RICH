@@ -5,7 +5,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="icon" href="{{ asset('../assets/img/favicon_RICH.png') }}">
-    <link rel="stylesheet" href="{{ asset('../assets/styles/stylePlus.css') }}">
+    <link rel="stylesheet" href="{{ asset('../assets/styles/userStyle.css') }}">
 </head>
 <body class="hero-body" style="background-color: #F4FEFE;">
     <section class="hero is-fullheight">
@@ -48,6 +48,12 @@
                 {% block navtwo %}
                     <nav class="navbar is-info" role="navigation" aria-label="main navigation"
                          style="background-color: #1C3461;">
+                        <div class="navbar-start">
+                            <a href="{{ path('app_homepage') }}" class="item-navbar">
+                                Accueil
+                            </a>
+                        </div>
+
                         <div class="navbar-brand">
                         </div>
 
@@ -80,9 +86,7 @@
                             <strong>RICH</strong> by Groupe 10. The source code is available
                             <a href="https://github.com/Projet-devWeb-2022/RICH"> here </a>.
                         </p>
-                        <a href="homepage.html.twig">
-                            <img src="{{ asset('../assets/img/logo_RICH.png') }}">
-                        </a>
+
                     </div>
                 </footer>
             </div>
