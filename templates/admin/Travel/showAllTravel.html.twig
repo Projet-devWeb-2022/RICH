@@ -1,0 +1,53 @@
+{% extends 'baseAdmin.html.twig' %}
+        {% block content %}
+            <title>{% block title %} Tous les vehicules {% endblock %}</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+            <br>
+
+            <section class="section">
+                <div class="box is-centered">
+                    <h3 class="title is-3">Tous les voyages</h3> <br>
+                    <div class="columns is-centered">
+
+
+                        {% for travel in travels %}
+                            <div class="column has-text-centered is-4-tablet is-3-desktop">
+                                <div class="card">
+                                    <div class="card-image has-text-centered is-size-4">
+                                        <figure class="image is-2by1">
+                                            <img src="https://bulma.io/images/placeholders/640x480.png" alt="Image">
+                                        </figure>
+                                        <div class="content">
+                                            <p>
+                                                <strong>{{ travel.name}}</strong>
+                                                <br>
+                                               <small>{{ travel.price}}</small>
+
+                                                <small>{{ travel.nb_person_max}}</small>
+                                              {#
+                                              {{ travel.dateDeparture | date("m/d/Y")}}
+                                                {{ travel.departureTime | date('H:i') }}
+                                                {{ travel.airportArrival}}
+                                                {{ travel.arrivalTime | date("m/d/Y")}}
+                                                {{ travel.dateArrival| date('H:i')}}
+                                              #}
+                                                </p>
+                                        </div>
+                                        <div class="card">
+                                            <footer class="card-footer is-6">
+                                                <a href="{{ path('editTravel', {id: travel.id}) }}" class="card-footer-item">Modifier</a>
+                                                <a href="{{ path('deleteTravel', {id: travel.id}) }}" class="card-footer-item">Supprimer</a>
+
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="navbar is-centered">
+                        {{ knp_pagination_render(travels) }}
+                    </div>
+                </div>
+            </section>
+        {% endblock %}

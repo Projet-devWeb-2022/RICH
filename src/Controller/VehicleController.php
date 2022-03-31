@@ -5,7 +5,6 @@ namespace App\Controller;
 
 use App\Entity\Prestation;
 use App\Entity\Vehicle;
-use App\Entity\VehicleRental;
 use App\Form\RentalVehicleType;
 use App\Form\VehicleType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -159,7 +158,6 @@ class VehicleController extends AbstractController
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery(['type' => $type]);
 
-        // returns an array of arrays (i.e. a raw data set)
         $rentalVehicles = $resultSet->fetchAllAssociative();
 
         $rentalVehicles = $paginator->paginate(

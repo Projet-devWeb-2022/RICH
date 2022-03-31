@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AdminProfilType;
 use App\Form\AdminType;
+use App\Controller\adminController;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -17,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 
 
-class adminController extends AbstractController
+class AdminController extends AbstractController
 {
 
 
@@ -74,9 +75,9 @@ class adminController extends AbstractController
         $users =  $repo->findAll();
 
         $users = $paginator->paginate(
-            $users, // Requête contenant les données à paginer (ici nos articles)
-            $req->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
-            3 // Nombre de résultats par page
+            $users,
+            $req->query->getInt('page', 1),
+            3
         );
         return $this->render('admin/Users/adminAllUsersPages.html.twig',
             ['controller_name' => 'AdminController',
