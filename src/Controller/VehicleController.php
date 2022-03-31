@@ -3,7 +3,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Prestation;
 use App\Entity\Vehicle;
+use App\Entity\VehicleRental;
+use App\Form\RentalVehicleType;
 use App\Form\VehicleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,7 +21,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VehicleController extends AbstractController
 {
     #[Route('/admin/vehicle/new', name:"newVehicle", methods:['GET','POST'])]
-    public function new(Request $request , EntityManagerInterface $entityManager ): Response
+    public function createVehicle(Request $request , EntityManagerInterface $entityManager ): Response
     {
         $vehicle = new Vehicle();
         $form = $this->createForm(VehicleType::class, $vehicle);
@@ -46,7 +49,7 @@ class VehicleController extends AbstractController
     /**
      * @Route("/admin/vehicle/all", name="allVehicles")
      */
-    public function show(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
+    public function showVehicles(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
     {
         $repo = $em->getRepository(Vehicle::Class);
         $vehicles =  $repo->findAll();
@@ -64,7 +67,7 @@ class VehicleController extends AbstractController
     /**
      * @Route("/admin/vehicle/{id}", name="oneVehicle")
      */
-    public function showOne(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req, $id): Response
+    public function showOneVehicle(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req, $id): Response
     {
         $repo = $em->getRepository(Vehicle::Class);
         $vehicle =  $repo->find($id);
@@ -74,7 +77,7 @@ class VehicleController extends AbstractController
     }
 
     #[Route('/admin/vehicle/edit/{id}', name:'editVehicle', methods:['GET','POST'])]
-    public function update(Request $request , EntityManagerInterface $entityManager, int $id ): Response
+    public function updateVehicle(Request $request , EntityManagerInterface $entityManager, int $id ): Response
     {
         $repo = $entityManager->getRepository(Vehicle::Class);
         $vehicle =  $repo->find($id);
@@ -99,7 +102,7 @@ class VehicleController extends AbstractController
     }
 
     #[Route('/admin/vehicle/delete/{id}' ,name:'deleteVehicle', methods:['GET','DELETE'])]
-    public function delete($id, ManagerRegistry $doctrine): Response
+    public function deleteVehiicle($id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $vehicle = $em->getRepository(Vehicle::class)->find($id);
@@ -113,5 +116,112 @@ class VehicleController extends AbstractController
         $this->addFlash('success','Suppression réussie');
         return $this->redirect("/admin/vehicle/all");
     }
+
+
+    //RentalVehicle
+    #[Route('/admin/vehicle/rental/new', name:"newRentalVehicle", methods:['GET','POST'])]
+    public function createRentalVehicle(Request $request , EntityManagerInterface $entityManager, ): Response
+    {
+        $rentalVehicle = new Prestation();
+        $form = $this->createForm(RentalVehicleType::class, $rentalVehicle);
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $rentalVehicle = $form->getData();
+            $entityManager->persist($rentalVehicle);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Vehicle mis en location avec succès !'
+            );
+            return $this->redirectToRoute("allRentalVehicles");
+        }
+        return $this->render('admin/Vehicle/RentalVehicles/newRentalVehicle.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/admin/vehicle/rental/all", name="allRentalVehicles")
+     */
+    public function showRentalVehicles(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
+    {
+
+        $conn = $em->getConnection();
+        $type = "vehicleRental";
+        $sql = '
+            SELECT * FROM prestation p
+            WHERE p.prestationType = :type
+           
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['type' => $type]);
+
+        // returns an array of arrays (i.e. a raw data set)
+        $rentalVehicles = $resultSet->fetchAllAssociative();
+
+        $rentalVehicles = $paginator->paginate(
+            $rentalVehicles,
+            $req->query->getInt('page', 1),
+            3
+        );
+
+        return $this->render('admin/Vehicle/RentalVehicles/showRentalVehicles.html.twig', [
+            'rentalVehicles' =>  $rentalVehicles
+        ]);
+    }
+
+    #[Route('/admin/vehicle/rental/{id}', name:'oneRentalVehicle', methods:['GET'])]
+    public function showOneRentalVehicle(PersistenceManagerRegistry $em, int $id): Response
+    {
+        $rentalVehicle = $em->getRepository(Prestation::Class)->find($id);;
+        return $this->render('admin/Vehicle/RentalVehicles/oneRentalVehicle.html.twig', [
+            'rentalVehicle' => $rentalVehicle
+        ]);
+    }
+
+
+    #[Route('/admin/vehicle/rental/edit/{id}', name:'editRentalVehicle', methods:['GET','POST'])]
+    public function updateRentalVehicle(Request $request , EntityManagerInterface $entityManager, int $id ): Response
+    {
+        $vehicle  = $entityManager->getRepository(Prestation::Class)->find($id);
+        $form = $this->createForm(RentalVehicleType::class, $vehicle);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $vehicle = $form->getData();
+            $entityManager->persist($vehicle);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Vehicule mis à jour avec succès !'
+            );
+            return $this->redirectToRoute("allRentalVehicles");
+        }
+
+        return $this->render('admin/Vehicle/RentalVehicles/editRentalVehicle.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/admin/vehicle/rental/delete/{id}' ,name:'deleteRentalVehicle', methods:['GET','DELETE'])]
+    public function deleteRentalVehicle($id, ManagerRegistry $doctrine): Response
+    {
+        $em = $doctrine->getManager();
+        $vehicle = $em->getRepository(Prestation::class)->find($id);
+        if (!$vehicle) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+        $em->remove($vehicle);
+        $em->flush();
+        $this->addFlash('success','Suppression réussie');
+        return $this->redirect("/admin/vehicle/rental/all");
+    }
+
 
 }

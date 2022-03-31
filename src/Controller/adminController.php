@@ -5,10 +5,8 @@ namespace App\Controller;
 
 
 use App\Entity\User;
-use App\Entity\Vehicle;
+use App\Form\AdminProfilType;
 use App\Form\AdminType;
-use App\Form\UserRegistrationType;
-use App\Form\VehicleType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -24,9 +22,9 @@ class adminController extends AbstractController
 
 
     /**
-     * @Route("/admin/home")
+     * @Route("/admin/home", name="home")
      */
-    public function test(): Response
+    public function home(): Response
     {
         return $this->render('admin/adminHomePage.html.twig');
     }
@@ -39,6 +37,29 @@ class adminController extends AbstractController
         return $this->render('admin/adminProfilPage.html.twig');
     }
 
+    #[Route('/admin/profil/edit', name:'editAdminProfil', methods:['GET','POST'])]
+    public function updateAdminProfil(Request $request , EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(AdminProfilType::class);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash(
+                'success',
+                'Profil mis à jour avec succès !'
+            );
+            return $this->redirectToRoute("home");
+        }
+
+        return $this->render('admin/adminProfilPage.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
     //Users
 
     /**
@@ -47,10 +68,11 @@ class adminController extends AbstractController
      * @param $paginator
      * @return Response
      */
-    public function show(PersistenceManagerRegistry $em, PaginatorInterface $paginator, Request $req): Response
+    public function showAllUsers(PersistenceManagerRegistry $em, PaginatorInterface $paginator, Request $req): Response
     {
         $repo = $em->getRepository(User::Class);
         $users =  $repo->findAll();
+
         $users = $paginator->paginate(
             $users, // Requête contenant les données à paginer (ici nos articles)
             $req->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
@@ -64,7 +86,7 @@ class adminController extends AbstractController
     }
 
     #[Route('/admin/user/edit/{id}', name:'adminToUser', methods:['GET','POST'])]
-    public function update(Request $request , EntityManagerInterface $entityManager, int $id ): Response
+    public function updateRoles(Request $request , EntityManagerInterface $entityManager, int $id ): Response
     {
         $repo = $entityManager->getRepository(User::Class);
         $user =  $repo->find($id);
@@ -93,7 +115,7 @@ class adminController extends AbstractController
 
 
     #[Route('/admin/user/delete/{id}' ,name:'deleteUser', methods:['GET','DELETE'])]
-    public function adminDeleteUser($id, ManagerRegistry $doctrine): Response
+    public function deleteUser($id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $user = $em->getRepository(User::class)->find($id);
