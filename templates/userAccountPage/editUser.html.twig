@@ -1,0 +1,29 @@
+{% extends 'user.html.twig' %}
+        {% block content %}
+            <div class="block">
+                <div class="card ">
+                    <div class="card-content">
+                        <div class="form">
+                            <h1>Modifiez vos informations : </h1>
+                            {{ form_start(editForm) }}
+                            <div class="nom">
+                                <label>Nom</label>
+                                {{ form_widget(editForm.name, {'attr': {'class': 'input'}}) }}
+                            </div>
+                            <div class="prenom">
+                                <label>Prénom</label>
+                                {{ form_widget(editForm.surname, {'attr': {'class': 'input'}}) }}
+                            </div>
+                            <div class="address">
+                                <label>Adresse (en entier)</label>
+                                {{ form_widget(editForm.address, {'attr': {'class': 'input'}}) }}
+                            </div>
+                            {{ form_rest(editForm) }}
+                            <button class="button is-outlined" type="submit">Modifier</button>
+                            {{ form_end(editForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {% endblock %}
