@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+{% extends 'baseUser.html.twig' %}
 
-<title>Hello CartController!</title>
+{% block title %} Hello CartController! {% endblock %}
 
-{% block body %}
+{% block content %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
@@ -12,33 +12,36 @@
 
     <h1>Voici votre panier ✅</h1>
 
-    This friendly message is coming from:
     <ul>
         {% if items | length > 0 %}
-            <table>
+
+            <table class="table is-fullwidth">
                 <thead>
                     <tr>
+                        <th> Pack </th>
                         <th> destination </th>
-                        <th> quantity </th>
-                        <th> identifiant </th>
+                        <th> description </th>
+                        <th> Quantity </th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for item in items %}
                 <tr>
                     <td> {{ item.pack.name }}</td>
+                    <td> {{ item.pack.destination.city }}</td>
+                    <td> {{ item.pack.description}}</td>
                     <td> {{ item.quantity}}</td>
-                    <td> {{ item.pack.id }}</td>
                     <td>
-                        <button> trash </button>
+                        <a href="{{ path('cart_remove', {'id':item.pack.id})}}">
+                            <button> trash </button>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
         {% else %}
-            <p> Votre panier est vide </p>
-
+            <p> Vous n'avez aucun pack. </p>
         {% endif %}
     </ul>
 </div>

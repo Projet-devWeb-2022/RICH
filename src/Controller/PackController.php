@@ -33,6 +33,7 @@ class PackController extends AbstractController
      */
     public function addPack(int $id, SessionInterface $session, PackRepository $packRepository){
         $panier = $session->get('panier', []);
+
         if(!empty($panier[$id])){
             $panier[$id]++;
         } else {
@@ -50,6 +51,6 @@ class PackController extends AbstractController
             ];
         }
         // dd($panierWithData);
-        return $this->redirectToRoute('cart', [ 'items'=>$panierWithData]);
+        return $this->redirectToRoute('cart', [ 'panier'=>$panierWithData]);
     }
 }
