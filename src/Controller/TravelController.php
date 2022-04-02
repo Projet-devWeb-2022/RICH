@@ -3,14 +3,12 @@
 
 namespace App\Controller;
 
-
-
 use App\Entity\Prestation;
 use App\Entity\Travel;
 use App\Form\TravelType;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

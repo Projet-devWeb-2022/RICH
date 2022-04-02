@@ -1,16 +1,16 @@
 {% extends 'baseAdmin.html.twig' %}
         {% block content %}
-            <title>{% block title %} Toutes les destination {% endblock %}</title>
+            <title>{% block title %} Tous les packs {% endblock %}</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
             <br>
 
             <section class="section">
                 <div class="box is-centered">
-                    <h3 class="title is-3">Toutes les destinations</h3> <br>
+                    <h3 class="title is-3">Tous les packs</h3> <br>
                     <div class="columns is-centered">
 
 
-                        {% for destination in destinations %}
+                        {% for pack in packs %}
                             <div class="column has-text-centered is-4-tablet is-3-desktop">
                                 <div class="card">
                                     <div class="card-image has-text-centered is-size-4">
@@ -19,17 +19,19 @@
                                         </figure>
                                         <div class="content">
                                             <p>
-                                                <strong>{{ destination.city }}</strong>
+                                                <strong>{{ pack.name }}</strong>
                                                 <br>
-                                                <a href="{{ path('oneDestination', {id: destination.id} ) }}">En savoir plus...</a>
+
+                                                <small>{{ pack.price}}</small>
+                                                <small>{{ pack.nb_person_max}}</small>
+                                                <a href="{{ path('onePack', {id: pack.id} ) }}">En savoir plus...</a>
                                             </p>
                                         </div>
                                         <div class="card">
                                             <footer class="card-footer is-6">
-                                                <a href="{{ path('editDestination', {id: destination.id}) }}" class="card-footer-item">Modifier</a>
-                                                <a href="{{ path('deleteDestination', {id: destination.id}) }}" class="card-footer-item">Supprimer</a>
-
-                                            </footer>
+                                                <a href="{{ path('editPack', {id: pack.id}) }}" class="card-footer-item">Modifier</a>
+                                                <a href="{{ path('deletePack', {id: pack.id}) }}" class="card-footer-item">Supprimer</a>
+                                                </footer>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +40,7 @@
 
                     </div>
                     <div class="navbar is-centered">
-                        {{ knp_pagination_render(destinations) }}
+                        {{ knp_pagination_render(packs) }}
                     </div>
                 </div>
             </section>
