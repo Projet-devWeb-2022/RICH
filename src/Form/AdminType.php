@@ -20,7 +20,7 @@ class AdminType extends AbstractType
                     'Utilisateur' => '',
                     'Administrateur' => 'ROLE_ADMIN'
                 ],
-                'expanded' => false,
+                'expanded' => true,
                 'multiple' => true,
                 'label' => 'Rôles'
             ])

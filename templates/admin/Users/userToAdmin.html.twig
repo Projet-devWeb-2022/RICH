@@ -1,11 +1,7 @@
-{% extends 'baseAdmin.html.twig' %}
-
+{% extends 'base.html.twig' %}
+    {% block body %}
         {% block content %}
             {% block title %}Modifier le role de l'utilisateur{% endblock %}
-
-            {% block body %}
                 {{ form(form) }}
-            {% endblock %}
-
-
         {% endblock %}
+    {% endblock %}
