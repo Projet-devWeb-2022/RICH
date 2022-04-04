@@ -2,18 +2,29 @@
 
 namespace App\Controller;
 
+use App\Entity\VehicleRental;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Pack;
 
 class HomePageController extends AbstractController
 {
     /**
      * @Route("/", name="app_homepage")
      */
-    public function home(): Response
+    public function home(ManagerRegistry $doctrine): Response
     {
-        return $this->render('homePage/homepage.html.twig');
+        $pack = $doctrine->getRepository(Pack::class);
+        $listPack = $pack->findAll();
+
+        $location = $doctrine->getRepository(VehicleRental::class);
+        $listLocation = $location->findAll();
+
+        return $this->render('homePage/homepage.html.twig', [
+            'controller_name' => 'HomePageController', 'listPack'=>$listPack, 'listLocation' =>$listLocation
+        ]);
     }
 
     /**
