@@ -9,6 +9,8 @@ use Psr\Container\NotFoundExceptionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -58,7 +60,7 @@ class userAccountController extends AbstractController
     /**
      * @Route("/profile/editpwd", name="app_password_edit")
      */
-    public function editPassword(ManagerRegistry $doctrine,Request $request, UserPasswordHasherInterface $userPasswordHasher)
+    public function editPassword(ManagerRegistry $doctrine,Request $request, UserPasswordHasherInterface $userPasswordHasher,  MailerInterface $mailer)
     {
         $user = $this->getUser();
         $form = $this->createForm(EditPasswordType::class, $user);
@@ -74,6 +76,15 @@ class userAccountController extends AbstractController
             $em = $doctrine->getManager();
             $em->persist($user);
             $em->flush();
+            $email = (new Email())
+                ->from('webrich235@gmail.com')
+                ->to($user->getEmail())
+
+                ->subject('Modification du mot de passe')
+                ->text('Votre mot de passe a été modifié avec succès !');
+
+
+            $mailer->send($email);
 
             $this->addFlash('message', 'Mot de passe mis à jour');
             return $this->redirectToRoute('app_profile');
@@ -87,7 +98,7 @@ class userAccountController extends AbstractController
     /**
      * @Route("/profile/delete", name="app_delete_user")
      */
-    public function deleteUser(ManagerRegistry $doctrine, Request $request)
+    public function deleteUser(ManagerRegistry $doctrine, Request $request, MailerInterface $mailer)
     {
 
         if($request->isMethod('POST')){
@@ -96,6 +107,17 @@ class userAccountController extends AbstractController
             $em = $doctrine->getManager();
             $em->remove($user);
             $em->flush();
+
+            $email = (new Email())
+                ->from('webrich235@gmail.com')
+                ->to($user->getEmail())
+
+                ->subject('Suppression de votre compte')
+                ->text('Votre compte a été supprimé de la base de données !');
+
+
+            $mailer->send($email);
+
             return $this->redirectToRoute('app_homepage');
         }
         return $this->render('userAccountPage/delete.html.twig');
