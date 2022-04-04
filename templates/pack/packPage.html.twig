@@ -13,7 +13,7 @@
 <div class="example-wrapper">
     <section class="title"> Nos destinations </section>
     <!-- Pour afficher l'ensemble des produits -->
-{#
+
     {% for pack in listePack %}
 
         <p> Choissisez votre Pack : </p>
@@ -26,16 +26,20 @@
                         <div class="box">
                             <!-- <img class="" src="{ destination.image }}">  -->
                             <h2 class="subtitle has-text-link">{{ pack.name }} </h2>
-                            <h2 class="subtitle has-text-link is-4">{{ pack.destination.ville }} </h2>
-                            <p> {{ pack.nbJour }} adultes - </p> <p> {{ pack.nbJour }} jours </p></br>
-                            <button  onclick=""> {{ pack.prix }} </button>
+
+                            <h2 class="subtitle has-text-link is-4">{{ pack.destination.city }} </h2>
+                            <h5 class="subtitle has-text-link is-4">{{ pack.description }} </h5>
+                            <p> {{ pack.nbPersonMax }} adultes - </p></br>
+                            <a href="{{ path('cart_addPack', {'id':pack.id})}}">
+                                <button> {{ pack.price }} </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     {% endfor %}
-#}
+
     </section>
 </div>
 

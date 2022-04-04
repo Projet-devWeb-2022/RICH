@@ -4,13 +4,16 @@
 namespace App\Controller;
 
 use App\Entity\Pack;
+
 use App\Form\PackType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\PackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -44,6 +47,7 @@ class PackController extends AbstractController
             'packs' =>  $packs
         ]);
     }
+
 
 
     #[Route('/admin/pack/new', name:"newPack", methods:['GET','POST'])]
@@ -117,4 +121,32 @@ class PackController extends AbstractController
         return $this->redirect("/admin/pack/all");
     }
 
+
+
+    /**
+     * @Route("/pack/addPack/{id}", name="cart_addPack")
+     */
+    public function addPack(int $id, SessionInterface $session, PackRepository $packRepository){
+        $panier = $session->get('panier', []);
+
+        if(!empty($panier[$id])){
+            $panier[$id]++;
+        } else {
+            $panier[$id] = 1;
+        }
+
+        $session->set('panier', $panier);
+
+        $panierWithData = [];
+
+        foreach ($panier as $id=> $quantity){
+            $panierWithData[] = [
+                'pack'=>$packRepository->find($id),
+                'quantity'=> $quantity
+            ];
+        }
+        // dd($panierWithData);
+        return $this->redirectToRoute('cart', [ 'panier'=>$panierWithData]);
+    }
 }
+

@@ -13,6 +13,64 @@
                 Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
                 défiant toutes concurrences.</p>
             </div>
+
+
+            <!-- Comment changer appller la fonction goTo1 on click ? -->
+          <button class="button is-large is-fullwidth">Click here </button>
+        </div>
+    </section>
+
+    <section class="py-6">
+        <section class="hero is-large is-info">
+            <div class="hero-body">
+                <p class="title">
+                    Large hero
+                </p>
+                <p class="subtitle">
+                    Large subtitle
+                </p>
+                <!-- columns -->
+                <div class="block">
+                    <div class="container">
+                        <div class="columns">
+                            <!-- one columns -->
+                            <div class="column">
+                                <div class="box">
+                                    <h2 class="subtitle has-text-link"> Nos Packs Vacance </h2>
+                                    <p> Choisissez parmis nos pack déjà composé par nos soins, vous n'avez juste qu'à choisir votre pack, entrez vos dates de voyage et il ne vous restera plus qu'à préparer vos valises !  </p>
+                                    </br>
+                                    <a href="{{ path('app_pack_index')}}"> <button> Let's Go </button> </a>
+                                </div>
+                            </div>
+                            <!-- second columns -->
+                            <div class="column">
+                                <div class="box">
+                                    <h2 class="subtitle has-text-link"> Formule personalisé </h2>
+                                    <p> Composez vos vacances de A à Z en choisissant votre destintion, votre hotel, vos activités etc... </br>  </br>  </p>
+                                    <span></span>
+                                    <a href="{{ path('app_pack_index')}}"> <button class="button is-center"> Let's Go </button> </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </section>
+
+{% endblock %}
+
+{% block footer %}
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>RICH</strong> by Groupe 10. The source code is available
+                <a href="https://github.com/Projet-devWeb-2022/RICH"> here </a>.
+
             </p>
         </div>
 

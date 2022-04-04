@@ -92,26 +92,27 @@ class AppFixtures extends Fixture
 
         //Travel
         for($i = 0; $i < 5; $i++){
-            $flight = new Travel();
-            $flight->addDestination($destination);
-            $flight->setName('vol vers '.$destination->getCity());
-            $flight->setPrice($i * 75 * 5);
-            $flight->setNbPersonMax(5);
-            $flight->setDescription('Une destination de reve');
-            $flight->setVehicle($vehicle);
-            $flight->setIsAvailable(true);
-            $flight->setAirportDeparture('Aeroport Paris Charle de Gaulle');
-            $flight->setAirportArrival('aeroport de '.$destination->getCity());
-            $flight->setDateDeparture($date);
-            $flight->setDateArrival($date);
-            $flight->setDepartureTime($time);
-            $flight->setArrivalTime($time);
+            $travel = new Travel();
+            $travel->addDestination($destination);
+            $travel->setName('vol vers '.$destination->getCity());
+            $travel->setPrice($i * 75 * 5);
+            $travel->setNbPersonMax(5);
+            $travel->setDescription('Une destination de reve');
+            $travel->setVehicle($vehicle);
+            $travel->setIsAvailable(true);
+            $travel->setAirportDeparture('Aeroport Paris Charle de Gaulle');
+            $travel->setAirportArrival('aeroport de '.$destination->getCity());
+            $travel->setDateDeparture($date);
+            $travel->setDateArrival($date);
+            $travel->setDepartureTime($time);
+            $travel->setArrivalTime($time);
 
-            $manager->persist($flight);
+            $manager->persist($travel);
             $manager->flush();
         }
 
         //Pack
+<<<<<<< HEAD
         for ($i = 0; $i < 10; $i++) {
             $pack = new Pack();
             $pack->setDestination($destination);
@@ -119,6 +120,21 @@ class AppFixtures extends Fixture
             $pack->setName('pack n°'.$i);
             $pack->setNbPersonMax(10);
             $pack->setPrice(200);
+=======
+        for($i = 0; $i < 5; $i++){
+            $pack = new Pack();
+            $pack->setName('vol vers '.$destination->getCity());
+            $pack->setPrice($i * 75 * 5);
+            $pack->setNbPersonMax(5);
+            $pack->setDescription('Une destination de reve');
+            $pack->setDestination($destination);
+            $pack->addPrestation($travel);
+            $pack->addPrestation($vehicleRent);
+
+            $manager->persist($pack);
+            $manager->flush();
+        }
+>>>>>>> karim-panierUser
 
             $manager->persist($pack);
             $manager->flush();
