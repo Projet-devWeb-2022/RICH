@@ -1,0 +1,45 @@
+{% extends 'baseAdmin.html.twig' %}
+        {% block content %}
+            <title>{% block title %} Toutes les destination {% endblock %}</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+            <br>
+
+            <section class="section">
+                <div class="box is-centered">
+                    <h3 class="title is-3">Toutes les destinations</h3> <br>
+                    <div class="columns is-centered">
+
+
+                        {% for destination in destinations %}
+                            <div class="column has-text-centered is-4-tablet is-3-desktop">
+                                <div class="card">
+                                    <div class="card-image has-text-centered is-size-4">
+                                        <figure class="image is-2by1">
+                                            <img src="https://bulma.io/images/placeholders/640x480.png" alt="Image">
+                                        </figure>
+                                        <div class="content">
+                                            <p>
+                                                <strong>{{ destination.city }}</strong>
+                                                <br>
+                                                <a href="{{ path('oneDestination', {id: destination.id} ) }}">En savoir plus...</a>
+                                            </p>
+                                        </div>
+                                        <div class="card">
+                                            <footer class="card-footer is-6">
+                                                <a href="{{ path('editDestination', {id: destination.id}) }}" class="card-footer-item">Modifier</a>
+                                                <a href="{{ path('deleteDestination', {id: destination.id}) }}" class="card-footer-item">Supprimer</a>
+
+                                            </footer>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                    <div class="navbar is-centered">
+                        {{ knp_pagination_render(destinations) }}
+                    </div>
+                </div>
+            </section>
+        {% endblock %}

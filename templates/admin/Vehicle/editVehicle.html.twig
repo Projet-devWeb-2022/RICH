@@ -1,0 +1,29 @@
+{% extends 'baseAdmin.html.twig' %}
+
+        {% block content %}
+            <title> {% block title %} Modifier une voiture {% endblock %}</title>
+            <section class="form">
+                <h1>Modifier un vehicule</h1>
+                {{ form_start(form) }}
+                <div class="name">
+                    <label>Nom du vehicule</label>
+                    {{ form_widget(form.name, {'attr': {'class': 'input'}}) }}
+                </div>
+                <div class="type">
+                    <label>Type du Vehicule</label>
+                    {{ form_widget(form.type, {'attr': {'class': 'input'}}) }}
+                </div>
+                <div class="PriceDay">
+                    <label>Prix par jour</label>
+                    {{ form_widget(form.PriceDay, {'attr': {'class': 'input'} }) }}
+                </div>
+
+                <button class="button is-outlined is-blue" type="submit">Enregistrer</button>
+
+            </section>
+
+
+            {{ form_end(form) }}
+
+
+        {% endblock %}
