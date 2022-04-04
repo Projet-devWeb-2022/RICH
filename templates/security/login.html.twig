@@ -11,7 +11,8 @@ Connexion
 
     <section class="form">
 
-        <form method="post">symfony
+
+        <form method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
