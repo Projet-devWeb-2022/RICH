@@ -111,7 +111,18 @@ class AppFixtures extends Fixture
             $manager->flush();
         }
 
+        //Pack
+        for ($i = 0; $i < 10; $i++) {
+            $pack = new Pack();
+            $pack->setDestination($destination);
+            $pack->setDescription('pack n°'.$i);
+            $pack->setName('pack n°'.$i);
+            $pack->setNbPersonMax(10);
+            $pack->setPrice(200);
 
+            $manager->persist($pack);
+            $manager->flush();
+        }
 
 
         /**

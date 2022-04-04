@@ -9,158 +9,66 @@
             <p class="title">
             <div class="card" style="background-color: #1C3461; padding-top: 5vh;">
                 <p class="card-title" style="color: white; font-style: italic; font-size: x-large;">Bienvenue sur notre site web !</p>
-                <p class="card-content" style="color: white;"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua hdgjqk jskalas hdjzas jsdhklsazskzd kdhlzkdkzdjzndzljdmzmd.
-                    sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="card-content" style="color: white;"> Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez chosir un séjour de rêve et ainsi vivre une expérience luxueuse.
+                Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyable ! A des prix
+                défiant toutes concurrence.</p>
             </div>
             </p>
         </div>
 
         <div class="has-text-centered" style="margin-top: 2em; background-color: #f9f9f9;">
             <section class="section">
-                    <p class="title" style="font-style: italic; font-size: xxx-large;">Packs</p>
-
+                <p class="title" style="font-style: italic; font-size: xxx-large;">Packs</p>
                 <nav class="level">
                     <div class="level-item has-text-centered">
+                            <div class="block">
+                                <div class="container">
+                                    <div class="columns">
+                                        {% for i in 1..3 %}
+                                        <!-- one columns -->
+                                        <div class="column">
+                                            <div class="card">
+                                                <div class="card-image">
+                                                    <figure class="image">
+                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}">
+                                                    </figure>
+                                                </div>
+                                                <div class="card-content" style="background-color: #C7CFCF">
+                                                    <div class="media">
+                                                        <div class="media-content">
+                                                            <p class="title is-4">{{ listPack[i].name }}</p>
+                                                        </div>
+                                                    </div>
 
-                        <div class="block">
-                            <div class="container">
-                                <div class="columns">
-                                    <!-- one columns -->
-                                    <div class="column">
-                                        <div class="box">
-                                            <!-- <img class="" src="{ destination.image }}">  -->
-                                            <h2 class="subtitle has-text-link">{{ pack.nomPack }} </h2>
-                                            <h2 class="subtitle has-text-link is-4">{{ pack.destination }} </h2>
-                                            <p> {{ pack.nbJour }} adultes - </p> <p> {{ pack.nbJour }} jours </p></br>
-                                            <button  onclick=""> {{ pack.prix }} </button>
+                                                    <div class="content">
+                                                        Ce pack peut convenir à {{ listPack[i].nbPersonMax }} personnes maximum.
+                                                        <br>
+                                                        Le prix est de {{ listPack[i].price }}€ pour ce pack.
+                                                        <br>
+                                                        <button class="button is-light is-fullwidth" style="margin-top: 1vh;"> Ajouter au panier </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                            <!--<div class="card" style="width: 300px; margin: 2em;">
-                                <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}">
-                                </div>
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p class="title is-4">Pack N°1</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        Ceci est un aperçu de ce que contiendra un pack.
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                            <div class="card" style="width: 300px; margin: 2em;">
-                                <div class="card-image" style="width: 300px">
-                                    <img src="{{ asset('../assets/img/Pack n°1.png') }}">
-                                </div>
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p class="title is-4">Pack N°1</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        Ceci est un aperçu de ce que contiendra un pack.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <div class="card" style="width: 300px; margin: 2em;">
-                                <div class="card-image" style="width: 300px">
-                                    <img src="{{ asset('../assets/img/Pack n°1.png') }}">
-                                </div>
-                                <div class="card-content">
-                                    <div class="media">
-                                        <div class="media-content">
-                                            <p class="title is-4">Pack N°1</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="content">
-                                        Ceci est un aperçu de ce que contiendra un pack.
-                                    </div>
-                                </div>
-                            </div>-->
                     </div>
                 </nav>
+                <button class="button is-info">Accéder à la page des packs</button>
             </section>
 
             <div class="has-text-centered" style="background-color: #c7cfcf;">
                 <section class="section">
                     <p class="title" style="font-style: italic; font-size: xxx-large;">Activitées</p>
-                    <nav class="level">
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <div class="card" style="width: 300px; margin: 2em;">
-                                    <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Activitees_n°1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p class="title is-4">Activitée N°1</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="content">
-                                            Ceci est un aperçu de ce que contiendra une activité.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="level-item has-text-centered">
-                                <div class="card" style="width: 300px; margin: 2em;">
-                                    <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Activitees_n°1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p class="title is-4">Activitées n°2</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="content">
-                                            Ceci est un aperçu de ce que contiendra une activitée.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <br>
+                    <div class="message">
+                        <div class="message-body">
+                            <p class="subtitle">Les activitées seront bientôt disponible, cette partie est en maintenance pour le moment.</p>
+                            <p class="subtitle">Notre équipe est sincèrement désolé pour la gêne occasionner.</p>
                         </div>
-
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <div class="card" style="width: 300px; margin: 2em;">
-                                    <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Activitees_n°1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p class="title is-4">Activitées n°3</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="content">
-                                            Ceci est un aperçu de ce que contiendra une activitée.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
+                    </div>
                 </section>
             </div>
 
@@ -169,64 +77,42 @@
                     <p class="title" style="font-style: italic; font-size: xxx-large;">Locations</p>
                     <nav class="level">
                         <div class="level-item has-text-centered">
-                            <div>
-                                <div class="card" style="width: 300px; margin: 2em;">
-                                    <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Locations_n°1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p class="title is-4">Location N°1</p>
-                                            </div>
-                                        </div>
+                            <div class="block">
+                                <div class="container">
+                                    <div class="columns">
+                                        {% for i in 0..2 %}
+                                            <!-- one columns -->
+                                            <div class="column">
+                                                <div class="card">
+                                                    <div class="card-image">
+                                                        <figure class="image">
+                                                            <img src="{{ asset('../assets/img/Locations_n°1.png') }}">
+                                                        </figure>
+                                                    </div>
+                                                    <div class="card-content" style="background-color: #C7CFCF">
+                                                        <div class="media">
+                                                            <div class="media-content">
+                                                                <p class="title is-4">{{ listLocation[i].name }}</p>
+                                                            </div>
+                                                        </div>
 
-                                        <div class="content">
-                                            Ceci est un aperçu de ce que contiendra une location.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="level-item has-text-centered">
-                                <div class="card" style="width: 300px; margin: 2em;">
-                                    <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Locations_n°1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p class="title is-4">Location N°2</p>
+                                                        <div class="content">
+                                                            Vos pouvez louer {{ listLocation[i].description }}.
+                                                            <br>
+                                                            Le prix est de {{ listLocation[i].price }}€ pour le véhicule numéro {{ i }}.
+                                                            <br>
+                                                            <button class="button is-light is-fullwidth" style="margin-top: 1vh;"> Ajouter au panier </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-
-                                        <div class="content">
-                                            Ceci est un aperçu de ce que contiendra une location.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <div class="card" style="width: 300px; margin: 2em;">
-                                    <div class="card-image" style="width: 300px">
-                                        <img src="{{ asset('../assets/img/Locations_n°1.png') }}">
-                                    </div>
-                                    <div class="card-content">
-                                        <div class="media">
-                                            <div class="media-content">
-                                                <p class="title is-4">Locations n°3</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="content">
-                                            Ceci est un aperçu de ce que contiendra une location.
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </nav>
+                    <button class="button is-info">Accéder à la page des locations</button>
                 </section>
             </div>
         </div>
