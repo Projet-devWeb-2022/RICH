@@ -16,7 +16,7 @@ class Orders
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: pack::class)]
+    #[ORM\ManyToOne(targetEntity: Pack::class)]
     private $pack;
 
     #[ORM\Column(type: 'datetime')]
@@ -30,6 +30,10 @@ class Orders
 
     #[ORM\OneToOne(mappedBy: 'orderRattached', targetEntity: OrderRecap::class, cascade: ['persist', 'remove'])]
     private $orderRecap;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'orders')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 
     public function __construct()
     {
@@ -114,6 +118,18 @@ class Orders
         }
 
         $this->orderRecap = $orderRecap;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

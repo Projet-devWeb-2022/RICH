@@ -1,0 +1,62 @@
+{% extends 'user.html.twig' %}
+        {% block content %}
+                {% if app.user.order is defined and app.user.order is not null %}
+                        <h1>Vos commandes :</h1>
+                        {% for order in app.user.order %}
+                                <div class="block">
+                                <div class="card ">
+                                <div class="card-content">
+
+                                        <h2>Commande du {{ order.dateOfOrder|date('Y-m-d') }} :</h2>
+                                        {% if order.pack %}
+                                                <div class="columns">
+                                                        <div class="column is-3 is-offset-one-quarter">
+                                                                <h2>Pack "{{ order.pack.name }}"</h2>
+                                                        </div>
+                                                        <div class="column">
+                                                                <p>{{ order.pack.price }} €</p>
+                                                        </div>
+                                                </div>
+                                        {% else %}
+                                                {% for presta in order.prestation %}
+                                                <div class="columns ">
+                                                        <div class="column is-3 is-offset-one-quarter">
+                                                                <h1>Prestations "{{ presta.name }}"</h1>
+                                                        </div>
+                                                        <div class="column">
+                                                                <p>{{ presta.price }} €</p>
+                                                        </div>
+                                                </div>
+                                                {% endfor %}
+                                        {% endif %}
+                                        <div class="columns">
+                                                <div class="column is-3 is-offset-one-quarter">
+                                                        <h2>Total :</h2>
+                                                </div>
+                                                <div class="column">
+                                                        <p>{{ order.ammount }} €</p>
+                                                </div>
+                                        </div>
+                                        <div class="columns">
+                                                <div class="column is-3 is-offset-one-quarter">
+                                                        <h2>Moyen de paiement :</h2>
+                                                </div>
+                                                <div class="column">
+                                                        <p>{{ order.orderRecap.TransactionType }}</p>
+                                                </div>
+                                        </div>
+                                        <div class="columns">
+                                                <div class="column is-3 is-offset-one-quarter">
+                                                        <h2>Adresse de facturation :</h2>
+                                                </div>
+                                                <div class="column">
+                                                        <p>{{ order.orderRecap.billingAdress }}</p>
+                                                </div>
+                                        </div>
+                                </div>
+                                </div>
+                                </div>
+
+                        {% endfor %}
+                {% endif %}
+        {% endblock %}

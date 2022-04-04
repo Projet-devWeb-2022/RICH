@@ -1,7 +1,53 @@
-{% extends 'baseUser.html.twig' %}
+{% extends 'user.html.twig' %}
         {% block content %}
-            </nav>
-            <h1>User account page !</h1>
-            <button class="button is-black">Button</button>
-            <progress class="progress is-primary" value="15" max="100">15%</progress>
+            <div class="block">
+                <div class="card ">
+                    <div class="card-content">
+                        <h1>Votre profil :</h1>
+                        {% for message in app.flashes('message') %}
+                            <div class="notification is-primary is-light">
+                                 {{ message }}
+                                </div>
+                        {% endfor %}
+                        <div class="columns">
+                            <div class="column is-3 is-offset-one-quarter">
+                                <h1>Nom :</h1>
+                            </div>
+                            <div class="column">
+                                <p>{{app.user.name}}</p>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-3 is-offset-one-quarter">
+                                <h1>Prénom :</h1>
+                            </div>
+                            <div class="column">
+                                <p>{{app.user.surname}}</p>
+                            </div>
+                        </div>
+                        <div class="columns">
+                            <div class="column is-3 is-offset-one-quarter">
+                                <h1>Adresse mail :</h1>
+                            </div>
+                            <div class="column">
+                                <p>{{app.user.email}}</p>
+                            </div>
+                        </div>
+                        <div class="columns ">
+                            <div class="column is-3 is-offset-one-quarter">
+                                <h1>Adresse :</h1>
+                            </div>
+                            <div class="column">
+                                <p>{{app.user.address}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="card-footer">
+                        <a href="{{ path('app_profile_edit') }}" class="card-footer-item">Modifier mes informations</a>
+                        <a href="{{ path('app_password_edit') }}" class="card-footer-item">Modifier mon mon de passe</a>
+                        <a href="{{ path('app_delete_user') }}" class="card-footer-item">Supprimer mon compte</a>
+                    </footer>
+                </div>
+            </div>
+
         {% endblock %}
