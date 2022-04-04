@@ -64,17 +64,52 @@
                     <div class="navbar-menu">
                         <div class="navbar-end">
                         </div>
-                        <a class="item-navbar" href="#packs">
-                            Packs
-                        </a>
+                        {% if app.user %}
 
-                        <a class="item-navbar" href="#activitees">
-                            Activitées
-                        </a>
+                        {% if "ROLE_ADMIN" in app.user.roles %}
 
-                        <a class="item-navbar" href="#locations">
-                            Locations
-                        </a>
+                            <a class="item-navbar" href="{{ path('allPacks') }}">
+                                Packs
+                            </a>
+                            <a class="item-navbar" href="{{ path('allRentalVehicles') }}">
+                                Locations
+                            </a>
+                            <a class="item-navbar" href="{{ path('allTravels') }}">
+                                Voyages
+                            </a>
+                            <a class="item-navbar" href="{{ path('allVehicles') }}">
+                                Véhicules
+                            </a>
+                            <a class="item-navbar" href="{{ path('allDestinations') }}">
+                                Destinations
+                            </a>
+                            <a class="item-navbar" href="{{ path('allUsers') }}">
+                                Utilisateurs
+                            </a>
+
+                        {% else %}
+                            <a class="item-navbar" href="#">
+                                Voyage
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Location
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Voyage
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Véhicule
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Véhicule
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Users
+                            </a>
+                        {% endif %}
+                        {% endif %}
+
+
                     </div>
                 </nav>
             {% endblock %}
