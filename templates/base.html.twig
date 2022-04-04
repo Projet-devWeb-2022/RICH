@@ -27,16 +27,22 @@
                             <a href="{{ path('app_profile') }}" class="navbar-item" >
                                 <img src="{{ asset('../assets/img/icon_user_blanc.png') }}" style="color: white;">
                             </a>
-                            <a href="{{ path('app_logout') }}" class="navbar-item" >
+                        <div class="navbar-item">
+                            <a href="{{ path('app_logout') }}" class="button is-info" >
                                 Déconnexion
                             </a>
+                        </div>
                         {% else %}
-                            <a href="{{ path('app_login') }}" class="navbar-item"  >
-                                Connexion
-                            </a>
-                            <a href="{{ path('app_register') }}" class="navbar-item"  >
-                                M'inscrire
-                            </a>
+                            <div class="navbar-item">
+                                <a href="{{ path('app_login') }}" class="button is-light"  >
+                                    Connexion
+                                </a>
+                            </div>
+                            <div class="navbar-item">
+                                <a href="{{ path('app_register') }}" class="button is-info"  >
+                                    M'inscrire
+                                </a>
+                            </div>
                         {% endif %}
 
                     </div>
