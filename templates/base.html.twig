@@ -14,7 +14,7 @@
             {% block nav %}
                 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
                     <div class="navbar-brand">
-                        <a class="navbar-item" style="pointer-events: none;">
+                        <a class="navbar-item" style="pointer-events: none;" href="{{ path('app_homepage_home') }}">
                             <img src="{{ asset('../assets/img/logo_RICH.png') }}">
                         </a>
                     </div>
@@ -29,13 +29,11 @@
                 </nav>
 
                 <nav style="background-color: #FDEE00; height: 0.8vh"></nav>
-            {% endblock %}
 
-            {% block navtwo %}
                 <nav class="navbar is-info" role="navigation" aria-label="main navigation"
                      style="background-color: #1C3461;">
                     <div class="navbar-start">
-                        <a class="item-navbar">
+                        <a class="item-navbar" href="{{ path('app_homepage_home') }}">
                             Accueil
                         </a>
                     </div>
@@ -46,15 +44,15 @@
                     <div class="navbar-menu">
                         <div class="navbar-end">
                         </div>
-                        <a class="item-navbar">
+                        <a class="item-navbar" href="#packs">
                             Packs
                         </a>
 
-                        <a class="item-navbar">
+                        <a class="item-navbar" href="#activitees">
                             Activitées
                         </a>
 
-                        <a class="item-navbar">
+                        <a class="item-navbar" href="#locations">
                             Locations
                         </a>
                     </div>

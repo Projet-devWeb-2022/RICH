@@ -5,20 +5,18 @@
 
 {% block body %}
     {% block content %}
-        <div class="container has-text-centered" style="background-color: #f4fefe">
-            <p class="title">
-            <div class="card" style="background-color: #1C3461; padding-top: 5vh;">
-                <p class="card-title" style="color: white; font-style: italic; font-size: x-large;">Bienvenue sur notre site web !</p>
-                <p class="card-content" style="color: white;"> Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez chosir un séjour de rêve et ainsi vivre une expérience luxueuse.
-                Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyable ! A des prix
-                défiant toutes concurrence.</p>
+        <div class="container has-text-centered">
+                <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
+                <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
+                Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
+                défiant toutes concurrences.</p>
             </div>
             </p>
         </div>
 
         <div class="has-text-centered" style="margin-top: 2em; background-color: #f9f9f9;">
             <section class="section">
-                <p class="title" style="font-style: italic; font-size: xxx-large;">Packs</p>
+                <p class="title" style="font-style: italic; font-size: xxx-large;" id="packs">Packs</p>
                 <nav class="level">
                     <div class="level-item has-text-centered">
                             <div class="block">
@@ -40,12 +38,12 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="content">
+                                                    <div class="content" style="font-style: italic;">
                                                         Ce pack peut convenir à {{ listPack[i].nbPersonMax }} personnes maximum.
                                                         <br>
                                                         Le prix est de {{ listPack[i].price }}€ pour ce pack.
                                                         <br>
-                                                        <button class="button is-light is-fullwidth" style="margin-top: 1vh;"> Ajouter au panier </button>
+                                                        <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,7 +59,7 @@
 
             <div class="has-text-centered" style="background-color: #c7cfcf;">
                 <section class="section">
-                    <p class="title" style="font-style: italic; font-size: xxx-large;">Activitées</p>
+                    <p class="title" style="font-style: italic; font-size: xxx-large;" id="activitees">Activitées</p>
                     <br>
                     <div class="message">
                         <div class="message-body">
@@ -74,7 +72,7 @@
 
             <div class="has-text-centered" style="background-color: #9ba2a2;">
                 <section class="section">
-                    <p class="title" style="font-style: italic; font-size: xxx-large;">Locations</p>
+                    <p class="title" style="font-style: italic; font-size: xxx-large;" id="locations">Locations</p>
                     <nav class="level">
                         <div class="level-item has-text-centered">
                             <div class="block">
