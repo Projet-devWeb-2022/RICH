@@ -39,7 +39,7 @@
                                     <h2 class="subtitle has-text-link"> Nos Packs Vacance </h2>
                                     <p> Choisissez parmis nos pack déjà composé par nos soins, vous n'avez juste qu'à choisir votre pack, entrez vos dates de voyage et il ne vous restera plus qu'à préparer vos valises !  </p>
                                     </br>
-                                    <a href="{{ path('cart_addPack')}}"> <button> Let's Go </button> </a>
+                                    <button> Let's Go </button>
                                 </div>
                             </div>
                             <!-- second columns -->
@@ -48,7 +48,7 @@
                                     <h2 class="subtitle has-text-link"> Formule personalisé </h2>
                                     <p> Composez vos vacances de A à Z en choisissant votre destintion, votre hotel, vos activités etc... </br>  </br>  </p>
                                     <span></span>
-                                    <a href="{{ path('app_pack_index')}}"> <button class="button is-center"> Let's Go </button> </a>
+                                    <a href="{{ path('app_homepage_gotodestination')}}"> <button class="button is-center"> Let's Go </button> </a>
                                 </div>
                             </div>
 
@@ -103,7 +103,9 @@
                                                         <br>
                                                         Le prix est de {{ listPack[i].price }}€ pour ce pack.
                                                         <br>
-                                                        <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
+                                                        <a href="{{ path('cart_addPack', {'id':listPack[i].id})}}">
+                                                            <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
