@@ -89,7 +89,19 @@
                             <a class="item-navbar" href="{{ path('allUsers') }}">
                                 Utilisateurs
                             </a>
+                        {% else %}
 
+
+                            <a class="item-navbar" href="#">
+                                Packs
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Activités
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Locations
+                            </a>
+                        {% endif %}
                         {% else %}
                             <a class="item-navbar" href="#">
                                 Packs
@@ -101,16 +113,6 @@
                                 Locations
                             </a>
                         {% endif %}
-                        {% endif %}
-                        <a class="item-navbar" href="#">
-                            Packs
-                        </a>
-                        <a class="item-navbar" href="#">
-                            Activités
-                        </a>
-                        <a class="item-navbar" href="#">
-                            Locations
-                        </a>
 
                     </div>
                 </nav>
