@@ -6,12 +6,16 @@
 
 
     {% block content %}
-        <div class="container has-text-centered">
-                <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
-                <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
-                Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
-                défiant toutes concurrences.</p>
-            </div>
+
+                <div class="container has-text-centered">
+                    <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
+                        <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
+                            Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
+                            défiant toutes concurrences.
+                        </p>
+                    </p>
+                </div>
+
         <div class="has-text-centered" style="margin-top: 2em; background-color: #f9f9f9;">
             <section class="section">
                 <p class="title" style="font-style: italic; font-size: xxx-large;" id="packs">Packs</p>
@@ -26,7 +30,7 @@
                                             <div class="card">
                                                 <div class="card-image">
                                                     <figure class="image">
-                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}">
+                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}" >
                                                     </figure>
                                                 </div>
                                                 <div class="card-content" style="background-color: #C7CFCF">
@@ -54,9 +58,11 @@
                             </div>
                     </div>
                 </nav>
+
                 <a href="{{ path('app_pack_index')}}">
                      <button class="button is-info">Accéder à la page des packs</button>
                 </a>
+
             </section>
 
             <div class="has-text-centered" style="background-color: #c7cfcf;">
@@ -112,7 +118,7 @@
                             </div>
                         </div>
                     </nav>
-                    <button class="button is-info">Accéder à la page des locations</button>
+                    <a href="{{ path('allRentalVehicles') }}"> <button class="button is-info">Accéder aux locations</button></a>
                 </section>
             </div>
         </div>

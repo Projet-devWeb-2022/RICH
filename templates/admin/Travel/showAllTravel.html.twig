@@ -1,11 +1,16 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
+       {% block body %}
         {% block content %}
-            <title>{% block title %} Tous les vehicules {% endblock %}</title>
+            <title>{% block title %} Tous les voyages {% endblock %}</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
             <br>
 
             <section class="section">
                 <div class="box is-centered">
+                    <div class="content">
+                        <ion-icon name="add-outline"></ion-icon>
+                        <a href="{{ path('newTravel')}}" class="button is-info">Ajouter un voyage</a>
+                    </div>
                     <h3 class="title is-3">Tous les voyages</h3> <br>
                     <div class="columns is-centered">
 
@@ -30,8 +35,10 @@
                                                 {{ travel.airportArrival}}
                                                 {{ travel.arrivalTime | date("m/d/Y")}}
                                                 {{ travel.dateArrival| date('H:i')}}
-                                              #}
-                                                </p>
+                                              #}<br>
+                                                <a href="{{ path('oneTravel', {id: travel.id} ) }}">En savoir plus...</a>
+
+                                            </p>
                                         </div>
                                         <div class="card">
                                             <footer class="card-footer is-6">
@@ -51,3 +58,4 @@
                 </div>
             </section>
         {% endblock %}
+       {% endblock %}

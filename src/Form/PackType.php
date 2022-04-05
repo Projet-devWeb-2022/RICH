@@ -4,14 +4,13 @@ namespace App\Form;
 
 use App\Entity\Pack;
 use App\Entity\Prestation;
-use App\Entity\Destination;
 use App\Entity\Travel;
+use App\Entity\Destination;
 use App\Entity\VehicleRental;
 
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -46,27 +45,7 @@ class PackType extends AbstractType
                 },
                 'choice_label' => 'name',
             ])
-            ->add('prestations', EntityType::class, [
-                'class' => Prestation::class,
-                'mapped' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->where('u.price > :type1')
-                        ->setParameter('type1', 0);
-                },
-                'choice_label' => 'name',
-            ])
-            /*->add('prestations', EntityType::class, [
-                'class' => Prestation::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('v')
-                        ->where('v.prestationType = :type2')
-                        ->setParameter('type2', 'travel');;
-                },
-                'choice_label' => 'Voyage',
-            ])*/
             ->add('valider', SubmitType::class)
-        ;
         ;
     }
 

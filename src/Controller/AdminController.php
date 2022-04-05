@@ -77,7 +77,7 @@ class AdminController extends AbstractController
         $users = $paginator->paginate(
             $users,
             $req->query->getInt('page', 1),
-            3
+            10
         );
         return $this->render('admin/Users/adminAllUsersPages.html.twig',
             ['controller_name' => 'AdminController',
