@@ -72,6 +72,7 @@ class VehicleController extends AbstractController
         $repo = $em->getRepository(Vehicle::Class);
         $vehicle =  $repo->find($id);
         return $this->render('admin/Vehicle/oneVehicle.html.twig', [
+            'id' => $id,
             'vehicle' => $vehicle
         ]);
     }
@@ -177,6 +178,7 @@ class VehicleController extends AbstractController
     {
         $rentalVehicle = $em->getRepository(Prestation::Class)->find($id);;
         return $this->render('admin/Vehicle/RentalVehicles/oneRentalVehicle.html.twig', [
+            'id' => $id,
             'rentalVehicle' => $rentalVehicle
         ]);
     }

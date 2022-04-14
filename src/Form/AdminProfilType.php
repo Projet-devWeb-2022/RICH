@@ -6,6 +6,7 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,8 +15,7 @@ class AdminProfilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('password')
+
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'Utilisateur' => 'ROLE_USER',
@@ -23,11 +23,10 @@ class AdminProfilType extends AbstractType
                 ],
                 'expanded' => false,
                 'multiple' => true,
-                'label' => 'Rôles'
+                'label' => 'Rôles',
+                'empty_data' => 'ROLE_USER'
             ])
-            ->add('name')
-            ->add('surname')
-            ->add('address')
+
             ->add('valider', SubmitType::class)
         ;
     }

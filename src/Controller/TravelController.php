@@ -74,6 +74,7 @@ class TravelController extends AbstractController
     {
         $travel = $em->getRepository(Prestation::Class)->find($id);;
         return $this->render('admin/Travel/oneTravel.html.twig', [
+            'id' => $id,
             'travel' => $travel
         ]);
     }

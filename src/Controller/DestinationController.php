@@ -74,6 +74,7 @@ class DestinationController extends AbstractController
     {
         $destination = $em->getRepository(Destination::Class)->find($id);;
         return $this->render('admin/Destination/oneDestination.html.twig', [
+            'id' => $id,
             'destination' => $destination
         ]);
     }

@@ -91,6 +91,7 @@ class PackController extends AbstractController
     {
         $pack = $em->getRepository(Pack::Class)->find($id);;
         return $this->render('admin/Packs/onePack.html.twig', [
+            'id' => $id,
             'pack' => $pack
         ]);
     }
