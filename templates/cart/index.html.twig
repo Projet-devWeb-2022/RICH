@@ -40,6 +40,9 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <form action="{{ path('checkout') }}" method="POST">
+                <button type="submit" class="button">Payer</button>
+            </form>
         {% else %}
             <p> Vous n'avez aucun pack. </p>
         {% endif %}
