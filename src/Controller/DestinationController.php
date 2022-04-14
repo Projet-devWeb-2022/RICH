@@ -115,7 +115,7 @@ class DestinationController extends AbstractController
         $em->remove($destination);
         $em->flush();
         $this->addFlash('success','Suppression réussie');
-        return $this->redirect("/admin/destination/all");
+        return $this->redirectToRoute("allDestinations");
     }
 
 }

@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Prestation;
 use App\Entity\Vehicle;
+use App\Entity\VehicleRental;
 use App\Form\RentalVehicleType;
 use App\Form\VehicleType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -113,7 +114,7 @@ class VehicleController extends AbstractController
         $em->remove($vehicle);
         $em->flush();
         $this->addFlash('success','Suppression réussie');
-        return $this->redirect("/admin/vehicle/all");
+        return $this->redirectToRoute("allVehicles");
     }
 
 
@@ -121,7 +122,7 @@ class VehicleController extends AbstractController
     #[Route('/admin/vehicle/rental/new', name:"newRentalVehicle", methods:['GET','POST'])]
     public function createRentalVehicle(Request $request , EntityManagerInterface $entityManager, ): Response
     {
-        $rentalVehicle = new Prestation();
+        $rentalVehicle = new VehicleRental();
         $form = $this->createForm(RentalVehicleType::class, $rentalVehicle);
 
 
@@ -218,7 +219,7 @@ class VehicleController extends AbstractController
         $em->remove($vehicle);
         $em->flush();
         $this->addFlash('success','Suppression réussie');
-        return $this->redirect("/admin/vehicle/rental/all");
+        return $this->redirectToRoute("allRentalVehicles");
     }
 
 

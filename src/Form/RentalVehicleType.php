@@ -7,7 +7,9 @@ use App\Entity\VehicleRental;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,12 +21,12 @@ class RentalVehicleType extends AbstractType
             ->add('price')
             ->add('isAvailable')
             ->add('name')
-            ->add('description')
+            ->add('description',TextareaType::class)
             ->add('nbPersonMax')
             ->add('image')
             ->add('PickingAddress')
-            ->add('pickUpDate')
-            ->add('dropOffDate')
+            ->add('pickUpDate', DateTimeType::class)
+            ->add('dropOffDate',DateTimeType::class)
             ->add('vehicle', EntityType::class, [
                 'class' => Vehicle::class,
                 'query_builder' => function (EntityRepository $er) {

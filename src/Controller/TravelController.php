@@ -115,7 +115,7 @@ class TravelController extends AbstractController
         $em->remove($travel);
         $em->flush();
         $this->addFlash('success','Suppression réussie');
-        return $this->redirect("/admin/travel/all");
+        return $this->redirectToRoute("allTravels");
     }
 
 }

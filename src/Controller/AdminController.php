@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AdminProfilType;
 use App\Form\AdminType;
-use App\Controller\adminController;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -128,6 +127,6 @@ class AdminController extends AbstractController
         $em->remove($user);
         $em->flush();
         $this->addFlash('success', 'Suppression réussie');
-        return $this->redirect("/admin/user/all");
+        return $this->redirectToRoute("allUsers");
     }
 }
