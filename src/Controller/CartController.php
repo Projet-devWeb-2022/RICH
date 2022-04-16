@@ -22,14 +22,13 @@ class CartController extends AbstractController
         //$panierWithData = $cartService->getFullCart();
         //$total = $cartService->getTotal();
 
-        $panier = $session->get('panier', []);
-        $panierWithData = [];
+        $panierWithData = $this->getCart($session, $packRepository);
 
-        foreach ($panier as $id => $quantity) {
-            $panierWithData[] = [
-                'pack' => $packRepository->find($id),
-                'quantity' => $quantity
-            ];
+        $total = 0;
+
+        foreach ($panierWithData as $item) {
+            $totalItem = $item['pack']->getPrice() * $item['quantity'];
+            $total += $totalItem;
         }
 
         return $this->render('cart/index.html.twig', [
@@ -48,27 +47,39 @@ class CartController extends AbstractController
 
         $session->set('panier', $panier);
 
-        return $this->redirectToRoute('cart');
+        return $this->redirectToRoute('app_homepage');
 
     }
 
     #[Route('/checkout', name: 'checkout')]
-    public function checkout($stripeSK): Response
+    public function checkout(SessionInterface $sess, PackRepository $packRepository, $stripeSK): Response
     {
+        $panier = $this->getCart($sess, $packRepository);
         Stripe::setApiKey($stripeSK);
-        //$total = $this->getTotal();
-        $session = Session::create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
+        $total = 0;
+        foreach ($panier as $item) {
+            $totalItem = $item['pack']->getPrice() * $item['quantity'];
+            $total += $totalItem;
+        }
+        $sess->set('total', $total);
+        $apiCart=[];
+        foreach ($panier as $item) {
+            $apiCart[] = [
                 'price_data' => [
                     'currency' => 'eur',
                     'product_data' => [
-                        'name' => 'Votre commande RICH',
+                        'name' => $item['pack']->getName(),
                     ],
-                    'unit_amount' => 200,
+                    'unit_amount' => $item['pack']->getPrice()*100,
                 ],
-                'quantity' => 1,
-            ]],
+                'quantity' => $item['quantity'],
+            ];
+        }
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [
+                $apiCart
+            ],
             'mode' => 'payment',
             'success_url' => $this->generateUrl('success_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
             'cancel_url' => $this->generateUrl('cancel_url', [], UrlGeneratorInterface::ABSOLUTE_URL),
@@ -87,6 +98,18 @@ class CartController extends AbstractController
         $cartService->remove($id);
         return $this->redirectToRoute('cart');
 
+    }
+
+    public function getCart(SessionInterface $session,PackRepository $packRepository){
+        $panier = $session->get('panier', []);
+        $panierWithData = [];
+        foreach ($panier as $id => $quantity) {
+            $panierWithData[] = [
+                'pack' => $packRepository->find($id),
+                'quantity' => $quantity
+            ];
+        }
+        return $panierWithData;
     }
 
     public function getTotal(CartService $cartService){
