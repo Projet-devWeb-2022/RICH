@@ -69,6 +69,7 @@ class TravelController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
     #[Route('/admin/travel/{id}', name:'oneTravel', methods:['GET'])]
     public function showOneTravel(PersistenceManagerRegistry $em, int $id): Response
     {
