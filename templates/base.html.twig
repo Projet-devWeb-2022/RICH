@@ -74,6 +74,9 @@
                             <a class="item-navbar" href="{{ path('allRentalVehicles') }}">
                                 Locations
                             </a>
+                            <a class="item-navbar" href="#">
+                                Activité
+                            </a>
                             <a class="item-navbar" href="{{ path('allTravels') }}">
                                 Voyages
                             </a>
@@ -86,29 +89,30 @@
                             <a class="item-navbar" href="{{ path('allUsers') }}">
                                 Utilisateurs
                             </a>
+                        {% else %}
 
+
+                            <a class="item-navbar" href="#">
+                                Packs
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Activités
+                            </a>
+                            <a class="item-navbar" href="#">
+                                Locations
+                            </a>
+                        {% endif %}
                         {% else %}
                             <a class="item-navbar" href="#">
-                                Voyage
+                                Packs
                             </a>
                             <a class="item-navbar" href="#">
-                                Location
+                                Activités
                             </a>
                             <a class="item-navbar" href="#">
-                                Voyage
-                            </a>
-                            <a class="item-navbar" href="#">
-                                Véhicule
-                            </a>
-                            <a class="item-navbar" href="#">
-                                Véhicule
-                            </a>
-                            <a class="item-navbar" href="#">
-                                Users
+                                Locations
                             </a>
                         {% endif %}
-                        {% endif %}
-
 
                     </div>
                 </nav>

@@ -1,11 +1,12 @@
-{% extends 'baseAdmin.html.twig' %}
-
-    {% block content %}
+{% extends 'base.html.twig' %}
+   {% block body %}
+        {% block content %}
         {% block title %}Modifier un voyage{% endblock %}
 
-        {% block body %}
+
             {{ form(form) }}
-        {% endblock %}
+
 
 
     {% endblock %}
+   {% endblock %}

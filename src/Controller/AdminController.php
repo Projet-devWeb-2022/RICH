@@ -7,7 +7,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AdminProfilType;
 use App\Form\AdminType;
-use App\Controller\adminController;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -77,7 +76,7 @@ class AdminController extends AbstractController
         $users = $paginator->paginate(
             $users,
             $req->query->getInt('page', 1),
-            3
+            10
         );
         return $this->render('admin/Users/adminAllUsersPages.html.twig',
             ['controller_name' => 'AdminController',

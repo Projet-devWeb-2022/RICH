@@ -47,8 +47,8 @@ class DestinationController extends AbstractController
     }
 
 
-    #[Route('/admin/pack/new', name:"newDestination", methods:['GET','POST'])]
-    public function createPack(Request $request , EntityManagerInterface $entityManager ): Response
+    #[Route('/admin/destination/new', name:"newDestination", methods:['GET','POST'])]
+    public function createDestination(Request $request , EntityManagerInterface $entityManager ): Response
     {
         $destination = new Destination();
         $form = $this->createForm(Destination::class,  $destination);
@@ -74,12 +74,12 @@ class DestinationController extends AbstractController
     {
         $destination = $em->getRepository(Destination::Class)->find($id);;
         return $this->render('admin/Destination/oneDestination.html.twig', [
-            'pack' => $destination
+            'destination' => $destination
         ]);
     }
 
     #[Route('/admin/destination/edit/{id}', name:'editDestination', methods:['GET','POST'])]
-    public function updatePack(Request $request , EntityManagerInterface $entityManager, int $id ): Response
+    public function updateDestination(Request $request , EntityManagerInterface $entityManager, int $id ): Response
     {
         $destination= $entityManager->getRepository(Destination::Class)->find($id);
         $form = $this->createForm(DestinationType::class, $destination);
@@ -103,7 +103,7 @@ class DestinationController extends AbstractController
     }
 
     #[Route('/admin/destination/delete/{id}' ,name:'deleteDestination', methods:['GET','DELETE'])]
-    public function deletePack($id, ManagerRegistry $doctrine): Response
+    public function deleteDestination($id, ManagerRegistry $doctrine): Response
     {
         $em = $doctrine->getManager();
         $destination = $em->getRepository(Destination::class)->find($id);

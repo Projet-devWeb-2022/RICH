@@ -25,7 +25,15 @@ class PackType extends AbstractType
             ->add('description')
             ->add('price')
             ->add('nbPersonMax')
-            ->add('destination')
+            ->add('destination', EntityType::class, [
+                'class' => Destination::class,
+                'mapped' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.city', 'ASC');
+                },
+                'choice_label' => 'city',
+            ])
             ->add('prestations', EntityType::class, [
                 'class' => VehicleRental::class,
                 'mapped' => false,

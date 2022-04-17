@@ -1,16 +1,22 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
+         {% block body %}
         {% block content %}
-            <title>{% block title %} Toutes les destination {% endblock %}</title>
+            <title>{% block title %} Toutes les destinations {% endblock %}</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
             <br>
 
             <section class="section">
                 <div class="box is-centered">
+                    <div class="content">
+                        <ion-icon name="add-outline"></ion-icon>
+                        <a href="{{ path('newDestination')}}" class="button is-info">Ajouter une destination</a>
+                    </div>
+
                     <h3 class="title is-3">Toutes les destinations</h3> <br>
                     <div class="columns is-centered">
 
-
                         {% for destination in destinations %}
+
                             <div class="column has-text-centered is-4-tablet is-3-desktop">
                                 <div class="card">
                                     <div class="card-image has-text-centered is-size-4">
@@ -37,9 +43,10 @@
                         {% endfor %}
 
                     </div>
-                    <div class="navbar is-centered">
+                    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
                         {{ knp_pagination_render(destinations) }}
-                    </div>
+                    </nav>
                 </div>
             </section>
         {% endblock %}
+ {% endblock %}

@@ -1,4 +1,6 @@
-{% extends 'baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
+
+ {% block body %}
         {% block content %}
             <title>{% block title %}Destination{% endblock %}</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -16,9 +18,9 @@
                                     </figure>
                                     <div class="content">
                                         <p>
-                                            <strong>{{ destination.name }}</strong>
+                                            <strong>{{ destination.getCity() }}</strong>
                                             <br>
-                                            <small>{{ destination.city}}</small> <small>{{ destination.getContry().getName() }}</small>
+                                            <small>{{ destination.getContry().getName() }}</small><br>
                                             {{ destination.details}}
                                         </p>
                                     </div>
@@ -35,3 +37,4 @@
                 </div>
             </section>
         {% endblock %}
+ {% endblock %}
