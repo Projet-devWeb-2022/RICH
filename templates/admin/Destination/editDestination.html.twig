@@ -1,9 +1,44 @@
-{% extends 'base.html.twig' %}
-{% block body %}
-    {% block content %}
-        {% block title %}Mise à jour une destination {% endblock %}
 
-        {{ form(form) }}
+{% extends 'admin/baseFormAdmin.html.twig' %}
+ {% block body %}
+     {% block title %}
+         Ajout d'une destination
+     {% endblock %}
+     {% block content %}
 
-    {% endblock %}
-    {% endblock %}
+
+         <div class="formulaire">
+
+             <h1><strong>Ajouter une destination</strong></h1>
+             {{ form_start(form) }}
+             <br>
+
+             <div class="ville">
+                 <label class="lb">Ville : </label>
+                 {{ form_widget(form.city , {'attr': {'class': 'in'}}) }}
+             </div>
+             <div class="details">
+                 <label class="lb">Details : </label>
+                 {{ form_widget(form.details , {'attr': {'class': 'in'}}) }}
+             </div>
+
+             <div class="Country">
+                 <label class="lb">Pays : </label>
+                 {{ form_widget(form.country , {'attr': {'class': 'in'}}) }}
+             </div>
+             <div class="prestation">
+                 <label class="lb">Prestation : </label>
+                 {{ form_widget(form.prestations  , {'attr': {'class': 'in'}}) }}
+             </div>
+
+             <div class="btn">
+                 {{ form_widget(form.valider ,{'attr': {'class': 'button'}}) }}
+             </div>
+             {{ form_end(form) }}
+         </div>
+
+
+
+     {% endblock %}
+ {% endblock %}
+

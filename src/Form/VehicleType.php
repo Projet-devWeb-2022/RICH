@@ -4,7 +4,8 @@ namespace App\Form;
 
 use App\Entity\Vehicle;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,8 +16,14 @@ class VehicleType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('type', TextType::class)
-            ->add('PriceDay', MoneyType::class)
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Marin' => 'marin',
+                    'Aérien' => 'aérien',
+                    'Terrestre' => 'terrestre',]
+            ])
+            ->add('PriceDay')
+            ->add('valider', SubmitType::class)
         ;
     }
 

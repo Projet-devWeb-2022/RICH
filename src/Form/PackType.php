@@ -21,7 +21,6 @@ class PackType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('image')
             ->add('description')
             ->add('price')
             ->add('nbPersonMax')

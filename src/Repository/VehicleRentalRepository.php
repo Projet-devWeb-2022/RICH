@@ -19,32 +19,18 @@ class VehicleRentalRepository extends ServiceEntityRepository
         parent::__construct($registry, VehicleRental::class);
     }
 
-    // /**
-    //  * @return VehicleRental[] Returns an array of VehicleRental objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findRentalVehicles($value,$em)
     {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $em->getConnection();
+        $sql = '
+            SELECT * FROM prestation p
+            WHERE p.prestationType = :type
+           
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['type' => $value]);
+        $rentalVehicles = $resultSet->fetchAllAssociative();
+        return $rentalVehicles;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?VehicleRental
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

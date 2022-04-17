@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Destination;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,32 +20,23 @@ class DestinationRepository extends ServiceEntityRepository
         parent::__construct($registry, Destination::class);
     }
 
-    // /**
-    //  * @return Destination[] Returns an array of Destination objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findDestinations($value,$em)
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $em->getConnection();
+        $sql = '
+            SELECT * FROM destination p
+            WHERE p.id > :type
+           
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['type' => $value]);
+        $destinations = $resultSet->fetchAllAssociative();
+        return $destinations;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Destination
+    public function travelByCity()
     {
-        return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $reponse = EntityRepository::createQueryBuilder('u')
+            ->orderBy('u.city', 'ASC');
+        return $reponse;
     }
-    */
 }

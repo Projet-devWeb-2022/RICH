@@ -11,8 +11,7 @@
                                     <tr class="has-text-centered" colspan="6">
                                         <th>Nom</th>
                                         <th>Prénom</th>
-                                        <th>Crée le</th>
-                                        <th>Dernière connexion</th>
+                                        <th>Role</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -22,8 +21,7 @@
                                         <tr class="has-text-centered" colspan="6">
                                             <th>{{ user.name }}</th>
                                             <td>{{ user.surname }}</td>
-                                            <td>23/12/2022</td>
-                                            <td>24/12/2023</td>
+                                            <td>{{ user.roles[0] }}</td>
                                             <td>
                                                 <a href="{{ path('deleteUser', {id: user.id}) }}" class="button is-info">Supprimer</a>
                                                 <a href="{{ path('adminToUser', {id: user.id}) }}" class="button is-info">Modifier le role</a>

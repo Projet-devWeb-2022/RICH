@@ -36,7 +36,7 @@ class PackController extends AbstractController
     /**
      * @Route("/admin/pack/all", name="allPacks")
      */
-    public function showAllpacks(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
+    public function showAllPacks(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
     {
 
         $conn = $em->getConnection();
@@ -91,6 +91,7 @@ class PackController extends AbstractController
     {
         $pack = $em->getRepository(Pack::Class)->find($id);;
         return $this->render('admin/Packs/onePack.html.twig', [
+            'id' => $id,
             'pack' => $pack
         ]);
     }
@@ -132,7 +133,7 @@ class PackController extends AbstractController
         $em->remove($pack);
         $em->flush();
         $this->addFlash('success','Suppression réussie');
-        return $this->redirect("/admin/pack/all");
+        return $this->redirectToRoute("allPacks");
     }
 
 

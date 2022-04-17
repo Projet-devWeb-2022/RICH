@@ -19,35 +19,19 @@ class PackRepository extends ServiceEntityRepository
         parent::__construct($registry, Pack::class);
     }
 
+    public function findPacks($value)
 
-
-
-    // /**
-    //  * @return Pack[] Returns an array of Pack objects
-    //  */
-    /*
-    public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $this->_em->getConnection();
+        $sql = '
+            SELECT * FROM pack p
+            WHERE p.price > :type
+           
+            ';
+        $stmt = $this->_em->prepare($sql);
+        $resultSet = $stmt->executeQuery(['type' => $value]);
+        $packs = $resultSet->fetchAllAssociative();
+        return $packs;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Pack
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
