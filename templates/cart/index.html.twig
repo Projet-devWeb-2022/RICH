@@ -35,7 +35,7 @@
                     <td> {{ item.product.getPrice() * item.quantity}}</td>
                     <td>
                         <a href="{{ path('cart_remove', {'id':item.product.id})}}">
-                            <button> trash </button>
+                            <button class="button is-danger is-small"> Supprimer </button>
                         </a>
                     </td>
                 </tr>

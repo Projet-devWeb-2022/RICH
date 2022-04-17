@@ -43,7 +43,7 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute('cart');
     }
-    
+
 
     public function getTotal(CartService $cartService){
         return $cartService->getTotal();
