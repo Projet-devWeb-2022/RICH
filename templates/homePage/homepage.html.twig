@@ -1,81 +1,17 @@
 {% extends './base.html.twig' %}
 
-
-
 {% block title %}Rich{% endblock %}
 
-
-{% block body %}
     {% block content %}
-
 
                 <div class="container has-text-centered">
                     <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
                         <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
                             Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
-                            défiant toutes concurrences.</p>
-                        </div>
+                            défiant toutes concurrences.
+                        </p>
                     </p>
                 </div>
-
-            <!-- Comment changer appller la fonction goTo1 on click ? -->
-          <button class="button is-large is-fullwidth">Click here </button>
-        </div>
-    </section>
-
-    <section class="py-6">
-        <section class="hero is-large is-info">
-            <div class="hero-body">
-                <p class="title">
-                    Large hero
-                </p>
-                <p class="subtitle">
-                    Large subtitle
-                </p>
-                <!-- columns -->
-                <div class="block">
-                    <div class="container">
-                        <div class="columns">
-                            <!-- one columns -->
-                            <div class="column">
-                                <div class="box">
-                                    <h2 class="subtitle has-text-link"> Nos Packs Vacance </h2>
-                                    <p> Choisissez parmis nos pack déjà composé par nos soins, vous n'avez juste qu'à choisir votre pack, entrez vos dates de voyage et il ne vous restera plus qu'à préparer vos valises !  </p>
-                                    </br>
-                                    <button> Let's Go </button>
-                                </div>
-                            </div>
-                            <!-- second columns -->
-                            <div class="column">
-                                <div class="box">
-                                    <h2 class="subtitle has-text-link"> Formule personalisé </h2>
-                                    <p> Composez vos vacances de A à Z en choisissant votre destintion, votre hotel, vos activités etc... </br>  </br>  </p>
-                                    <span></span>
-                                    <a href="{{ path('app_homepage_gotodestination')}}"> <button class="button is-center"> Let's Go </button> </a>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </section>
-
-{% endblock %}
-
-{% block footer %}
-
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>RICH</strong> by Groupe 10. The source code is available
-                <a href="https://github.com/Projet-devWeb-2022/RICH"> here </a>.
-
-            </p>
-        </div>
 
         <div class="has-text-centered" style="margin-top: 2em; background-color: #f9f9f9;">
             <section class="section">
@@ -91,7 +27,7 @@
                                             <div class="card">
                                                 <div class="card-image">
                                                     <figure class="image">
-                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}">
+                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}" >
                                                     </figure>
                                                 </div>
                                                 <div class="card-content" style="background-color: #C7CFCF">
@@ -183,5 +119,5 @@
                 </section>
             </div>
         </div>
-    {% endblock %}
 {% endblock %}
+

@@ -20,6 +20,7 @@ class CartController extends AbstractController
         //$total = $cartService->getTotal();
 
         $panier = $session->get('panier', []);
+        $panierWithData = [];
 
         foreach ($panier as $id => $quantity) {
             $panierWithData[] = [
@@ -52,7 +53,7 @@ class CartController extends AbstractController
     public function add($id, CartService $cartService){
         $cartService->add($id);
 
-        return $this->redirectToRoute('app_destinationpage_index');
+        return $this->redirectToRoute('cart');
     }
 
 
