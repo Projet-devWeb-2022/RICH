@@ -28,13 +28,13 @@
                 <tbody>
                 {% for item in items %}
                 <tr>
-                    <td> {{ item.product.name }}</td>
-                    <td> {{ item.product.destination.city }}</td>
-                    <td> {{ item.product.description}}</td>
+                    <td> {{ item.pack.name }}</td>
+                    <td> {{ item.pack.destination.city }}</td>
+                    <td> {{ item.pack.description}}</td>
                     <td> {{ item.quantity}}</td>
-                    <td> {{ item.product.getPrice() * item.quantity}}</td>
+                    <td> {{ item.pack.getPrice() * item.quantity}}</td>
                     <td>
-                        <a href="{{ path('cart_remove', {'id':item.product.id})}}">
+                        <a href="{{ path('cart_remove', {'id':item.pack.id})}}">
                             <button class="button is-danger is-small"> Supprimer </button>
                         </a>
                     </td>
