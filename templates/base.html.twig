@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="{{ asset('../assets/styles/stylePlus.css') }}">
 </head>
 
-<section class="hero is-fullheight">
-    <div class="hero-head">
+
+
         <header>
+            <div class="hero-head">
             {% block nav %}
                 <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color: #1C3461;">
                     <div class="navbar-brand">
@@ -89,10 +90,10 @@
                         {% else %}
 
 
-                            <a class="item-navbar" href="app_pack_index">
+                            <a class="item-navbar" href="{{ path('pack_page') }}">
                                 Packs
                             </a>
-                            <a class="item-navbar" href="#">
+                            <a class="item-navbar" href="{{ path('allRental') }}">
                                 Locations
                             </a>
                             <a class="item-navbar" href="#">
@@ -100,13 +101,13 @@
                             </a>
                         {% endif %}
                         {% else %}
-                            <a class="item-navbar" href="app_pack_index">
+                            <a class="item-navbar" href="{{ path('pack_page') }}">
                                 Packs
                             </a>
                             <a class="item-navbar" href="#">
-                                Activités
+                                Voyage
                             </a>
-                            <a class="item-navbar" href="#">
+                            <a class="item-navbar" href="{{ path('allRental') }}">
                                 Locations
                             </a>
                         {% endif %}
@@ -114,15 +115,15 @@
                     </div>
                 </nav>
             {% endblock %}
+            </div>
         </header>
-    </div>
 
-    {% block body %}
-        <body class="hero-body">
-        {% block content %}
-        {% endblock %}
-        </body>
+
+
+    <body>
+    {% block content %}
     {% endblock %}
+    </body>
 
     {% block footer %}
         <div class="hero-foot">
@@ -143,5 +144,4 @@
             </footer>
         </div>
     {% endblock %}
-</section>
 </html>

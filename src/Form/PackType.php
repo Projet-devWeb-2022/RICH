@@ -26,7 +26,6 @@ class PackType extends AbstractType
             ->add('nbPersonMax')
             ->add('destination', EntityType::class, [
                 'class' => Destination::class,
-                'mapped' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.city', 'ASC');

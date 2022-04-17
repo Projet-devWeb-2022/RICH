@@ -7,10 +7,14 @@
 
             <section class="section">
                 <div class="box is-centered">
-                    <div class="content">
-                        <ion-icon name="add-outline"></ion-icon>
-                        <a href="{{ path('newRentalVehicle')}}" class="button is-info">Ajouter une location</a>
-                    </div>
+
+                    {% if app.user and "ROLE_ADMIN" in app.user.roles %}
+                        <div class="content">
+                            <ion-icon name="add-outline"></ion-icon>
+                            <a href="{{ path('newRentalVehicle')}}" class="button is-info">Ajouter une location</a>
+                        </div>
+                    {% endif %}
+
                     <h3 class="title is-3">Tous les vehicules de location</h3> <br>
                     <div class="columns is-centered">
 
@@ -30,17 +34,19 @@
                                                 <small>{{ rentalVehicle.price}}</small>
                                                 <small>{{ rentalVehicle.nb_person_max}}</small>
                                                 <br>
-
+                                                {% if app.user and "ROLE_ADMIN" in app.user.roles %}
                                                 <a href="{{ path('oneRentalVehicle', {id: rentalVehicle.id} ) }}">En savoir plus...</a>
-
+                                                {% endif %}
 
                                             </p>
                                         </div>
                                         <div class="card">
+                                            {% if app.user and "ROLE_ADMIN" in app.user.roles %}
                                             <footer class="card-footer is-6">
                                                 <a href="{{ path('editRentalVehicle', {id: rentalVehicle.id}) }}" class="card-footer-item">Modifier</a>
                                                 <a href="{{ path('deleteRentalVehicle', {id: rentalVehicle.id}) }}" class="card-footer-item">Supprimer</a>
                                             </footer>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

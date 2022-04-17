@@ -29,6 +29,23 @@ class ReadVehicleRentalController extends AbstractController
             'rentalVehicles' =>  $rentalVehicles
         ]);
     }
+    /**
+     * @Route("rental/all", name="allRental")
+     */
+    public function showRental(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req)
+    {
+        $type = "vehicleRental";
+        $rentalVehicles = $em->getRepository(VehicleRental::class)->findRentalVehicles($type,$em);
+        $rentalVehicles = $paginator->paginate(
+            $rentalVehicles,
+            $req->query->getInt('page', 1),
+            3
+        );
+
+        return $this->render('admin/Vehicle/RentalVehicles/showRentalVehicles.html.twig', [
+            'rentalVehicles' =>  $rentalVehicles
+        ]);
+    }
 
     #[Route('/admin/vehicle/rental/{id}', name:'oneRentalVehicle', methods:['GET'])]
     public function showOneRentalVehicle(PersistenceManagerRegistry $em, int $id): Response

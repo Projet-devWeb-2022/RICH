@@ -3,123 +3,122 @@
 {% block title %}Rich{% endblock %}
 
 
-{% block body %}
-    {% block content %}
-                <div class="container has-text-centered">
-                    <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
-                        <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêvé d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
-                            Entre Ferrari, jet privé et d'autres véhicules de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
-                            défiant toute concurrence.
-                        </p>
-                    </p>
-                </div>
 
-        <div class="has-text-centered" style="margin-top: 2em; background-color: #f9f9f9;">
+{% block content %}
+            <div class="container has-text-centered">
+                <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
+                    <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêvé d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
+                        Entre Ferrari, jet privé et d'autres véhicules de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
+                        défiant toute concurrence.
+                    </p>
+                </p>
+            </div>
+
+    <div class="has-text-centered" style="margin-top: 2em; background-color: #f9f9f9;">
+        <section class="section">
+            <p class="title" style="font-style: italic; font-size: xxx-large;" id="packs">Packs</p>
+            <nav class="level">
+                <div class="level-item has-text-centered">
+                        <div class="block">
+                            <div class="container">
+                                <div class="columns">
+                                    {% for i in 1..3 %}
+                                    <!-- one columns -->
+                                    <div class="column">
+                                        <div class="card">
+                                            <div class="card-image">
+                                                <figure class="image">
+                                                    <img src="{{ asset('../assets/img/Pack n°1.png') }}" >
+                                                </figure>
+                                            </div>
+                                            <div class="card-content" style="background-color: #C7CFCF">
+                                                <div class="media">
+                                                    <div class="media-content">
+                                                        <p class="title is-4">{{ listPack[i].name }}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="content" style="font-style: italic;">
+                                                    Ce pack peut convenir à {{ listPack[i].nbPersonMax }} personnes maximum.
+                                                    <br>
+                                                    Le prix est de {{ listPack[i].price }}€ pour ce pack.
+                                                    <br>
+                                                    <a href="{{ path('cart_addPack', {'id':listPack[i].id})}}">
+                                                        <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </nav>
+
+            <a href="{{ path('pack_page')}}">
+                 <button class="button is-info">Accéder à la page des packs</button>
+            </a>
+
+        </section>
+
+        <div class="has-text-centered" style="background-color: #c7cfcf;">
             <section class="section">
-                <p class="title" style="font-style: italic; font-size: xxx-large;" id="packs">Packs</p>
+                <p class="title" style="font-style: italic; font-size: xxx-large;" id="activitees">Activités</p>
+                <br>
+                <div class="message">
+                    <div class="message-body">
+                        <p class="subtitle">Les activités seront bientôt disponibles, cette partie est en maintenance pour le moment.</p>
+                        <p class="subtitle">Notre équipe est sincèrement désolée pour la gêne occasionnée.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="has-text-centered" style="background-color: #9ba2a2;">
+            <section class="section">
+                <p class="title" style="font-style: italic; font-size: xxx-large;" id="locations">Locations</p>
                 <nav class="level">
                     <div class="level-item has-text-centered">
-                            <div class="block">
-                                <div class="container">
-                                    <div class="columns">
-                                        {% for i in 1..3 %}
+                        <div class="block">
+                            <div class="container">
+                                <div class="columns">
+                                    {% for i in 0..2 %}
                                         <!-- one columns -->
                                         <div class="column">
                                             <div class="card">
                                                 <div class="card-image">
                                                     <figure class="image">
-                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}" >
+                                                        <img src="{{ asset('../assets/img/Locations_n°1.png') }}">
                                                     </figure>
                                                 </div>
                                                 <div class="card-content" style="background-color: #C7CFCF">
                                                     <div class="media">
                                                         <div class="media-content">
-                                                            <p class="title is-4">{{ listPack[i].name }}</p>
+                                                            <p class="title is-4">{{ listLocation[i].name }}</p>
                                                         </div>
                                                     </div>
 
-                                                    <div class="content" style="font-style: italic;">
-                                                        Ce pack peut convenir à {{ listPack[i].nbPersonMax }} personnes maximum.
+                                                    <div class="content">
+                                                        Vos pouvez louer {{ listLocation[i].description }}.
                                                         <br>
-                                                        Le prix est de {{ listPack[i].price }}€ pour ce pack.
+                                                        Le prix est de {{ listLocation[i].price }}€ pour le véhicule numéro {{ i }}.
                                                         <br>
-                                                        <a href="{{ path('cart_addPack', {'id':listPack[i].id})}}">
-                                                            <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
-                                                        </a>
+                                                        <button class="button is-light is-fullwidth" style="margin-top: 1vh;"> Ajouter au panier </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        {% endfor %}
-                                    </div>
+                                    {% endfor %}
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </nav>
-
-                <a href="{{ path('pack_page')}}">
-                     <button class="button is-info">Accéder à la page des packs</button>
-                </a>
-
+                <a href="{{ path('allRental') }}"> <button class="button is-info">Accéder aux locations</button></a>
             </section>
-
-            <div class="has-text-centered" style="background-color: #c7cfcf;">
-                <section class="section">
-                    <p class="title" style="font-style: italic; font-size: xxx-large;" id="activitees">Activités</p>
-                    <br>
-                    <div class="message">
-                        <div class="message-body">
-                            <p class="subtitle">Les activités seront bientôt disponibles, cette partie est en maintenance pour le moment.</p>
-                            <p class="subtitle">Notre équipe est sincèrement désolée pour la gêne occasionnée.</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="has-text-centered" style="background-color: #9ba2a2;">
-                <section class="section">
-                    <p class="title" style="font-style: italic; font-size: xxx-large;" id="locations">Locations</p>
-                    <nav class="level">
-                        <div class="level-item has-text-centered">
-                            <div class="block">
-                                <div class="container">
-                                    <div class="columns">
-                                        {% for i in 0..2 %}
-                                            <!-- one columns -->
-                                            <div class="column">
-                                                <div class="card">
-                                                    <div class="card-image">
-                                                        <figure class="image">
-                                                            <img src="{{ asset('../assets/img/Locations_n°1.png') }}">
-                                                        </figure>
-                                                    </div>
-                                                    <div class="card-content" style="background-color: #C7CFCF">
-                                                        <div class="media">
-                                                            <div class="media-content">
-                                                                <p class="title is-4">{{ listLocation[i].name }}</p>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="content">
-                                                            Vos pouvez louer {{ listLocation[i].description }}.
-                                                            <br>
-                                                            Le prix est de {{ listLocation[i].price }}€ pour le véhicule numéro {{ i }}.
-                                                            <br>
-                                                            <button class="button is-light is-fullwidth" style="margin-top: 1vh;"> Ajouter au panier </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                    <a href="{{ path('allRentalVehicles') }}"> <button class="button is-info">Accéder aux locations</button></a>
-                </section>
-            </div>
         </div>
-    {% endblock %}
+    </div>
 {% endblock %}
 

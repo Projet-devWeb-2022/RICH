@@ -22,7 +22,7 @@ class PackController extends AbstractController
     /**
      * @Route("/pack", name="pack_page")
      */
-    public function index(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine)
     {
         //Récuperer l'ensemble des destinations de notre base et l'envoyer en parametre a notre vue
         $pack = $doctrine->getRepository(Pack::class);

@@ -4,10 +4,11 @@
 namespace App\Controller\Packs;
 use App\Entity\Pack;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DeletePackController
+class DeletePackController extends  AbstractController
 {
     #[Route('/admin/pack/delete/{id}' ,name:'deletePack', methods:['GET','DELETE'])]
     public function deletePack($id, ManagerRegistry $doctrine): Response

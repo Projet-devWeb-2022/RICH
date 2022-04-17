@@ -22,13 +22,12 @@ class PackRepository extends ServiceEntityRepository
     public function findPacks($value)
 
     {
-        $this->_em->getConnection();
         $sql = '
             SELECT * FROM pack p
             WHERE p.price > :type
            
             ';
-        $stmt = $this->_em->prepare($sql);
+        $stmt = $this->_em->getConnection()->prepare($sql);
         $resultSet = $stmt->executeQuery(['type' => $value]);
         $packs = $resultSet->fetchAllAssociative();
         return $packs;

@@ -85,7 +85,7 @@ class userAccountController extends AbstractController
         if($request->isMethod('POST')){
             $user = $this->getUser();
             $this->container->get('security.token_storage')->setToken(null);
-            $userRepository->deleteUser($this->getUser());
+            $userRepository->deleteUser($user);
             $mail = new MailService('Votre compte a été supprimé de la base de données !', 'Suppression de votre compte', $user->getEmail());
             $mail->sendMail($mailer);
             return $this->redirectToRoute('app_homepage');
