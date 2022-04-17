@@ -1,14 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Votre commande a été annulée</h1>
-    <p>
-        Le paiement n'a pas pu être effectué ou a été annulé ! Si vous pensez que cela est du à un problème, veuillez utiliser le formulaire de contact pour nous contacter
-        <a href="mailto:orders@example.com">orders@example.com</a>.
-    </p>
+{% block title %}
+    Rich - Commande annulée
 {% endblock %}
 
-{% block title %}
-Commande annulée
+{% block body %}
+    {% block content %}
+        <div class="message is-danger" style="margin: 25vh 5vh 50vh 5vh">
+            <p class="message-header">Votre commande a été annulée</p>
+            <div class="message-body">
+                <p>
+                    Le paiement n'a pas pu être effectué ou vous avez décider été annulé ! Si vous pensez que cela est dù à un problème, veuillez utiliser le formulaire de contact si besoin.
+                </p>
+                <br>
+                <p style="font-style: italic;">
+                    Vous pouvez aussi nous adresser un mail :
+                    <a href="mailto:orders@example.com">orders@example.com</a>
+                </p>
+            </div>
+        </div>
+    {% endblock %}
 {% endblock %}
 
