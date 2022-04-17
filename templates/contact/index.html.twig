@@ -1,0 +1,34 @@
+{% extends 'baseForm.html.twig' %}
+{% block title %}
+    Contactez-nous
+{% endblock %}
+{% block content %}
+    {% for message in app.flashes('message') %}
+        <div class="notification is-primary is-light">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="form">
+        <h1>Une question ?</h1>
+        {{ form_start(form) }}
+        <div class="email">
+            <label>Votre adresse mail</label>
+            {{ form_widget(form.usrMail, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="subj">
+            <label>Objet de votre question</label>
+            {{ form_widget(form.title, {'attr': {'class': 'input'}}) }}
+        </div>
+        <div class="msg">
+            <label>Votre message</label>
+            {{ form_widget(form.msg, {'attr': {'class': 'textarea'}}) }}
+        </div>
+        <button class="button is-outlined" type="submit">Envoyer</button>
+
+    </div>
+
+
+    {{ form_end(form) }}
+
+{% endblock %}
