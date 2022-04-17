@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\OrderRecap;
 use App\Entity\Orders;
+use App\Repository\OrdersRepository;
 use App\Repository\PackRepository;
+use App\Service\MailService;
 use Doctrine\Persistence\ManagerRegistry;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -19,52 +21,16 @@ class PaymentController extends AbstractController
 {
 
     #[Route('/payment/success', name: 'success_url')]
-    public function successUrl(PackRepository $packRepository, ManagerRegistry $doctrine, SessionInterface $session, MailerInterface $mailer): Response
+    public function successUrl(OrdersRepository $ordersRepository, PackRepository $packRepository, ManagerRegistry $doctrine, SessionInterface $session, MailerInterface $mailer): Response
     {
         $panier = $this->getCart($session, $packRepository);
-
-        $user=$this->getUser();
-        $order = new Orders();
-        $orderRecap = new OrderRecap();
-
-        $orderRecap->setBillingAdress($user->getAddress());
-        $orderRecap->setTransactionType("Carte");
-        $orderRecap->setOrdersRattached($order);
-
-        foreach ($panier as $item) {
-            $order->setPack($item['pack']);
-        }
-        $date = New \DateTime();
-        $ref = $user->getName() . $date->format('d-m-Y-H-i');
-        $order->setAmmount($session->get('total'));
-        $order->setUser($user);
-        $order->setOrderRecap($orderRecap);
-        $order->setDateOfOrder($date);
-        $order->setReference($ref);
-        $order->setCreatedAt(new \DateTimeImmutable());
-        $order->setUpdatedAt(new \DateTimeImmutable());
-
-        $em = $doctrine->getManager();
-        $em->persist($order);
-        $em->persist($orderRecap);
-        $em->persist($user);
-        $em->flush();
-
-        $date = new \DateTime();
-        $email = (new Email())
-            ->from('webrich235@gmail.com')
-            ->to($this->getUser()->getEmail())
-
-            ->subject('Votre commande du '. $date->format("D-d-M-Y"))
-            ->text('Votre commande a bien été confirmée ! Vous retrouverez vos informations de paiement dans l\'onglet commandes de votre espace personnel');
-
-
-        $mailer->send($email);
+        $ordersRepository->createOrder($panier, $session, $doctrine );
+        $mailcontent = 'Votre commande a bien été confirmée ! Vous retrouverez vos informations de paiement dans l\'onglet commandes de votre espace personnel';
+        $mail = new MailService($mailcontent, 'Votre commande du '. (new \DateTime())->format("d M Y"), $this->getUser()->getEmail());
+        $mail->sendMail($mailer);
         $session->set('panier', []);
         return $this->render('payment/success.html.twig', []);
     }
-
-
 
     #[Route('/payment/cancel', name: 'cancel_url')]
     public function cancelUrl(): Response
