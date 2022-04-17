@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Rich - Contact
+{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <div style="margin: 5vh;">
+            <p class="title is-1" style="text-align: center"> Contactez-nous ! </p>
+            <div class="field">
+                <label class="label">Nom</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Nom">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Prénom</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="prénom">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" placeholder="exemple@email.com">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Sujet</label>
+                <div class="control">
+                    <div class="select">
+                        <select>
+                            <option>Sélectionner</option>
+                            <option>Problème de commande</option>
+                            <option>Problème de compte</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Message</label>
+                <div class="control">
+                    <textarea class="textarea" placeholder="Votre message"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        Je suis d'accord avec <a href="#">les conditions d'utilisations</a>
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Envoyer</button>
+                </div>
+                <div class="control">
+                    <button class="button is-link is-light">Annuler</button>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
