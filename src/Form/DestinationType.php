@@ -2,13 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Country;
 use App\Entity\Destination;
 use App\Entity\Prestation;
-use App\Entity\Country;
-
 use App\Repository\CountryRepository;
 use App\Repository\PrestationRepository;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -27,7 +25,7 @@ class DestinationType extends AbstractType
                 'mapped' => false,
                 'query_builder' => function (CountryRepository $er) {
                     return $er->countryByCity();
-                    },
+                },
                 'choice_label' => 'name',
             ])
             ->add('prestations', EntityType::class, [
@@ -41,6 +39,7 @@ class DestinationType extends AbstractType
             ->add('valider', SubmitType::class)
         ;
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

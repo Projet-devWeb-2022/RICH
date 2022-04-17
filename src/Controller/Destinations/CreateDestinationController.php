@@ -3,8 +3,8 @@
 
 namespace App\Controller\Destinations;
 
-
 use App\Entity\Destination;
+use App\Form\DestinationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ class CreateDestinationController extends AbstractController
     public function createDestination(Request $request , EntityManagerInterface $entityManager ): Response
     {
         $destination = new Destination();
-        $form = $this->createForm(Destination::class,  $destination);
+        $form = $this->createForm(DestinationType::class,  $destination);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

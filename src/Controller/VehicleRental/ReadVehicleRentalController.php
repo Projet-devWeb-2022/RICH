@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReadVehicleRentalController extends AbstractController
 {
+    /**
+     * @Route("/admin/vehicle/rental/all", name="allRentalVehicles")
+     */
     public function showRentalVehicles(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
     {
         $type = "vehicleRental";
