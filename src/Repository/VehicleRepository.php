@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Vehicle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,33 +20,12 @@ class VehicleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Vehicle::class);
     }
-
-    // /**
-    //  * @return Vehicle[] Returns an array of Vehicle objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllVehicles()
     {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $reponse = EntityRepository::createQueryBuilder('u')
+            ->orderBy('u.name', 'ASC');
+        return $reponse;
 
-    /*
-    public function findOneBySomeField($value): ?Vehicle
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
     }
-    */
+
 }

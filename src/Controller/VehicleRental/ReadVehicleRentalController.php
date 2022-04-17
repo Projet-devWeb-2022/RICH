@@ -1,10 +1,8 @@
 <?php
-
-
 namespace App\Controller\VehicleRental;
 
-
 use App\Entity\Prestation;
+use App\Entity\VehicleRental;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,21 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ReadVehicleRentalController extends AbstractController
 {
-
     public function showRentalVehicles(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
     {
-        $conn = $em->getConnection();
         $type = "vehicleRental";
-        $sql = '
-            SELECT * FROM prestation p
-            WHERE p.prestationType = :type
-           
-            ';
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery(['type' => $type]);
-
-        $rentalVehicles = $resultSet->fetchAllAssociative();
-
+        $rentalVehicles = $em->getRepository(VehicleRental::class)->findRentalVehicles($type,$em);
         $rentalVehicles = $paginator->paginate(
             $rentalVehicles,
             $req->query->getInt('page', 1),

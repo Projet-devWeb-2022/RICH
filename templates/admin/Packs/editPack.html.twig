@@ -1,10 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/baseFormAdmin.html.twig' %}
 {% block body %}
     {% block content %}
         {% block title %}Mise à jour du pack {% endblock %}
 
 
-            {{ form(form) }}
+        <div class="formulaire">
+
+            <h1><strong>Ajouter une destination</strong></h1>
+            {{ form_start(form) }}
+            <br>
+
+            <div class="name">
+                <label class="lb">Nom : </label>
+                {{ form_widget(form.name , {'attr': {'class': 'in'}}) }}
+            </div>
+            <div class="description">
+                <label class="lb">Description : </label>
+                {{ form_widget(form.description , {'attr': {'class': 'in'}}) }}
+            </div>
+
+            <div class="price">
+                <label class="lb">Prix : </label>
+                {{ form_widget(form.price , {'attr': {'class': 'in'}}) }}
+            </div>
+            <div class="nbPersonMax">
+                <label class="lb">Nombre de personnes max : </label>
+                {{ form_widget(form.nbPersonMax  , {'attr': {'class': 'in'}}) }}
+            </div>
+            <div class="destination">
+                <label class="lb">Destination : </label>
+                {{ form_widget(form.destination  , {'attr': {'class': 'in'}}) }}
+            </div>
+            <div class="prestation">
+                <label class="lb">Prestation : </label>
+                {{ form_widget(form.prestations  , {'attr': {'class': 'in'}}) }}
+            </div>
+
+            <div class="btn">
+                {{ form_widget(form.valider ,{'attr': {'class': 'button'}}) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
 
 
 

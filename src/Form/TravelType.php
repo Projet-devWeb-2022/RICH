@@ -5,6 +5,9 @@ namespace App\Form;
 use App\Entity\Destination;
 use App\Entity\Travel;
 use App\Entity\Vehicle;
+use App\Repository\DestinationRepository;
+use App\Repository\TravelRepository;
+use App\Repository\VehicleRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -32,17 +35,15 @@ class TravelType extends AbstractType
             ->add('destination', EntityType::class, [
                 'class' => Destination::class,
                 'mapped' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.city', 'ASC');
+                'query_builder' => function (DestinationRepository $travelRepository) {
+                    return $travelRepository->travelByCity();
                 },
                 'choice_label' => 'city',
             ])
             ->add('vehicle', EntityType::class, [
                 'class' => Vehicle::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.name', 'ASC');
+                'query_builder' => function (VehicleRepository $er) {
+                    return $er->findAllVehicles();
                 },
                 'choice_label' => 'name',
             ])

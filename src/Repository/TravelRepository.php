@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Travel;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,33 +19,17 @@ class TravelRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Travel::class);
     }
-
-    // /**
-    //  * @return Travel[] Returns an array of Travel objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findTravels($value,$em)
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $conn = $em->getConnection();
+        $sql = '
+            SELECT * FROM prestation p
+            WHERE p.prestationType = :type
+           
+            ';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['type' => $value]);
+        $travels = $resultSet->fetchAllAssociative();
+        return $travels;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Travel
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

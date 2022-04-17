@@ -5,6 +5,8 @@ namespace App\Controller\Travel;
 
 
 use App\Entity\Prestation;
+use App\Entity\Travel;
+use App\Entity\VehicleRental;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,20 +21,8 @@ class ReadTravelController extends AbstractController
      */
     public function showTravels(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
     {
-
-        $conn = $em->getConnection();
         $type = "travel";
-        $sql = '
-            SELECT * FROM prestation p
-            WHERE p.prestationType = :type
-           
-            ';
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery(['type' => $type]);
-
-
-        $travels = $resultSet->fetchAllAssociative();
-
+        $travels = $em->getRepository(Travel::class)->findTravels($type,$em);
         $travels = $paginator->paginate(
             $travels,
             $req->query->getInt('page', 1),

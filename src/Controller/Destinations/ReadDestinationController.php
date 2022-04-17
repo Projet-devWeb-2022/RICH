@@ -19,19 +19,9 @@ class ReadDestinationController extends AbstractController
      */
     public function showAllDestination(PersistenceManagerRegistry $em,PaginatorInterface $paginator, Request $req): Response
     {
-        $conn = $em->getConnection();
+
         $type = "0";
-        $sql = '
-            SELECT * FROM destination p
-            WHERE p.id > :type
-           
-            ';
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery(['type' => $type]);
-
-
-        $destinations = $resultSet->fetchAllAssociative();
-
+        $destinations = $em->getRepository(Destination::class)->findDestinations($type,$em);
         $destinations = $paginator->paginate(
             $destinations,
             $req->query->getInt('page', 1),

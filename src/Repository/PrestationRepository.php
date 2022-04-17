@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Prestation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,33 +19,11 @@ class PrestationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Prestation::class);
     }
-
-    // /**
-    //  * @return Prestation[] Returns an array of Prestation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function prestationByCity()
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $reponse = EntityRepository::createQueryBuilder('u')
+            ->where('u.price > :type1')
+            ->setParameter('type1', 0);
+        return $reponse;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Prestation
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

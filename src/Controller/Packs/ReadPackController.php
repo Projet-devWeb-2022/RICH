@@ -5,6 +5,7 @@ namespace App\Controller\Packs;
 
 
 use App\Entity\Pack;
+use App\Entity\VehicleRental;
 use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,17 +23,7 @@ class ReadPackController extends AbstractController
 
         $conn = $em->getConnection();
         $type = "0";
-        $sql = '
-            SELECT * FROM pack p
-            WHERE p.price > :type
-           
-            ';
-        $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery(['type' => $type]);
-
-
-        $packs = $resultSet->fetchAllAssociative();
-
+        $packs = $em->getRepository(Pack::class)->findPacks($type,$em);
         $packs = $paginator->paginate(
             $packs,
             $req->query->getInt('page', 1),

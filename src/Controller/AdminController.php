@@ -20,15 +20,6 @@ use Doctrine\Persistence\ManagerRegistry as PersistenceManagerRegistry;
 class AdminController extends AbstractController
 {
 
-
-    /**
-     * @Route("/admin/home", name="home")
-     */
-    public function home(): Response
-    {
-        return $this->render('admin/adminHomePage.html.twig');
-    }
-
     /**
      * @Route("/admin/profil")
      */
@@ -82,7 +73,6 @@ class AdminController extends AbstractController
             ['controller_name' => 'AdminController',
             'users' => $users
         ]);
-
     }
 
     #[Route('/admin/user/edit/{id}', name:'adminToUser', methods:['GET','POST'])]

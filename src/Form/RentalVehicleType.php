@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Vehicle;
 use App\Entity\VehicleRental;
+use App\Repository\VehicleRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -29,9 +30,8 @@ class RentalVehicleType extends AbstractType
             ->add('dropOffDate',DateTimeType::class)
             ->add('vehicle', EntityType::class, [
                 'class' => Vehicle::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.name', 'ASC');
+                'query_builder' => function (VehicleRepository $er) {
+                    return $er->findAllVehicles();
                 },
                 'choice_label' => 'name',
             ])
