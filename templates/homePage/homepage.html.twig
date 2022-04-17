@@ -5,15 +5,14 @@
 {% block title %}Rich{% endblock %}
 
 
-{% block body %}
     {% block content %}
 
                 <div class="container has-text-centered">
                     <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
                         <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
                             Entre ferrari, jet privé et d'autre véhicule de rêve. Vous pourrez choisir l'espace d'un séjour ce que vous voulez à des prix incroyables ! A des prix
-                            défiant toutes concurrences.</p>
-                        </div>
+                            défiant toutes concurrences.
+                        </p>
                     </p>
                 </div>
 
@@ -31,7 +30,7 @@
                                             <div class="card">
                                                 <div class="card-image">
                                                     <figure class="image">
-                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}">
+                                                        <img src="{{ asset('../assets/img/Pack n°1.png') }}" >
                                                     </figure>
                                                 </div>
                                                 <div class="card-content" style="background-color: #C7CFCF">
@@ -46,7 +45,9 @@
                                                         <br>
                                                         Le prix est de {{ listPack[i].price }}€ pour ce pack.
                                                         <br>
-                                                        <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
+                                                        <a href="{{ path('cart_addPack', {'id':listPack[i].id})}}">
+                                                            <button class="button is-light is-fullwidth" style="margin-top: 3vh;"> Ajouter au panier </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -57,7 +58,11 @@
                             </div>
                     </div>
                 </nav>
-                <a href="{{ path('allPacks') }}"> <button class="button is-info">Accéder à la page des packs</button></a>
+
+                <a href="{{ path('app_pack_index')}}">
+                     <button class="button is-info">Accéder à la page des packs</button>
+                </a>
+
             </section>
 
             <div class="has-text-centered" style="background-color: #c7cfcf;">
@@ -117,5 +122,5 @@
                 </section>
             </div>
         </div>
-    {% endblock %}
 {% endblock %}
+
