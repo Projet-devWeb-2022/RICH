@@ -1,14 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Merci pour votre commande !</h1>
-    <p>
-        Merci de nous avoir fait confiance !
-        pour toutes questions veuillez nous contacter via le formulaire de contact.
-    </p>
-{% endblock %}
-
 {% block title %}
-
+    Rich - Paiement
 {% endblock %}
 
+{% block body %}
+    {% block content %}
+        <div class="message is-info" style="margin: 25vh 5vh 50vh 5vh">
+            <p class="message-header">Merci pour votre commande !</p>
+            <div class="message-body">
+                <p>
+                    Merci de nous avoir fait confiance !
+                </p>
+                <p>
+                    Pour toutes questions veuillez nous contacter via le formulaire de <a href="{{ path('/contact') }}">contact</a>.
+                </p>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

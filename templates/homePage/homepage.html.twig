@@ -4,9 +4,8 @@
 
 {% block title %}Rich{% endblock %}
 
-
+{% block body %}
     {% block content %}
-
                 <div class="container has-text-centered">
                     <p class="title" style="font-style: italic; font-size: xxx-large; margin-top: 20vh;">Bienvenue sur notre site web !</p>
                         <p class="subtitle" style="margin-top: 15vh; margin-bottom: 35vh; font-style: italic; font-size: x-large;">  Vous avez toujours rêver d'être riche ? Avec nous c'est possible ! Grâce à nous vous pourrez choisir un séjour de rêve et ainsi vivre une expérience luxueuse.
@@ -59,7 +58,7 @@
                     </div>
                 </nav>
 
-                <a href="{{ path('app_pack_index')}}">
+                <a href="{{ path('/pack')}}">
                      <button class="button is-info">Accéder à la page des packs</button>
                 </a>
 
@@ -122,5 +121,6 @@
                 </section>
             </div>
         </div>
+    {% endblock %}
 {% endblock %}
 
