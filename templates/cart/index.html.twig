@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Hello CartController! {% endblock %}
+{% block title %} Panier | RICH  {% endblock %}
 
 {% block content %}
 <style>
@@ -22,24 +22,30 @@
                         <th> destination </th>
                         <th> description </th>
                         <th> Quantity </th>
+                        <th> Prix </th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for item in items %}
                 <tr>
-                    <td> {{ item.pack.name }}</td>
-                    <td> {{ item.pack.destination.city }}</td>
-                    <td> {{ item.pack.description}}</td>
+                    <td> {{ item.product.name }}</td>
+                    <td> {{ item.product.destination.city }}</td>
+                    <td> {{ item.product.description}}</td>
                     <td> {{ item.quantity}}</td>
+                    <td> {{ item.product.getPrice() * item.quantity}}</td>
                     <td>
-                        <a href="{{ path('cart_remove', {'id':item.pack.id})}}">
+                        <a href="{{ path('cart_remove', {'id':item.product.id})}}">
                             <button> trash </button>
                         </a>
                     </td>
                 </tr>
                 {% endfor %}
+
+                <td> total : {{ total }} </td>
                 </tbody>
             </table>
+
+            <button class="button is-medium is-fullwidth is-success"> Paiement </button>
         {% else %}
             <p> Vous n'avez aucun pack. </p>
         {% endif %}

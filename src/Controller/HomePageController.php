@@ -28,14 +28,6 @@ class HomePageController extends AbstractController
     }
 
     /**
-     * @Route("/destination")
-     */
-    public function goToDestination(): Response
-    {
-        return $this->render('destinationPage/destinationPage.html.twig');
-    }
-
-    /**
      * @Route("/ok")
      */
     public function goTo2(): Response

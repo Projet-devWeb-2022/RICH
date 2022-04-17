@@ -32,7 +32,7 @@ class Travel extends Prestation
     private $dateArrival;
 
     #[ORM\ManyToOne(targetEntity: Vehicle::class, inversedBy: 'travel')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: false)]
     private $vehicle;
 
     public function getId(): ?int

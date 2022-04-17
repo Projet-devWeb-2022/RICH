@@ -7,7 +7,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AdminProfilType;
 use App\Form\AdminType;
-use App\Controller\adminController;
+use App\Service\Admin\AdminService;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Knp\Component\Pager\PaginatorInterface;
@@ -55,7 +55,10 @@ class AdminController extends AbstractController
             );
             return $this->redirectToRoute("home");
         }
-
+/**
+        $adminService = new AdminService( $request , $entityManager);
+        $adminService->updateAdminProfil();
+ * **/
         return $this->render('admin/adminProfilPage.html.twig', [
             'form' => $form->createView()
         ]);
@@ -66,7 +69,8 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/user/all", name="allUsers")
      * @param PersistenceManagerRegistry $em
-     * @param $paginator
+     * @param PaginatorInterface $paginator
+     * @param Request $req
      * @return Response
      */
     public function showAllUsers(PersistenceManagerRegistry $em, PaginatorInterface $paginator, Request $req): Response

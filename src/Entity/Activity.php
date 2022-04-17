@@ -22,6 +22,10 @@ class Activity extends Prestation
     #[ORM\Column(type: 'string', length: 255)]
     private $address;
 
+    #[ORM\ManyToOne(targetEntity: Vehicle::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private $vehicle;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +63,18 @@ class Activity extends Prestation
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getVehicle(): ?Vehicle
+    {
+        return $this->vehicle;
+    }
+
+    public function setVehicle(?Vehicle $vehicle): self
+    {
+        $this->vehicle = $vehicle;
 
         return $this;
     }
