@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\ContactType;
 use App\Form\RegistrationFormType;
+use App\Service\Mailing\MailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +21,8 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $email = (new Email())
-                ->from('webrich235@gmail.com')
-                ->to('webrich235@gmail.com')
-
-                ->subject($form->get('title')->getData())
-                ->text('venant de : '.$form->get('usrMail')->getData() ."\n" .$form->get('msg')->getData());
-
-            $mailer->send($email);
+            $mail = new MailService('venant de : '.$form->get('usrMail')->getData() ."\n" .$form->get('msg')->getData(), $form->get('title')->getData(), 'webrich235@gmail.com');
+            $mail->sendMail($mailer);
             $this->addFlash('message', 'Votre message a bien été envoyé !');
             return $this->redirectToRoute('contact');
         }
