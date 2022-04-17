@@ -20,7 +20,7 @@ use Knp\Component\Pager\PaginatorInterface;
 class PackController extends AbstractController
 {
     /**
-     * @Route("/pack")
+     * @Route("/pack", name="pack_page")
      */
     public function index(ManagerRegistry $doctrine): Response
     {

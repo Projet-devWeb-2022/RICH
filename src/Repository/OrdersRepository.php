@@ -2,29 +2,29 @@
 
 namespace App\Repository;
 
-use App\Entity\Order;
-use App\Entity\OrderRecap;
 use App\Entity\Orders;
+use App\Entity\OrderRecap;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * @method Order|null find($id, $lockMode = null, $lockVersion = null)
- * @method Order|null findOneBy(array $criteria, array $orderBy = null)
- * @method Order[]    findAll()
- * @method Order[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Orders|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Orders|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Orders[]    findAll()
+ * @method Orders[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OrdersRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Order::class);
+        parent::__construct($registry, Orders::class);
     }
 
 
-    public function createOrder($panier, SessionInterface $session){
-        $user=$this->getUser();
+    public function createOrder(array $panier, SessionInterface $session, User $user){
+
         $order = new Orders();
         $orderRecap = new OrderRecap();
 

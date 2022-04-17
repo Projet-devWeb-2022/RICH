@@ -18,7 +18,7 @@ class PaymentController extends AbstractController
     public function successUrl(OrdersRepository $ordersRepository, PackRepository $packRepository, SessionInterface $session, MailerInterface $mailer): Response
     {
         $panier = $this->getCart($session, $packRepository);
-        $ordersRepository->createOrder($panier, $session);
+        $ordersRepository->createOrder($panier, $session, $this->getUser());
         $mailcontent = 'Votre commande a bien été confirmée ! Vous retrouverez vos informations de paiement dans l\'onglet commandes de votre espace personnel';
         $mail = new MailService($mailcontent, 'Votre commande du '. (new \DateTime())->format("d M Y"), $this->getUser()->getEmail());
         $mail->sendMail($mailer);
