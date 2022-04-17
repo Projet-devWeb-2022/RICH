@@ -4,15 +4,11 @@ namespace App\Controller;
 use App\Form\EditPasswordType;
 use App\Form\EditUserType;
 use App\Repository\UserRepository;
-use App\Service\MailService;
-use Doctrine\Persistence\ManagerRegistry;
-use Psr\Container\ContainerExceptionInterface;
-use Psr\Container\NotFoundExceptionInterface;
+use App\Service\Mailing\MailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -39,7 +35,7 @@ class userAccountController extends AbstractController
     /**
      * @Route("/profile/edit", name="app_profile_edit")
      */
-    public function editProfile(ManagerRegistry $doctrine,Request $request, UserRepository $userRepository)
+    public function editProfile(Request $request, UserRepository $userRepository)
     {
         $user = $this->getUser();
         $form = $this->createForm(EditUserType::class, $user);

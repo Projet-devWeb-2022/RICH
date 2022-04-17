@@ -23,7 +23,7 @@ class OrdersRepository extends ServiceEntityRepository
     }
 
 
-    public function createOrder($panier, SessionInterface $session, ManagerRegistry $doctrine){
+    public function createOrder($panier, SessionInterface $session){
         $user=$this->getUser();
         $order = new Orders();
         $orderRecap = new OrderRecap();
@@ -45,11 +45,11 @@ class OrdersRepository extends ServiceEntityRepository
         $order->setCreatedAt(new \DateTimeImmutable());
         $order->setUpdatedAt(new \DateTimeImmutable());
 
-        $em = $doctrine->getManager();
-        $em->persist($order);
-        $em->persist($orderRecap);
-        $em->persist($user);
-        $em->flush();
+
+        $this->_em->persist($order);
+        $this->_em->persist($orderRecap);
+        $this->_em->persist($user);
+        $this->_em->flush();
     }
 
     // /**
