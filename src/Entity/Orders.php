@@ -137,8 +137,8 @@ class Orders
     public function setOrderRecap(OrderRecap $orderRecap): self
     {
         // set the owning side of the relation if necessary
-        if ($orderRecap->getOrderRattached() !== $this) {
-            $orderRecap->setOrderRattached($this);
+        if ($orderRecap->getOrdersRattached() !== $this) {
+            $orderRecap->setOrdersRattached($this);
         }
 
         $this->orderRecap = $orderRecap;

@@ -45,9 +45,13 @@
                 </tbody>
             </table>
 
-            <button class="button is-medium is-fullwidth is-success"> Paiement </button>
+
+            <form action="{{ path('checkout') }}" method="POST">
+                <button type="submit" class="button is-medium is-fullwidth is-success"> Payer </button>
+            </form>
+
         {% else %}
-            <p> Vous n'avez aucun pack. </p>
+            <p> Votre panier est vide. </p>
         {% endif %}
     </ul>
 </div>
